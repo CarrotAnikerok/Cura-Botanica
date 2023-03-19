@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InsideMenuScript: MonoBehaviour
+public class InsideMenu : MonoBehaviour
 {
     private CanvasGroup blackBackground;
     private Transform box;
@@ -30,7 +30,7 @@ public class InsideMenuScript: MonoBehaviour
     /// <summary>
     /// Уменьшает объект, двигает его к кнопке меню и делает неактивным.
     /// </summary>
-    private void Close()
+    public void Close()
     {
         box.LeanScale(Vector2.zero, 0.2f);
         box.LeanMoveLocal(new Vector2(-880f, 480f), 0.2f);
@@ -41,7 +41,7 @@ public class InsideMenuScript: MonoBehaviour
     /// <summary>
     /// Возвращает в главное меню.
     /// </summary>
-    private void TurnOnMenu()
+    public void TurnOnMenu()
     {
         SceneManager.LoadScene(0);
     }
@@ -53,5 +53,4 @@ public class InsideMenuScript: MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
 }

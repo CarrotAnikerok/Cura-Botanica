@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PlantMenu : MonoBehaviour
 {
-    private GameObject plantButton1;
+    private GameObject plantButton;
+
+      private void Start()
+    {
+        gameObject.SetActive(true);
+        gameObject.SetActive(false);
+    }
 
     /// <summary>
     /// Задает объекту начальные параметры размера и позиции, дальше увеличивает объект и 
@@ -12,13 +18,13 @@ public class PlantMenu : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        plantButton1 = GameObject.Find("PlantButton");
+        plantButton = GameObject.Find("ActivePlantButton");
 
         transform.localScale = Vector2.zero;
-        transform.localPosition = plantButton1.transform.localPosition;
+        transform.localPosition = plantButton.transform.localPosition;
 
         transform.LeanScale(Vector2.one, 0.3f);
-        transform.LeanMoveLocal(Vector2.zero, 0.3f).setEaseOutQuart();
+        transform.LeanMoveLocal(Vector2.zero, 0.3f);
     }
 
     /// <summary>
@@ -26,7 +32,7 @@ public class PlantMenu : MonoBehaviour
     /// </summary>
     public void Close()
     {
-        transform.LeanMoveLocal(plantButton1.transform.localPosition, 0.3f).setEaseOutQuart();
+        transform.LeanMoveLocal(plantButton.transform.localPosition, 0.3f);
         transform.LeanScale(Vector2.zero, 0.3f).setOnComplete(OnComplete);
     }
 

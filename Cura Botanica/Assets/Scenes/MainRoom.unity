@@ -738,6 +738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd25f9afd227547ab4cf628dfdb7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plantImage: {fileID: 0}
+  buttonImage: {fileID: 0}
 --- !u!1 &577597208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,6 +2108,18 @@ PrefabInstance:
     - target: {fileID: 746596661365414549, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}
       propertyPath: m_Name
       value: PlantButton4
+      objectReference: {fileID: 0}
+    - target: {fileID: 746596661365414554, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 746596661365414554, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9fe042fd856a7aa4990eec6a8a85f9bb, type: 3}
+    - target: {fileID: 746596661365414554, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}

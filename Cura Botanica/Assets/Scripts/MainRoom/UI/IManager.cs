@@ -5,6 +5,7 @@ using UnityEngine;
 public class IManager : MonoBehaviour
 {
     public GameObject plantMenu;
+
     // Start is called before the first frame update
     void Awake()
     {

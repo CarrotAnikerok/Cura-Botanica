@@ -12,31 +12,31 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
-        Debug.Log(plantMenu);
     }
 
     private void Update()
-    {
+    {   //меняет имя кнопки на свое обычное
         if (!plantMenu.activeSelf)
         {
             this.name = buttonName;
         }
     }
 
+    /// <summary>
+    /// Вызывается по нажатия мыши
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         OpenPlantMenu();
     }
 
+    /// <summary>
+    /// Открывает меню растения.
+    /// </summary>
     public void OpenPlantMenu()
     {
         this.name = "ActivePlantButton";
         plantMenu.SetActive(true);
-/*
-        plantMenu.transform.localScale = Vector2.zero;
-        plantMenu.transform.localPosition = this.transform.localPosition;
-
-        plantMenu.transform.LeanScale(Vector2.one, 0.3f);
-        plantMenu.transform.LeanMoveLocal(Vector2.zero, 0.3f);*/
     }
 }

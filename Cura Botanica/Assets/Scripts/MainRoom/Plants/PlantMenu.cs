@@ -1,34 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlantMenu : MonoBehaviour
 {
     private GameObject plantButton;
+    public Image plantImage;
+    public Image buttonImage;
 
-      private void Start()
+    private void Start()
     {
-        gameObject.SetActive(true);
+        plantImage = GameObject.Find("ActualImageOfPlant").GetComponent<Image>();
         gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Задает объекту начальные параметры размера и позиции, дальше увеличивает объект и 
-    /// двигает его к центру, делая его полностью видимым.
+    /// Находит кнопку, из которой должно влезти меню, и берет ее картинку. Задает объекту начальные параметры размера и позиции, 
+    /// дальше увеличивает объект и двигает его к центру, делая его полностью видимым.
     /// </summary>
     private void OnEnable()
     {
-        plantButton = GameObject.Find("ActivePlantButton");
+        if (GameObject.Find("ActivePlantButton") != null)
+        {
+            plantButton = GameObject.Find("ActivePlantButton");
+            buttonImage = plantButton.GetComponent<Image>();
+            plantImage.sprite = buttonImage.sprite;
 
-        transform.localScale = Vector2.zero;
-        transform.localPosition = plantButton.transform.localPosition;
+            transform.localScale = Vector2.zero;
+            transform.localPosition = plantButton.transform.localPosition;
 
-        transform.LeanScale(Vector2.one, 0.3f);
-        transform.LeanMoveLocal(Vector2.zero, 0.3f);
+            transform.LeanScale(Vector2.one, 0.3f);
+            transform.LeanMoveLocal(Vector2.zero, 0.3f);
+        }
+
     }
 
     /// <summary>
-    /// Уменьшает объект, двигает его к кнопке меню и делает неактивным.
+    /// Уменьшает объект, двигает его к кнопке и делает неактивным.
     /// </summary>
     public void Close()
     {

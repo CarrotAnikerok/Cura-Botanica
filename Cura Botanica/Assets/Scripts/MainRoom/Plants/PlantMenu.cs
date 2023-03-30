@@ -1,32 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlantMenu : MonoBehaviour
 {
-    private GameObject plantButton1;
+    private GameObject plantButton;
+    public Image plantImage;
+    public Image buttonImage;
 
-    /// <summary>
-    /// Задает объекту начальные параметры размера и позиции, дальше увеличивает объект и 
-    /// двигает его к центру, делая его полностью видимым.
-    /// </summary>
-    private void OnEnable()
+    private void Start()
     {
-        plantButton1 = GameObject.Find("PlantButton");
-
-        transform.localScale = Vector2.zero;
-        transform.localPosition = plantButton1.transform.localPosition;
-
-        transform.LeanScale(Vector2.one, 0.3f);
-        transform.LeanMoveLocal(Vector2.zero, 0.3f).setEaseOutQuart();
+        plantImage = GameObject.Find("ActualImageOfPlant").GetComponent<Image>();
+        gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Уменьшает объект, двигает его к кнопке меню и делает неактивным.
+    /// Находит кнопку, из которой должно влезти меню, и берет ее картинку. Задает объекту начальные параметры размера и позиции, 
+    /// дальше увеличивает объект и двигает его к центру, делая его полностью видимым.
+    /// </summary>
+    private void OnEnable()
+    {
+        if (GameObject.Find("ActivePlantButton") != null)
+        {
+            plantButton = GameObject.Find("ActivePlantButton");
+            buttonImage = plantButton.GetComponent<Image>();
+            plantImage.sprite = buttonImage.sprite;
+
+            transform.localScale = Vector2.zero;
+            transform.localPosition = plantButton.transform.localPosition;
+
+            transform.LeanScale(Vector2.one, 0.3f);
+            transform.LeanMoveLocal(Vector2.zero, 0.3f);
+        }
+
+    }
+
+    /// <summary>
+    /// Уменьшает объект, двигает его к кнопке и делает неактивным.
     /// </summary>
     public void Close()
     {
-        transform.LeanMoveLocal(plantButton1.transform.localPosition, 0.3f).setEaseOutQuart();
+        transform.LeanMoveLocal(plantButton.transform.localPosition, 0.3f);
         transform.LeanScale(Vector2.zero, 0.3f).setOnComplete(OnComplete);
     }
 

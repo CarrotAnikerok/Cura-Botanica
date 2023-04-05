@@ -8,6 +8,7 @@ public class PlantMenu : MonoBehaviour
     private GameObject plantButton;
     public Image plantImage;
     public Image buttonImage;
+    public Plant activePlant;
 
     private void Start()
     {
@@ -23,9 +24,13 @@ public class PlantMenu : MonoBehaviour
     {
         if (GameObject.Find("ActivePlantButton") != null)
         {
+            // Меняем картинку на нужное растение
             plantButton = GameObject.Find("ActivePlantButton");
             buttonImage = plantButton.GetComponent<Image>();
             plantImage.sprite = buttonImage.sprite;
+
+            // Находим объект, над которым нужно проводить операции
+            activePlant = plantButton.GetComponent<AloeVera>().aloeVera;
 
             transform.localScale = Vector2.zero;
             transform.localPosition = plantButton.transform.localPosition;

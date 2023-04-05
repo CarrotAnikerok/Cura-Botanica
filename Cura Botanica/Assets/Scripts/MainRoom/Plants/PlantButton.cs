@@ -8,10 +8,10 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     private GameObject plantMenu;
     public string buttonName;
 
-    // Start is called before the first frame update
     void Start()
     {
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
+        buttonName = this.name;
     }
 
     private void Update()

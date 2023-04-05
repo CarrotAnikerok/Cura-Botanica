@@ -1758,7 +1758,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 574583607}
-        m_TargetAssemblyTypeName: Instuments, Assembly-CSharp
+        m_TargetAssemblyTypeName: Tools, Assembly-CSharp
         m_MethodName: WaterActivePlant
         m_Mode: 1
         m_Arguments:
@@ -2483,5 +2483,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aloe Vera Button
       objectReference: {fileID: 0}
+    - target: {fileID: 746596661365414552, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}
+      propertyPath: plant
+      value: 
+      objectReference: {fileID: 2042159483}
+    - target: {fileID: 746596661365414552, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}
+      propertyPath: plantName
+      value: 
+      objectReference: {fileID: 2042159483}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74fccf3d0421c7f4d8ecb3e9c8697381, type: 3}

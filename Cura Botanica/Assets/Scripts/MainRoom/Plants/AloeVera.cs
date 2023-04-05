@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class AloeVera : MonoBehaviour
 {
-    public Plant aloeVera = new Plant("Aloe Vera");
-    public string plantName;
+    public Plant plant = new("Aloe Vera");
     void Start()
     {
-        plantName = aloeVera.name;
-        Debug.Log(plantName);
-        Debug.Log("Это коэффицент алое " + aloeVera.waterCoefficient);
-        aloeVera.Dry();
-        Debug.Log("Это коэффицент алое " + aloeVera.waterCoefficient);
+        Debug.Log("Это коэффицент алое " + plant.waterCoefficient);
+        plant.Dry();
+        Debug.Log("Это коэффицент алое " + plant.waterCoefficient);
     }
 }

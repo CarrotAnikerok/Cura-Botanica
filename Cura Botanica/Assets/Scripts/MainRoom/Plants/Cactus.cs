@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Cactus : MonoBehaviour
 {
-    public Plant cactus = new Plant("Cactus");
+    public Plant plant = new Plant("Cactus");
     void Start()
     {
-        Debug.Log(cactus.name);
-        Debug.Log("Это коэффицент кактуса " + cactus.waterCoefficient);
-        cactus.Dry();
-        cactus.Dry();
-        Debug.Log("Это коэффицент кактуса " + cactus.waterCoefficient);
+        Debug.Log(plant.name);
+        Debug.Log("Это коэффицент кактуса " + plant.waterCoefficient);
+        plant.Dry();
+        plant.Dry();
+        Debug.Log("Это коэффицент кактуса " + plant.waterCoefficient);
     }
 }

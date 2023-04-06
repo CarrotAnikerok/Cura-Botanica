@@ -7,11 +7,26 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
 {
     private GameObject plantMenu;
     public string buttonName;
+    public Plant plant;
 
-    // Start is called before the first frame update
     void Start()
     {
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
+        buttonName = this.name;
+
+        // Свитч конструкция для связи кнопки с растением объекта. В идеале переделеать, чтобы соблюдался принцип Open closed
+        switch (buttonName) 
+        {
+            case "Aloe Vera Button":
+                plant = GetComponent<AloeVera>().plant;
+                break;
+            case "Cactus Button":
+                plant = GetComponent<Cactus>().plant;
+                break;
+            default:
+                Debug.Log(":(");
+                break;
+        }
     }
 
     private void Update()

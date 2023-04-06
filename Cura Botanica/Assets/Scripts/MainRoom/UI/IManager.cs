@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IManager : MonoBehaviour
+
+    // Класс нужен, чтобы изначально найти необходимые объекты и обращаться к ним через IManager,
+    // даже если они недоступны
 {
     public GameObject plantMenu;
 
-    // Start is called before the first frame update
     void Awake()
     {
         plantMenu = GameObject.Find("PlantMenu");
         Debug.Log(plantMenu);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

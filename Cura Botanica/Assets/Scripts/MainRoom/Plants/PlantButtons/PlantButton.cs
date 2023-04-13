@@ -43,6 +43,11 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (eventData.dragging)
+        {
+            return;
+        }
+
         OpenPlantMenu();
     }
 

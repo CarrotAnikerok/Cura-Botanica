@@ -8,6 +8,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     public Image image;
     [HideInInspector] public Transform parentAfteDrag;
+    private PlantSlot[] objects;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -15,8 +16,16 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         parentAfteDrag = transform.parent;
         transform.SetParent(transform.parent.parent);
         transform.SetAsLastSibling();
-        Debug.Log(parentAfteDrag);
         image.raycastTarget = false;
+
+
+
+        objects = FindObjectsOfType<PlantSlot>();
+        foreach (PlantSlot obj in objects)
+        {
+            Debug.Log(obj);
+            obj.image.enabled = true;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -29,7 +38,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         Debug.Log("End drug");
         transform.SetParent(parentAfteDrag);
-        Debug.Log(transform.parent);
         image.raycastTarget = true;
+        foreach (PlantSlot obj in objects)
+        {
+            Debug.Log(obj);
+            obj.image.enabled = false;
+        }
     }
 }

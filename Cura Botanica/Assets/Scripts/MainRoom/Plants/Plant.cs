@@ -5,7 +5,9 @@ using UnityEngine;
 public class Plant
 {
     public string name;
+    public double normalWaterAmount; // при этом количечстве воды в горшке коэффицент будет равен 0.
     public double waterCoefficient;
+    public string state;
     public Plant(string name)
     {
         this.name = name;
@@ -20,11 +22,15 @@ public class Plant
         }
     }
 
-    public void Pour()
+    public void Pour(double waterAmount)
     {
-        if (waterCoefficient < 2.0f)
+        if (this.waterCoefficient + waterAmount / normalWaterAmount > 2.0f)
         {
-            this.waterCoefficient += 0.25f;
+            this.waterCoefficient = 2.0f;
+        }
+        else
+        {
+            this.waterCoefficient += waterAmount / normalWaterAmount;
         }
     }
 }

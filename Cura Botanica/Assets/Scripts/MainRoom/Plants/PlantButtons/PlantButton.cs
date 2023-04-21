@@ -8,9 +8,11 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     private GameObject plantMenu;
     public string buttonName;
     public Plant plant;
+    public GameObject UI;
 
     void Start()
     {
+        UI = GameObject.Find("UserInterface");
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
         buttonName = this.name;
 
@@ -48,6 +50,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
             return;
         }
 
+        UI.SetActive(false);
         OpenPlantMenu();
     }
 

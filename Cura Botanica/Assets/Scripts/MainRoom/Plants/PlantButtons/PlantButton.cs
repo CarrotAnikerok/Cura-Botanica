@@ -6,34 +6,24 @@ using UnityEngine;
 public class PlantButton : MonoBehaviour, IPointerClickHandler
 {
     private GameObject plantMenu;
-    public string buttonName;
+    private string _buttonName;
     public Plant plant;
+    public GameObject UI;
 
     void Start()
     {
+        UI = GameObject.Find("UserInterface");
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
-        buttonName = this.name;
+        _buttonName = this.name;
+        plant = GetComponent<GamePlant>().plant;
 
-        // Свитч конструкция для связи кнопки с растением объекта. В идеале переделеать, чтобы соблюдался принцип Open closed
-        switch (buttonName) 
-        {
-            case "Aloe Vera Button":
-                plant = GetComponent<AloeVera>().plant;
-                break;
-            case "Cactus Button":
-                plant = GetComponent<Cactus>().plant;
-                break;
-            default:
-                Debug.Log(":(");
-                break;
-        }
     }
 
     private void Update()
     {   //меняет имя кнопки на свое обычное
         if (!plantMenu.activeSelf)
         {
-            this.name = buttonName;
+            this.name = _buttonName;
         }
     }
 
@@ -48,6 +38,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
             return;
         }
 
+        UI.SetActive(false);
         OpenPlantMenu();
     }
 

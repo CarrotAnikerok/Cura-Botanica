@@ -30,5 +30,4 @@ public class Tools : MonoBehaviour
         activePlant.Pour(_sliderValue);
         Debug.Log(activePlant.name + " " + activePlant.waterCoefficient);
     }
-
 }

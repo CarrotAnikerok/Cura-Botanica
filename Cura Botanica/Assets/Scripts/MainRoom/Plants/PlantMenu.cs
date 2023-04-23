@@ -20,7 +20,7 @@ public class PlantMenu : MonoBehaviour
     private void Start()
     {
         plantMenuContainer = GameObject.Find("PlantMenuContainer");
-        _UI = GameObject.Find("UserInterface");
+        _UI = GameObject.Find("User Interface");
         plantImage = GameObject.Find("ActualImageOfPlant").GetComponent<Image>();
         _tools = plantMenuContainer.GetComponent<Tools>();
         gameObject.SetActive(false);

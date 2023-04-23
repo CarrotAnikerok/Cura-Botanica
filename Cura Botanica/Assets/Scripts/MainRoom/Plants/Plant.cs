@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
+
 
 public abstract class Plant : MonoBehaviour
 {
@@ -20,6 +22,18 @@ public abstract class Plant : MonoBehaviour
     protected string[] _states = {"Perfect", "Good", "Neutral", "Bad", "Horrible", "Dead"};
     public abstract string[] states { get; set; }
 
+    [SerializeField]  protected Sprite[] _statesPictures = new Sprite[6];
+    public abstract Sprite[] statesPictures { get; set; }
+
+    protected Image _image ;
+    public abstract Image image { get; set; }
+
+
+    public virtual void Awake()
+    {
+        image = GetComponent<Image>();
+        image.sprite = statesPictures[Array.FindIndex(states, x => x == state)];
+    }
 
 
     public virtual void ChangeState()
@@ -33,10 +47,23 @@ public abstract class Plant : MonoBehaviour
             } 
             else
             {
-                this.state = states[i+1];
+                this.state = states[i + 1];
+                image.sprite = statesPictures[i + 1];
+                
             }
         } 
-        
+        else if (waterCoefficient > 0.75 && waterCoefficient < 1.25)
+        {
+            if (i == 0)
+            {
+                Debug.Log(String.Format("There is no more elements"));
+            }
+            else
+            {
+                this.state = states[i - 1];
+                image.sprite = statesPictures[i - 1];
+            }
+        }
     }
 
     public virtual void Dry()

@@ -12,7 +12,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        UI = GameObject.Find("UserInterface");
+        UI = GameObject.Find("User Interface");
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
         _buttonName = this.name;
         plant = GetComponent<GamePlant>().plant;

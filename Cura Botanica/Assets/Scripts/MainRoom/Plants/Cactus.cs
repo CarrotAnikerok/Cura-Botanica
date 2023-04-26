@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cactus : Plant
 {
@@ -26,6 +27,17 @@ public class Cactus : Plant
     {
         get { return _states; }
         set { _states = value; }
+    }
+    public override Sprite[] statesPictures
+    {
+        get { return _statesPictures; }
+        set { _statesPictures = value; }
+    }
+
+    public override Image image
+    {
+        get { return _image; }
+        set { _image = value; }
     }
 
     public Cactus()

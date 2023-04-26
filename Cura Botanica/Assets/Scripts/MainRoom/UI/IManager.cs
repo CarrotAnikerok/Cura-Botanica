@@ -8,10 +8,10 @@ public class IManager : MonoBehaviour
     // даже если они недоступны
 {
     public GameObject plantMenu;
+    public string fase;
 
     void Awake()
     {
         plantMenu = GameObject.Find("PlantMenu");
-        Debug.Log(plantMenu);
     }
 }

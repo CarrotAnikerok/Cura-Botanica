@@ -5,17 +5,24 @@ using UnityEngine.UI;
 
 public class PlantMenu : MonoBehaviour
 {
-    private GameObject plantButton;
-    private Vector2 plantButtonPosition;
+    private GameObject _plantButton;
+    private GameObject _UI;
+    private Vector2 _plantButtonPosition;
+    private Tools _tools;
+
     public Image plantImage;
     public Image buttonImage;
     public Plant activePlant;
-    private Tools tools;
+    public CanvasGroup blackBackground;
+    public GameObject plantMenuContainer;
+
 
     private void Start()
     {
+        plantMenuContainer = GameObject.Find("PlantMenuContainer");
+        _UI = GameObject.Find("User Interface");
         plantImage = GameObject.Find("ActualImageOfPlant").GetComponent<Image>();
-        tools = GetComponent<Tools>();
+        _tools = plantMenuContainer.GetComponent<Tools>();
         gameObject.SetActive(false);
     }
 
@@ -27,25 +34,28 @@ public class PlantMenu : MonoBehaviour
     {
         if (GameObject.Find("ActivePlantButton") != null)
         {
-            plantButton = GameObject.Find("ActivePlantButton"); //Находим нажатую кнопку
-            plantButtonPosition = plantButton.transform.position;
+            _plantButton = GameObject.Find("ActivePlantButton"); //Находим нажатую кнопку
+            _plantButtonPosition = _plantButton.transform.position;
+            blackBackground = GameObject.Find("BlackBackgroundPlant").GetComponent<CanvasGroup>();
 
             // Меняем картинку на нужное растение
-            buttonImage = plantButton.GetComponent<Image>();
+            buttonImage = _plantButton.GetComponent<Image>();
             plantImage.sprite = buttonImage.sprite;
 
             // Находим объект, над которым нужно проводить операции
-            activePlant = plantButton.GetComponent<PlantButton>().plant;
-            tools.activePlant = activePlant;
+            activePlant = _plantButton.GetComponent<PlantButton>().plant;
+            _tools.activePlant = activePlant;
             //Debug.Log("Это вызов из PlantMenu: " + activePlant.name);
 
             // Анимации
-            transform.localScale = Vector2.zero;
-            transform.position = plantButtonPosition;
+            plantMenuContainer.transform.localScale = Vector2.zero;
+            plantMenuContainer.transform.position = _plantButtonPosition;
             Debug.Log("Это позиция открытия" + transform.position);
+            blackBackground.alpha = 0;
 
-            transform.LeanScale(Vector2.one, 0.3f);
-            transform.LeanMoveLocal(Vector2.zero, 0.3f);
+            plantMenuContainer.transform.LeanScale(Vector2.one, 0.3f);
+            plantMenuContainer.transform.LeanMoveLocal(Vector2.zero, 0.3f);
+            blackBackground.LeanAlpha(1, 0.2f);
         }
 
     }
@@ -55,9 +65,12 @@ public class PlantMenu : MonoBehaviour
     /// </summary>
     public void Close()
     {
-        transform.LeanMove(plantButtonPosition, 0.3f);
-        Debug.Log("Это позиция закрытия" + transform.position);
-        transform.LeanScale(Vector2.zero, 0.3f).setOnComplete(OnComplete);
+        plantMenuContainer.transform.LeanMove(_plantButtonPosition, 0.3f);
+        Debug.Log("Это позиция закрытия" + plantMenuContainer.transform.position);
+        blackBackground.LeanAlpha(0, 0.2f);
+
+        plantMenuContainer.transform.LeanScale(Vector2.zero, 0.3f).setOnComplete(OnComplete);
+        _UI.SetActive(true);
     }
 
     /// <summary>

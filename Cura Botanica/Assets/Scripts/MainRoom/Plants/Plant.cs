@@ -22,8 +22,11 @@ public abstract class Plant : MonoBehaviour
     protected string[] _states = {"Perfect", "Good", "Neutral", "Bad", "Horrible", "Dead"};
     public abstract string[] states { get; set; }
 
-    [SerializeField]  protected Sprite[] _statesPictures = new Sprite[6];
-    public abstract Sprite[] statesPictures { get; set; }
+    [SerializeField]  protected Sprite[] _statesPicturesMini = new Sprite[6];
+    public abstract Sprite[] statesPicturesMini { get; set; }
+
+    [SerializeField] protected Sprite[] _statesPicturesBig = new Sprite[6];
+    public abstract Sprite[] statesPicturesBig { get; set; }
 
     protected Image _image ;
     public abstract Image image { get; set; }
@@ -32,7 +35,7 @@ public abstract class Plant : MonoBehaviour
     public virtual void Awake()
     {
         image = GetComponent<Image>();
-        image.sprite = statesPictures[Array.FindIndex(states, x => x == state)];
+        image.sprite = statesPicturesMini[Array.FindIndex(states, x => x == state)];
     }
 
 
@@ -48,7 +51,7 @@ public abstract class Plant : MonoBehaviour
             else
             {
                 this.state = states[i + 1];
-                image.sprite = statesPictures[i + 1];
+                image.sprite = statesPicturesMini[i + 1];
                 
             }
         } 
@@ -61,7 +64,7 @@ public abstract class Plant : MonoBehaviour
             else
             {
                 this.state = states[i - 1];
-                image.sprite = statesPictures[i - 1];
+                image.sprite = statesPicturesMini[i - 1];
             }
         }
     }

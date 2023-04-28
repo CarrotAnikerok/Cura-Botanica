@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 28a4e9919f64913409ac8fdbbc0912a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f419d7f2805f31149a503f7d33ff48b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2794,6 +2794,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8653673943853059927, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
@@ -4070,6 +4074,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ab34c04fa70300c4c8e31a49bb4b7e9b, type: 3}
   - {fileID: 21300000, guid: 7a8a093d66df8034a8afec9fb5a66ced, type: 3}
   - {fileID: 21300000, guid: 0c7893cb62210b34a81baf6ce0ae8a25, type: 3}
+  background: {fileID: 0}
+  bgPictures:
+  - {fileID: 21300000, guid: f419d7f2805f31149a503f7d33ff48b6, type: 3}
+  - {fileID: 21300000, guid: 20aeb2aa88065124b81bc36652690120, type: 3}
+  - {fileID: 21300000, guid: 502d6b8c4fd27be4794ef6efa577d613, type: 3}
   image: {fileID: 0}
   fase: Morning
   transition: {fileID: 376250473}
@@ -4871,6 +4880,10 @@ PrefabInstance:
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8653673943853059927, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Name
@@ -6813,10 +6826,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: "50 \u043C\u043B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e017527df72dd13499110b8fa86a3f5f, type: 2}
-  m_sharedMaterial: {fileID: 42372422224138193, guid: e017527df72dd13499110b8fa86a3f5f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ff02fc32bb7df8a4a94a4cd20f7220bd, type: 2}
+  m_sharedMaterial: {fileID: 2050883405967145120, guid: ff02fc32bb7df8a4a94a4cd20f7220bd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6876,7 +6889,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -26.429153, y: 0, z: -50.215332, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

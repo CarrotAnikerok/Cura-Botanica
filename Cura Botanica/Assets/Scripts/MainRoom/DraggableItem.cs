@@ -12,7 +12,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin drag");
+        //Debug.Log("Begin drag");
         parentAfteDrag = transform.parent;
         transform.SetParent(transform.parent.parent);
         transform.SetAsLastSibling();
@@ -34,13 +34,13 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
+        //Debug.Log("Dragging");
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End drug");
+        //Debug.Log("End drug");
         transform.SetParent(parentAfteDrag);
         image.raycastTarget = true;
         foreach (PlantSlot obj in objects)

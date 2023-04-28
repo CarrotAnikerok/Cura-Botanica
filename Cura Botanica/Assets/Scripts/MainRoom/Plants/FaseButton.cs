@@ -9,6 +9,10 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 {
     public string[] fases = {"Day", "Evening", "Morning" };
     public Sprite[] fasesPictures = new Sprite[3];
+
+    public Image background;
+    public Sprite[] bgPictures = new Sprite[3];
+
     public Image image;
     public string fase;
     GamePlant[] allPlants;
@@ -23,7 +27,8 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public void Awake()
     {
         allPlants = FindObjectsOfType<GamePlant>();
-        Debug.Log(transition);
+        background = GameObject.Find("Background").GetComponent<Image>();
+
         image = GetComponent<Image>();
 
     }
@@ -43,18 +48,20 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     IEnumerator LoadUpdate()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
 
         int i = Array.FindIndex(fases, x => x == fase);
         if (i < 2)
         {
             this.fase = fases[i + 1];
             image.sprite = fasesPictures[i + 1];
+            background.sprite = bgPictures[i + 1];
         }
         else if (i == 2)
         {
             this.fase = fases[0];
             image.sprite = fasesPictures[0];
+            background.sprite = bgPictures[0];
         }
 
         foreach (GamePlant plant in allPlants)
@@ -64,7 +71,7 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         transition.image.sprite = transition.fase[i];
     }
 

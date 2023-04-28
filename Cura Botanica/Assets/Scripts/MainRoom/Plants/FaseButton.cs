@@ -31,11 +31,18 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         StartCoroutine(LoadUpdate());
+        StartCoroutine(LoadTransition());
+    }
+
+    IEnumerator LoadTransition()
+    {
+        transition.StartTransition();
+        yield return new WaitForSeconds(1f);
+        transition.ReturnToStart();
     }
 
     IEnumerator LoadUpdate()
     {
-        transition.StartTransition();
         yield return new WaitForSeconds(0.5f);
 
         int i = Array.FindIndex(fases, x => x == fase);
@@ -57,10 +64,8 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler
             Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state);
         }
 
-        Debug.Log(fase);
-
-        transition.EndTransition();
         yield return new WaitForSeconds(0.5f);
-        transition.ReturnToStart();
+        transition.image.sprite = transition.fase[i];
+
     }
 }

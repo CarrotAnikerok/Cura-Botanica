@@ -10,16 +10,20 @@ public class PlantMenu : MonoBehaviour
     private GameObject _UI;
     private Vector2 _plantButtonPosition;
     private Tools _tools;
+    private int stateOfPlant;
 
     public Image plantImage;
     public Sprite bigSprite;
     public Plant activePlant;
     public CanvasGroup blackBackground;
     public GameObject plantMenuContainer;
+    public Image state;
+    public Sprite[] states = new Sprite[6];
 
 
     private void Start()
     {
+        state = GameObject.Find("State Image").GetComponent<Image>();
         plantMenuContainer = GameObject.Find("Plant Menu Container");
         _UI = GameObject.Find("User Interface");
         plantImage = GameObject.Find("Actual Image Of Plant").GetComponent<Image>();
@@ -44,11 +48,17 @@ public class PlantMenu : MonoBehaviour
             _tools.activePlant = activePlant;
             //Debug.Log("Это вызов из PlantMenu: " + activePlant.name);
 
+            stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
+
             // Меняем картинку на нужное растение
-            bigSprite = activePlant.statesPicturesBig[Array.FindIndex(activePlant.states, x => x == activePlant.state)];
+            bigSprite = activePlant.statesPicturesBig[stateOfPlant];
             plantImage.sprite = bigSprite;
             //bigImage = _plantButton.GetComponent<Image>();
             //plantImage.sprite = bigImage.sprite;
+
+            // Значок состояния
+            state.sprite = states[stateOfPlant];
+
 
             // Анимации
             plantMenuContainer.transform.localScale = Vector2.zero;

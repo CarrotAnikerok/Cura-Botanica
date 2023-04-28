@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ad21c2e41d5628048bb02439b7bd7070
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - PP Pangram Sans Rounded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 94804261ca8075244821746b264f6cc0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -28,10 +28,16 @@ public class Cactus : Plant
         get { return _states; }
         set { _states = value; }
     }
-    public override Sprite[] statesPictures
+    public override Sprite[] statesPicturesMini
     {
-        get { return _statesPictures; }
-        set { _statesPictures = value; }
+        get { return _statesPicturesMini; }
+        set { _statesPicturesMini = value; }
+    }
+
+    public override Sprite[] statesPicturesBig
+    {
+        get { return _statesPicturesBig; }
+        set { _statesPicturesBig = value; }
     }
 
     public override Image image

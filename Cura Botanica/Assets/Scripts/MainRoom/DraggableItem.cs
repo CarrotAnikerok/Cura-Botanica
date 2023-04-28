@@ -25,6 +25,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             Debug.Log(obj);
             obj.image.enabled = true;
+            if (obj.transform.childCount == 1)
+            {
+                obj.image.enabled = false;
+            }
         }
     }
 

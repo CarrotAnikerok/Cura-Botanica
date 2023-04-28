@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class PlantMenu : MonoBehaviour
 {
@@ -9,19 +10,23 @@ public class PlantMenu : MonoBehaviour
     private GameObject _UI;
     private Vector2 _plantButtonPosition;
     private Tools _tools;
+    private int stateOfPlant;
 
     public Image plantImage;
-    public Image buttonImage;
+    public Sprite bigSprite;
     public Plant activePlant;
     public CanvasGroup blackBackground;
     public GameObject plantMenuContainer;
+    public Image state;
+    public Sprite[] states = new Sprite[6];
 
 
     private void Start()
     {
-        plantMenuContainer = GameObject.Find("PlantMenuContainer");
+        state = GameObject.Find("State Image").GetComponent<Image>();
+        plantMenuContainer = GameObject.Find("Plant Menu Container");
         _UI = GameObject.Find("User Interface");
-        plantImage = GameObject.Find("ActualImageOfPlant").GetComponent<Image>();
+        plantImage = GameObject.Find("Actual Image Of Plant").GetComponent<Image>();
         _tools = plantMenuContainer.GetComponent<Tools>();
         gameObject.SetActive(false);
     }
@@ -36,16 +41,24 @@ public class PlantMenu : MonoBehaviour
         {
             _plantButton = GameObject.Find("ActivePlantButton"); //Находим нажатую кнопку
             _plantButtonPosition = _plantButton.transform.position;
-            blackBackground = GameObject.Find("BlackBackgroundPlant").GetComponent<CanvasGroup>();
-
-            // Меняем картинку на нужное растение
-            buttonImage = _plantButton.GetComponent<Image>();
-            plantImage.sprite = buttonImage.sprite;
+            blackBackground = GameObject.Find("Black Background Plant").GetComponent<CanvasGroup>();
 
             // Находим объект, над которым нужно проводить операции
             activePlant = _plantButton.GetComponent<PlantButton>().plant;
             _tools.activePlant = activePlant;
             //Debug.Log("Это вызов из PlantMenu: " + activePlant.name);
+
+            stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
+
+            // Меняем картинку на нужное растение
+            bigSprite = activePlant.statesPicturesBig[stateOfPlant];
+            plantImage.sprite = bigSprite;
+            //bigImage = _plantButton.GetComponent<Image>();
+            //plantImage.sprite = bigImage.sprite;
+
+            // Значок состояния
+            state.sprite = states[stateOfPlant];
+
 
             // Анимации
             plantMenuContainer.transform.localScale = Vector2.zero;

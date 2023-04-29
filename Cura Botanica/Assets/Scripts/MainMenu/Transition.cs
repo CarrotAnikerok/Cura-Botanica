@@ -14,7 +14,7 @@ public class Transition : MonoBehaviour
         StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadScene(int sceneIndex)
+    public IEnumerator LoadScene(int sceneIndex)
     {
         transition.SetTrigger("Start");
 

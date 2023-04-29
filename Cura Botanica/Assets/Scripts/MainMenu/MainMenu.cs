@@ -11,10 +11,13 @@ public class MainMenu : MonoBehaviour
     //     Instance = this;
     // }
     public float transitionTime = 1f;
+    public Transition transition;
+
 
     public void PlayGame() {
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(transition.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+
     }
 
     public void QuitGame() {

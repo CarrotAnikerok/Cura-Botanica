@@ -3,27 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class Transition : MonoBehaviour
 {
-    //  public static MenuManager Instance;
- 
-    // void Awake(){
-    //     Instance = this;
-    // }
+    public Animator transition;
+
     public float transitionTime = 1f;
 
-    public void PlayGame() {
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    public void LoadNextScene()
+    {
         StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
-    }
-
-    public void QuitGame() {
-        Debug.Log("Game has closed");
-        Application.Quit();
     }
 
     IEnumerator LoadScene(int sceneIndex)
     {
+        transition.SetTrigger("Start");
+
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(sceneIndex);

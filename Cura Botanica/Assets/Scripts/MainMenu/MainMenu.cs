@@ -10,13 +10,25 @@ public class MainMenu : MonoBehaviour
     // void Awake(){
     //     Instance = this;
     // }
+    public float transitionTime = 1f;
+    public Transition transition;
+
 
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(transition.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+
     }
 
     public void QuitGame() {
         Debug.Log("Game has closed");
         Application.Quit();
+    }
+
+    IEnumerator LoadScene(int sceneIndex)
+    {
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(sceneIndex);
     }
 }

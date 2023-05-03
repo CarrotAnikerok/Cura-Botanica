@@ -15,7 +15,7 @@ public class Tools : MonoBehaviour
     {
         _waterAmountSlider.onValueChanged.AddListener((v) =>
         {
-            _waterAmountText.text = v.ToString("0");
+            _waterAmountText.text = v.ToString("0" + " мл");
         });
     }
 

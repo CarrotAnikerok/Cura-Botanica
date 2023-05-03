@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 public class PlantSlot : MonoBehaviour, IDropHandler
 {
     public Image image;
+    public GameObject plantChild;
 
     private void Start()
     {
@@ -24,6 +26,4 @@ public class PlantSlot : MonoBehaviour, IDropHandler
             draggableItem.parentAfteDrag = transform;
         }
     }
-
-
 }

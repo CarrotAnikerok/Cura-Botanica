@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class AloeVera : Plant
 {
+
+    // Поля
     public override double waterCoefficient
     {
         get { return _waterCoefficient; }
@@ -47,36 +50,65 @@ public class AloeVera : Plant
         set { _image = value; }
     }
 
+    public override double fasesFromLastPour
+    {
+        get { return _fasesFromLastPour; }
+        set { _fasesFromLastPour = value; }
+    }
 
+    public bool wateringTooOften = false;
+
+    // Конструктор
 
     public AloeVera()
     {
-        this.normalWaterAmount = 300f;
-        this.waterCoefficient = 1.0f;
-        this.state = states[2];
+        normalWaterAmount = 300f;
+        waterCoefficient = 0.0f;
+        state = states[2];
+        fasesFromLastPour = 10;
     }
+
+    // Методы
+
+
 
     public override void Dry()
     {
-        if (waterCoefficient > 0.0f)
-        {
-            this.waterCoefficient -= 0.3f;
-        }
+        DryLogic(0.1);
     }
 
-    // Алое идеально полито, если в горшке 300 мл. воды (это 1.00 коэффицент)
-    // Каждую фазу алое персыхает на 30 мл.
-    // За три фазы алое высохнет на 90 мл.
-    // За 6 фаз алое высохнет на 180 мл, останется 120 мл.
-    // Если в горшке останется меньше, чем 120 мл, растению будет плохо.
-    // Если в горше будет больше, чем 300 мл, растению будет плохо.
-    // Получается, алое хорошо при коэффицентах 0.4 - 1.0
+    public override void ChangeState()
+    {
+        if (wateringTooOften)
+        {
+            int i = Array.FindIndex(states, x => x == state);
+            ChangeStateDown(i);
+            Debug.Log("Полив слишком частый");
+            wateringTooOften = false;
+        }
+        else
+        {
+            ChangeStateLogic(0.4f, 1f);
+            Debug.Log("Полив норм");
+        }
 
-    /*  public void Pour(int water)
-      {
-          if (plant.waterCoefficient < 2.0f)
-          {
-              plant.waterCoefficient += water / normalCoefficent;
-          }
-      }*/
+        fasesFromLastPour += 1;
+        Debug.Log("Fases from last pour " + fasesFromLastPour);
+    }
+
+    public override void Pour(double waterAmount)
+    {
+        PourLogic(waterAmount);
+        if (fasesFromLastPour > 0 && fasesFromLastPour <=3 )
+        {
+            fasesFromLastPour = 0;
+            wateringTooOften = true;
+        } 
+        else
+        {
+            fasesFromLastPour = 0;
+        }
+        Debug.Log(wateringTooOften + " and " + fasesFromLastPour);
+        //fasesFromLastPour = 0;
+    }
 }

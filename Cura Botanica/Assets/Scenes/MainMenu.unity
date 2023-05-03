@@ -688,16 +688,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 1454671462}
     m_Modifications:
     - target: {fileID: 5011079089074754623, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011079089074754623, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011079089074754623, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5011079089550207805, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5011079089550207805, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011079090285780024, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
+      propertyPath: m_Value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5011079090285780024, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
       propertyPath: m_MaxValue
@@ -859,7 +871,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: VolumeSlider
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2734535673894340515, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
 --- !u!224 &370352638 stripped
 RectTransform:
@@ -3877,7 +3890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1393911743
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4195,7 +4208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1454671462
 RectTransform:
   m_ObjectHideFlags: 0

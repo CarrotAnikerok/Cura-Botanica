@@ -7,29 +7,32 @@ using System;
 
 public abstract class Plant : MonoBehaviour
 {
-    //private new readonly string name;
-    //public double waterCoefficient;
-    protected string _state;
-    public abstract string state { get; set; }
 
-    protected double _normalWaterAmount; // при этом количечстве воды в горшке коэффицент будет равен 0.
+    protected double _normalWaterAmount; // при этом количечстве воды в горшке коэффицент будет равен 1.
     public abstract double normalWaterAmount { get; set; }
 
-    protected double _waterCoefficient;
+    protected double _waterCoefficient; // коэффицент того, насколько полито растение
     public abstract double waterCoefficient { get; set; }
-
 
     protected string[] _states = {"Perfect", "Good", "Neutral", "Bad", "Horrible", "Dead"};
     public abstract string[] states { get; set; }
 
-    [SerializeField]  protected Sprite[] _statesPicturesMini = new Sprite[6];
+    protected string _state; // состояние растения
+    public abstract string state { get; set; }
+
+    [SerializeField]  protected Sprite[] _statesPicturesMini = new Sprite[6]; // спрайт на общем экране
     public abstract Sprite[] statesPicturesMini { get; set; }
 
-    [SerializeField] protected Sprite[] _statesPicturesBig = new Sprite[6];
+    [SerializeField] protected Sprite[] _statesPicturesBig = new Sprite[6]; // спрайт в меню растения
     public abstract Sprite[] statesPicturesBig { get; set; }
 
-    protected Image _image ;
+    protected Image _image; // компонент  
     public abstract Image image { get; set; }
+
+    protected double _fasesFromLastPour = 0; // количество поливов
+    public abstract double fasesFromLastPour { get; set; }
+
+
 
 
     public virtual void Awake()
@@ -39,45 +42,47 @@ public abstract class Plant : MonoBehaviour
     }
 
 
-    public virtual void ChangeState()
+    public virtual void ChangeStateLogic(double minC, double maxC)
     {
         int i = Array.FindIndex(states, x => x == state);
-        if (waterCoefficient < 0.75 || waterCoefficient > 1.25)
+        if (waterCoefficient < minC || waterCoefficient > maxC)
         {
-            if (i == 5)
+            if (i == 3)
             {
-                Debug.Log(String.Format("There is no more elements"));
+                Debug.Log(String.Format("That is not so bad"));
             } 
             else
             {
-                this.state = states[i + 1];
-                image.sprite = statesPicturesMini[i + 1];
-                
+                ChangeStateDown(i);
             }
         } 
-        else if (waterCoefficient > 0.75 && waterCoefficient < 1.25)
+        else if (waterCoefficient >= minC && waterCoefficient <= maxC)
         {
-            if (i == 0)
+            if (i == 1)
             {
-                Debug.Log(String.Format("There is no more elements"));
+                Debug.Log(String.Format("You are not perfect enough"));
             }
             else
             {
-                this.state = states[i - 1];
-                image.sprite = statesPicturesMini[i - 1];
+                ChangeStateUp(i);
             }
         }
     }
 
-    public virtual void Dry()
+    public virtual void DryLogic(double dryC)
     {
-        if (waterCoefficient > 0.0f)
+        if (waterCoefficient - dryC > 0.0f)
         {
-            this.waterCoefficient -= 0.25f;
+            waterCoefficient -= dryC;
+        }
+        else
+        {
+            waterCoefficient = 0.0f;
         }
     }
 
-    public virtual void Pour(double waterAmount)
+
+    public virtual void PourLogic(double waterAmount)
     {
         if (this.waterCoefficient + waterAmount / normalWaterAmount > 2.0f)
         {
@@ -89,4 +94,38 @@ public abstract class Plant : MonoBehaviour
             Debug.Log(waterCoefficient);
         }
     }
+
+    // Изменение состояния растения
+
+    public void ChangeStateDown(int i)
+    {
+        if (i == 5)
+        {
+            Debug.Log(String.Format("That's all folks"));
+        }
+        else
+        {
+            this.state = states[i + 1];
+            image.sprite = statesPicturesMini[i + 1];
+        }
+    }
+    public void ChangeStateUp(int i)
+    {
+        if (i == 0)
+        {
+            Debug.Log(String.Format("That's all folks"));
+        }
+        else
+        {
+            this.state = states[i - 1];
+            image.sprite = statesPicturesMini[i - 1];
+        }
+    }
+
+    public abstract void Pour(double waterAmount);
+
+    public abstract void ChangeState();
+
+    public abstract void Dry();
+
 }

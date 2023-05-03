@@ -68,7 +68,7 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             plant.plant.ChangeState();
             plant.plant.Dry();
-            Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state);
+            Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state + " и их коэффицент " + plant.plant.waterCoefficient);
         }
 
         yield return new WaitForSeconds(0.6f);

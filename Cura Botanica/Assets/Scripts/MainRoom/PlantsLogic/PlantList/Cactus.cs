@@ -45,6 +45,12 @@ public class Cactus : Plant
         get { return _image; }
         set { _image = value; }
     }
+    public override double fasesFromLastPour
+    {
+        get { return _fasesFromLastPour; }
+        set { _fasesFromLastPour = value; }
+    }
+
 
     public Cactus()
     {
@@ -52,4 +58,19 @@ public class Cactus : Plant
         this.waterCoefficient = 0.75f;
         this.state = states[2];
     }
- }
+
+    public override void ChangeState()
+    {
+        ChangeStateLogic(0.5f, 1.0f);
+    }
+
+    public override void Dry()
+    {
+        DryLogic(0.2f);
+    }
+
+    public override void Pour(double waterAmount)
+    {
+        PourLogic(waterAmount);
+    }
+}

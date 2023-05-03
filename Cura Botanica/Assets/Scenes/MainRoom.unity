@@ -586,6 +586,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cc077719153c9d14897956a352e120ae, type: 3}
   - {fileID: 21300000, guid: 52059b93f3fc74349a682c81ebe9529c, type: 3}
   - {fileID: 21300000, guid: 4d412fd91b691d64b8848038ca9d5d99, type: 3}
+  wateringTooOften: 0
 --- !u!114 &42334013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4588,7 +4589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5011079090285780024, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
       propertyPath: m_MinValue
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5011079090285780024, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
       propertyPath: m_WholeNumbers
@@ -4697,6 +4698,10 @@ PrefabInstance:
     - target: {fileID: 5011079090285780026, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
       propertyPath: m_Name
       value: WaterAmountSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011079090285780026, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2734535673894340515, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
@@ -6945,7 +6950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "50 \u043C\u043B"
+  m_text: "0 \u043C\u043B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff02fc32bb7df8a4a94a4cd20f7220bd, type: 2}
   m_sharedMaterial: {fileID: 2050883405967145120, guid: ff02fc32bb7df8a4a94a4cd20f7220bd, type: 2}

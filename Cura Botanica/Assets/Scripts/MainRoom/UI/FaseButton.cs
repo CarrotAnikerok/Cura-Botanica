@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class FaseButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class FaseButton : MonoBehaviour, IPointerClickHandler
 {
     public string[] fases = {"Day", "Evening", "Morning" };
     public Sprite[] fasesPictures = new Sprite[3];
@@ -73,25 +73,5 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
         yield return new WaitForSeconds(0.6f);
         transition.image.sprite = transition.fase[i];
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        image.color = new Color32(220, 220, 220, 255);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        image.color = new Color32(255, 255, 255, 255);
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        image.color = new Color32(160, 160, 160, 255);
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        image.color = new Color32(220, 220, 220, 255);
     }
 }

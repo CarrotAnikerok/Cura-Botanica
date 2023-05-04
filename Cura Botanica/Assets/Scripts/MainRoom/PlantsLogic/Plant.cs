@@ -11,9 +11,6 @@ public abstract class Plant : MonoBehaviour
     protected double _normalWaterAmount; // при этом количечстве воды в горшке коэффицент будет равен 1.
     public abstract double normalWaterAmount { get; set; }
 
-    protected double _waterCoefficient; // коэффицент того, насколько полито растение
-    public abstract double waterCoefficient { get; set; }
-
     protected string[] _states = {"Perfect", "Good", "Neutral", "Bad", "Horrible", "Dead"};
     public abstract string[] states { get; set; }
 
@@ -32,6 +29,34 @@ public abstract class Plant : MonoBehaviour
     protected double _fasesFromLastPour = 0; // количество поливов
     public abstract double fasesFromLastPour { get; set; }
 
+    protected bool _alive = true; // отражает, живо ли растение
+    public abstract bool alive { get; set; }
+
+    /* Параметры в таблице: */
+
+    /// <summary>
+    /// Количество света, которое растение получает сейчас в люксах
+    /// </summary>
+    protected int _lightAmount; //
+    public abstract int lightAmount { get; set; }
+
+    /// <summary>
+    /// Коэффицент того, насколько полито растение
+    /// </summary>
+    protected double _waterCoefficient; 
+    public abstract double waterCoefficient { get; set; }
+
+    /// <summary>
+    /// Окружающая влажность
+    /// </summary>
+    protected double _humidity;
+    public abstract double humidity { get; set; }
+
+    /// <summary>
+    /// Температура окружающей среды 
+    /// </summary>
+    protected int _temperature;
+    public abstract int temperature { get; set; }
 
 
 
@@ -49,7 +74,7 @@ public abstract class Plant : MonoBehaviour
         {
             if (i == 3)
             {
-                Debug.Log(String.Format("That is not so bad"));
+                Debug.Log(String.Format(name +" That is not so bad"));
             } 
             else
             {
@@ -60,7 +85,7 @@ public abstract class Plant : MonoBehaviour
         {
             if (i == 1)
             {
-                Debug.Log(String.Format("You are not perfect enough"));
+                Debug.Log(String.Format(name + " You are not perfect enough"));
             }
             else
             {
@@ -101,7 +126,8 @@ public abstract class Plant : MonoBehaviour
     {
         if (i == 5)
         {
-            Debug.Log(String.Format("That's all folks"));
+            alive = false;
+            Debug.Log(String.Format(name + " It is already dead, it cant be any worse." + "There is alive: " + alive));
         }
         else
         {
@@ -111,14 +137,22 @@ public abstract class Plant : MonoBehaviour
     }
     public void ChangeStateUp(int i)
     {
-        if (i == 0)
+        if (alive)
         {
-            Debug.Log(String.Format("That's all folks"));
+            Debug.Log(name + "It is steel alive! " + alive);
+            if (i == 0)
+            {
+                Debug.Log(String.Format(name + " That's all folks"));
+            }
+            else
+            {
+                this.state = states[i - 1];
+                image.sprite = statesPicturesMini[i - 1];
+            }
         }
         else
         {
-            this.state = states[i - 1];
-            image.sprite = statesPicturesMini[i - 1];
+            Debug.Log(name + " It is already dead, it cant become good");
         }
     }
 

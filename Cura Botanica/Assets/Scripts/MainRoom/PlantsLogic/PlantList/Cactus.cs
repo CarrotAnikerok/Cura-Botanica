@@ -51,6 +51,29 @@ public class Cactus : Plant
         set { _fasesFromLastPour = value; }
     }
 
+    public override bool alive
+    {
+        get { return _alive; }
+        set { _alive = value; }
+    }
+
+    public override int lightAmount
+    {
+        get { return _lightAmount; }
+        set { _lightAmount = value; }
+    }
+    public override double humidity
+    {
+        get { return _humidity; }
+        set { _humidity = value; }
+    }
+    public override int temperature
+    {
+        get { return _temperature; }
+        set { _temperature = value; }
+    }
+
+
 
     public Cactus()
     {

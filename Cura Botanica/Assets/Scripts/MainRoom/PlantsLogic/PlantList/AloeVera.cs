@@ -56,6 +56,28 @@ public class AloeVera : Plant
         set { _fasesFromLastPour = value; }
     }
 
+    public override bool alive
+    {
+        get { return _alive; }
+        set { _alive = value; }
+    }
+
+    public override int lightAmount
+    {
+        get { return _lightAmount; }
+        set { _lightAmount = value; }
+    }
+    public override double humidity
+    {
+        get { return _humidity; }
+        set { _humidity = value; }
+    }
+    public override int temperature
+    {
+        get { return _temperature; }
+        set { _temperature = value; }
+    }
+
     public bool wateringTooOften = false;
 
     // Конструктор
@@ -66,6 +88,9 @@ public class AloeVera : Plant
         waterCoefficient = 0.0f;
         state = states[2];
         fasesFromLastPour = 10;
+        lightAmount = 3000;
+        humidity = 0.6;
+        temperature = 20;
     }
 
     // Методы
@@ -99,16 +124,22 @@ public class AloeVera : Plant
     public override void Pour(double waterAmount)
     {
         PourLogic(waterAmount);
-        if (fasesFromLastPour > 0 && fasesFromLastPour <=3 )
+        if (fasesFromLastPour > 0 && fasesFromLastPour <=3)
         {
             fasesFromLastPour = 0;
             wateringTooOften = true;
+            Debug.Log("You are pouring it too often!");
         } 
+        else if (waterAmount == 0)
+        {
+            fasesFromLastPour = fasesFromLastPour;
+            Debug.Log("You didnt pour it");
+        }
         else
         {
             fasesFromLastPour = 0;
+            Debug.Log("Your pouring is okey");
         }
         Debug.Log(wateringTooOften + " and " + fasesFromLastPour);
-        //fasesFromLastPour = 0;
     }
 }

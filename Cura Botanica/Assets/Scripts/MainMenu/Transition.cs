@@ -3,23 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Transition : MonoBehaviour
+namespace SceneChanger
+
 {
-    public Animator transition;
-
-    public float transitionTime = 1f;
-
-    public void LoadNextScene()
+    public class Transition : MonoBehaviour
     {
-        StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
-    }
+        public Animator transition;
 
-    public IEnumerator LoadScene(int sceneIndex)
-    {
-        transition.SetTrigger("Start");
+        public float transitionTime = 1f;
 
-        yield return new WaitForSeconds(transitionTime);
+        public void LoadNextScene()
+        {
+            StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+        }
 
-        SceneManager.LoadScene(sceneIndex);
+        public void LoadMainMenu()
+        {
+            StartCoroutine(LoadScene(0));
+        }
+
+        public IEnumerator LoadScene(int sceneIndex)
+        {
+            // if (sceneIndex == 0)
+            // {
+            //     transition.SetTrigger("Home");
+            // }
+            // else if (sceneIndex == 1)
+            // {
+            //     transition.SetTrigger("Start");
+            // }
+            transition.SetTrigger("Start");
+
+            yield return new WaitForSeconds(transitionTime);
+
+            SceneManager.LoadScene(sceneIndex);
+        }
     }
 }

@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     public Transition transition;
     
     public void PlayGame() {
-        transition.LoadNextScene();
+        transition.LoadNextScene(); // загрузка игровой сцены
     }
 
     public void QuitGame() {

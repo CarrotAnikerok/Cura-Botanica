@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace SceneChanger
-
 {
     public class Transition : MonoBehaviour
     {
@@ -24,14 +23,6 @@ namespace SceneChanger
 
         public IEnumerator LoadScene(int sceneIndex)
         {
-            // if (sceneIndex == 0)
-            // {
-            //     transition.SetTrigger("Home");
-            // }
-            // else if (sceneIndex == 1)
-            // {
-            //     transition.SetTrigger("Start");
-            // }
             transition.SetTrigger("Start");
 
             yield return new WaitForSeconds(transitionTime);

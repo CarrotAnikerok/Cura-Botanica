@@ -8,6 +8,7 @@ public class ButtonAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     Image image;
     public bool needClick;
+    public bool verticalAnimation;
 
     void Start()
     {
@@ -17,11 +18,21 @@ public class ButtonAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         image.color = new Color32(220, 220, 220, 255);
+
+        if (verticalAnimation)
+        {
+            transform.LeanMoveLocalY(480, 0.2f).setEaseInOutCubic();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         image.color = new Color32(255, 255, 255, 255);
+
+        if (verticalAnimation)
+        {
+            transform.LeanMoveLocalY(456, 0.2f).setEaseInOutCubic();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

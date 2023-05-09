@@ -13,12 +13,22 @@ public class InfoSystem : MonoBehaviour
         plant = GameObject.Find("ActivePlantButton").GetComponent<GamePlant>().plant;
         childrenText = GetComponentsInChildren<TextMeshProUGUI>();
 
-        childrenText[1].text = ((int)(plant.waterCoefficient * 100)).ToString() + "%";
-        Debug.Log((int)(plant.waterCoefficient * 100));
+        UpdateInfo(1, plant.waterCoefficient);
+        UpdateInfo(2, plant.lightAmount, " À ");
+        UpdateInfo(3, plant.humidity);
+        UpdateInfo(4, plant.temperature, "∞");
     }
 
-    void Update()
+    void UpdateInfo(int index, double category)
     {
-        //childrenText[1].text = ((int) (plant.waterCoefficient * 10)).ToString("0" + "%");
+         childrenText[index].text = ((int)(category * 100)).ToString() + "%";
+         Debug.Log((int)(category * 100));
     }
+    void UpdateInfo(int index, int category, string symbol)
+    {
+        childrenText[index].text = ((int) category).ToString() + symbol;
+        Debug.Log((int) category);
+    }
+
+
 }

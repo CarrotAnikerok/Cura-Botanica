@@ -156,6 +156,11 @@ public abstract class Plant : MonoBehaviour
         }
     }
 
+    public void Spray(double sprayHumidity)
+    {
+        humidity += sprayHumidity;
+    }
+
     public abstract void Pour(double waterAmount);
 
     public abstract void ChangeState();

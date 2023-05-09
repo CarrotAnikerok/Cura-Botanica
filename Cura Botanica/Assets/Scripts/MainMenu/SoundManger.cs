@@ -34,7 +34,7 @@ public class SoundManger : MonoBehaviour
     {
         float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
         volumeSlider.value = volumeValue;
-        AudioListener.volume = volumeValue;
+        AudioListener.volume = volumeValue * 0.01f;
     }
     
 }

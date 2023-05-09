@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using SceneChanger;
 
 public class InsideMenu : MonoBehaviour
 {
     private CanvasGroup blackBackground;
     private Transform box;
+    public Transition transition;
 
     /// <summary>
     /// ������ ������� ��������� ��������� ������� � �������, ������ ����������� ������ � 
@@ -43,7 +45,7 @@ public class InsideMenu : MonoBehaviour
     /// </summary>
     public void TurnOnMenu()
     {
-        SceneManager.LoadScene(0);
+        transition.LoadMainMenu();
     }
 
     /// <summary>

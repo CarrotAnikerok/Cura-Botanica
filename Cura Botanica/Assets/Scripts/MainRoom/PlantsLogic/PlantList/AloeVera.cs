@@ -42,7 +42,7 @@ public class AloeVera : Plant
         set { _image = value; }
     }
 
-    public override double fasesFromLastPour
+    public override double phasesFromLastPour
     {
         get { return _fasesFromLastPour; }
         set { _fasesFromLastPour = value; }
@@ -52,6 +52,12 @@ public class AloeVera : Plant
     {
         get { return _alive; }
         set { _alive = value; }
+    }
+
+    public override bool sharpDrop 
+    {
+        get { return _sharpDrop; }
+        set { _sharpDrop = value; }
     }
 
     /* Plant Parameters */
@@ -78,17 +84,20 @@ public class AloeVera : Plant
         set { _temperature = value; }
     }
 
-    public bool wateringTooOften = false;
+    private bool _wateringTooOften;
+    private int _dryCount; // count number of phases, when waterCoefficient = 0
 
     public AloeVera()
     {
         normalWaterAmount = 300f;
         waterCoefficient = 0.0f;
         state = states[2];
-        fasesFromLastPour = 10;
+        phasesFromLastPour = 10;
         lightAmount = 3000;
         humidity = 0.6;
         temperature = 20;
+        _dryCount = 0;
+        _wateringTooOften = false;
     }
 
     // Methods
@@ -97,44 +106,73 @@ public class AloeVera : Plant
         DryLogic(0.1);
     }
 
+    public override void Spray(double sprayHumidity)
+    {
+        SprayLogic(sprayHumidity);
+    }
+
     public override void ChangeState()
     {
-        if (wateringTooOften)
+        int i = Array.FindIndex(states, x => x == state);
+
+        // If waterint too often, aloe will die
+        if (_wateringTooOften)
         {
-            int i = Array.FindIndex(states, x => x == state);
             ChangeStateDown(i);
-            Debug.Log("Полив слишком частый");
-            wateringTooOften = false;
+            Debug.Log("Pouring is too much");
+            _wateringTooOften = false;
         }
         else
         {
             ChangeStateLogic(0.4f, 1f);
-            Debug.Log("Полив норм");
+            Debug.Log("Pouring is okey");
         }
 
-        fasesFromLastPour += 1;
-        Debug.Log("Fases from last pour " + fasesFromLastPour);
+        // If pod is dry for 4 phases, aloe will die
+
+        if (waterCoefficient == 0)
+        {
+            _dryCount += 1;
+        }
+        else
+        {
+            _dryCount = 0;
+        }
+
+        if (_dryCount >= 4)
+        {
+            ChangeStateDown(i);
+        }
+
+        phasesFromLastPour += 1;
+        Debug.Log("Fases from last pour " + phasesFromLastPour);
     }
 
     public override void Pour(double waterAmount)
     {
         PourLogic(waterAmount);
-        if (fasesFromLastPour > 0 && fasesFromLastPour <=3)
+
+        if (waterAmount >= 450)
         {
-            fasesFromLastPour = 0;
-            wateringTooOften = true;
+            sharpDrop = true;
+        }
+
+        if (phasesFromLastPour > 0 && phasesFromLastPour <=3)
+        {
+            phasesFromLastPour = 0;
+            _wateringTooOften = true;
             Debug.Log("You are pouring it too often!");
         } 
         else if (waterAmount == 0)
         {
-            fasesFromLastPour = fasesFromLastPour;
+            phasesFromLastPour = phasesFromLastPour;
             Debug.Log("You didnt pour it");
         }
         else
         {
-            fasesFromLastPour = 0;
+            phasesFromLastPour = 0;
             Debug.Log("Your pouring is okey");
         }
-        Debug.Log(wateringTooOften + " and " + fasesFromLastPour);
+        Debug.Log(_wateringTooOften + " and " + phasesFromLastPour);
     }
 }

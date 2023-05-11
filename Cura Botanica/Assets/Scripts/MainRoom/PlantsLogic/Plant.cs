@@ -27,10 +27,13 @@ public abstract class Plant : MonoBehaviour
     public abstract Image image { get; set; }
 
     protected double _fasesFromLastPour = 0; 
-    public abstract double fasesFromLastPour { get; set; }
+    public abstract double phasesFromLastPour { get; set; }
 
     protected bool _alive = true;
     public abstract bool alive { get; set; }
+
+    protected bool _sharpDrop; // if the parameters have changed drastically
+    public abstract bool sharpDrop { get; set; }
 
     /* Plant Parameters */
 
@@ -45,7 +48,6 @@ public abstract class Plant : MonoBehaviour
 
     protected int _temperature;
     public abstract int temperature { get; set; }
-
 
 
     public virtual void Awake()
@@ -79,7 +81,14 @@ public abstract class Plant : MonoBehaviour
             }
             else
             {
-                ChangeStateUp(i);
+                if (sharpDrop)
+                {
+                    sharpDrop = false;
+                } 
+                else
+                {
+                    ChangeStateUp(i);
+                }
             }
         }
     }
@@ -106,13 +115,21 @@ public abstract class Plant : MonoBehaviour
         else
         {
             this.waterCoefficient += waterAmount / normalWaterAmount;
-            Debug.Log(waterCoefficient);
+            Debug.Log("This is water coefficietn: " + waterCoefficient);
         }
     }
 
-    public void Spray(double sprayHumidity)
+    public void SprayLogic(double sprayHumidity)
     {
-        humidity += sprayHumidity;
+        if (this.humidity + sprayHumidity > 1)
+        {
+            this.humidity = 1;
+        }
+        else
+        {
+            this.humidity += sprayHumidity;
+            Debug.Log("This is plant humidity: " + humidity);
+        }
     }
 
     /* Abstract methods */
@@ -122,6 +139,8 @@ public abstract class Plant : MonoBehaviour
     public abstract void ChangeState();
 
     public abstract void Dry();
+
+    public abstract void Spray(double sprayHumidity);
 
     /* Change of state */
 

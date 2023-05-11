@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class Cactus : Plant
 {
-    public override double waterCoefficient
-    {
-        get { return _waterCoefficient; }
-        set { _waterCoefficient = value; }
-    }
-
     public override double normalWaterAmount
     {
         get { return _normalWaterAmount; }
@@ -28,6 +22,7 @@ public class Cactus : Plant
         get { return _states; }
         set { _states = value; }
     }
+
     public override Sprite[] statesPicturesMini
     {
         get { return _statesPicturesMini; }
@@ -45,7 +40,8 @@ public class Cactus : Plant
         get { return _image; }
         set { _image = value; }
     }
-    public override double fasesFromLastPour
+
+    public override double phasesFromLastPour
     {
         get { return _fasesFromLastPour; }
         set { _fasesFromLastPour = value; }
@@ -55,6 +51,20 @@ public class Cactus : Plant
     {
         get { return _alive; }
         set { _alive = value; }
+    }
+
+    public override bool sharpDrop
+    {
+        get { return _sharpDrop; }
+        set { _sharpDrop = value; }
+    }
+
+    /* Plant Parameters */
+
+    public override double waterCoefficient
+    {
+        get { return _waterCoefficient; }
+        set { _waterCoefficient = value; }
     }
 
     public override int lightAmount
@@ -74,7 +84,6 @@ public class Cactus : Plant
     }
 
 
-
     public Cactus()
     {
         this.normalWaterAmount = 100f;
@@ -90,6 +99,11 @@ public class Cactus : Plant
     public override void Dry()
     {
         DryLogic(0.2f);
+    }
+
+    public override void Spray(double sprayHumidity)
+    {
+        SprayLogic(sprayHumidity);
     }
 
     public override void Pour(double waterAmount)

@@ -8,53 +8,41 @@ using System;
 public abstract class Plant : MonoBehaviour
 {
 
-    protected double _normalWaterAmount; // при этом количечстве воды в горшке коэффицент будет равен 1.
+    protected double _normalWaterAmount; // with this amount of water in the pod coefficent equels one
     public abstract double normalWaterAmount { get; set; }
 
     protected string[] _states = {"Perfect", "Good", "Neutral", "Bad", "Horrible", "Dead"};
     public abstract string[] states { get; set; }
 
-    protected string _state; // состояние растения
+    protected string _state; 
     public abstract string state { get; set; }
 
-    [SerializeField]  protected Sprite[] _statesPicturesMini = new Sprite[6]; // спрайт на общем экране
+    [SerializeField]  protected Sprite[] _statesPicturesMini = new Sprite[6]; // sprite at the main room
     public abstract Sprite[] statesPicturesMini { get; set; }
 
-    [SerializeField] protected Sprite[] _statesPicturesBig = new Sprite[6]; // спрайт в меню растения
+    [SerializeField] protected Sprite[] _statesPicturesBig = new Sprite[6]; // sprite at the plant menu
     public abstract Sprite[] statesPicturesBig { get; set; }
 
-    protected Image _image; // компонент  
+    protected Image _image; 
     public abstract Image image { get; set; }
 
-    protected double _fasesFromLastPour = 0; // количество поливов
+    protected double _fasesFromLastPour = 0; 
     public abstract double fasesFromLastPour { get; set; }
 
-    protected bool _alive = true; // отражает, живо ли растение
+    protected bool _alive = true;
     public abstract bool alive { get; set; }
 
-    /* Параметры в таблице: */
+    /* Plant Parameters */
 
-    /// <summary>
-    /// Количество света, которое растение получает сейчас в люксах
-    /// </summary>
-    protected int _lightAmount; //
+    protected int _lightAmount; 
     public abstract int lightAmount { get; set; }
 
-    /// <summary>
-    /// Коэффицент того, насколько полито растение
-    /// </summary>
     protected double _waterCoefficient; 
     public abstract double waterCoefficient { get; set; }
 
-    /// <summary>
-    /// Окружающая влажность
-    /// </summary>
     protected double _humidity;
     public abstract double humidity { get; set; }
 
-    /// <summary>
-    /// Температура окружающей среды 
-    /// </summary>
     protected int _temperature;
     public abstract int temperature { get; set; }
 
@@ -67,6 +55,8 @@ public abstract class Plant : MonoBehaviour
     }
 
 
+
+    /* Logic */
     public virtual void ChangeStateLogic(double minC, double maxC)
     {
         int i = Array.FindIndex(states, x => x == state);
@@ -120,7 +110,20 @@ public abstract class Plant : MonoBehaviour
         }
     }
 
-    // Изменение состояния растения
+    public void Spray(double sprayHumidity)
+    {
+        humidity += sprayHumidity;
+    }
+
+    /* Abstract methods */
+
+    public abstract void Pour(double waterAmount);
+
+    public abstract void ChangeState();
+
+    public abstract void Dry();
+
+    /* Change of state */
 
     public void ChangeStateDown(int i)
     {
@@ -155,16 +158,4 @@ public abstract class Plant : MonoBehaviour
             Debug.Log(name + " It is already dead, it cant become good");
         }
     }
-
-    public void Spray(double sprayHumidity)
-    {
-        humidity += sprayHumidity;
-    }
-
-    public abstract void Pour(double waterAmount);
-
-    public abstract void ChangeState();
-
-    public abstract void Dry();
-
 }

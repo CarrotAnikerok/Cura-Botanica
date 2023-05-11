@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,39 +31,33 @@ public class PlantMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Находит кнопку, из которой должно влезти меню, и берет ее картинку. Задает объекту начальные параметры размера и позиции, 
-    /// дальше увеличивает объект и двигает его к центру, делая его полностью видимым.
-    /// </summary>
+    /* Find pressed button, take it image. Tunes plant menu properly and give it animations. */
     private void OnEnable()
     {
         if (GameObject.Find("ActivePlantButton") != null)
         {
-            _plantButton = GameObject.Find("ActivePlantButton"); //Находим нажатую кнопку
+            _plantButton = GameObject.Find("ActivePlantButton"); 
             _plantButtonPosition = _plantButton.transform.position;
             blackBackground = GameObject.Find("Black Background Plant").GetComponent<CanvasGroup>();
 
-            // Находим объект, над которым нужно проводить операции
+            // РќР°С…РѕРґРёРј РѕР±СЉРµРєС‚, РЅР°Рґ РєРѕС‚РѕСЂС‹Рј РЅСѓР¶РЅРѕ РїСЂРѕРІРѕРґРёС‚СЊ РѕРїРµСЂР°С†РёРё
             activePlant = _plantButton.GetComponent<PlantButton>().plant;
             _tools.activePlant = activePlant;
-            //Debug.Log("Это вызов из PlantMenu: " + activePlant.name);
 
             stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
 
-            // Меняем картинку на нужное растение
+            // Change image in needed plant
             bigSprite = activePlant.statesPicturesBig[stateOfPlant];
             plantImage.sprite = bigSprite;
-            //bigImage = _plantButton.GetComponent<Image>();
-            //plantImage.sprite = bigImage.sprite;
 
-            // Значок состояния
+            // Change state sprite
             state.sprite = states[stateOfPlant];
 
 
-            // Анимации
+            // animations
             plantMenuContainer.transform.localScale = Vector2.zero;
             plantMenuContainer.transform.position = _plantButtonPosition;
-            Debug.Log("Это позиция открытия" + transform.position);
+            Debug.Log("Р­С‚Рѕ РїРѕР·РёС†РёСЏ РѕС‚РєСЂС‹С‚РёСЏ" + transform.position);
             blackBackground.alpha = 0;
 
             plantMenuContainer.transform.LeanScale(Vector2.one, 0.3f);
@@ -73,22 +67,18 @@ public class PlantMenu : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Уменьшает объект, двигает его к кнопке и делает неактивным.
-    /// </summary>
+
     public void Close()
     {
         plantMenuContainer.transform.LeanMove(_plantButtonPosition, 0.3f);
-        Debug.Log("Это позиция закрытия" + plantMenuContainer.transform.position);
+        Debug.Log("Р­С‚Рѕ РїРѕР·РёС†РёСЏ Р·Р°РєСЂС‹С‚РёСЏ" + plantMenuContainer.transform.position);
         blackBackground.LeanAlpha(0, 0.2f);
 
         plantMenuContainer.transform.LeanScale(Vector2.zero, 0.3f).setOnComplete(OnComplete);
         _UI.SetActive(true);
     }
 
-    /// <summary>
-    /// Делает объект неактивным.
-    /// </summary>
+
     private void OnComplete()
     {
         gameObject.SetActive(false);

@@ -6,14 +6,6 @@ using UnityEngine.UI;
 
 public class AloeVera : Plant
 {
-
-    // Поля
-    public override double waterCoefficient
-    {
-        get { return _waterCoefficient; }
-        set { _waterCoefficient = value; }
-    }
-
     public override double normalWaterAmount
     {
         get { return _normalWaterAmount; }
@@ -62,6 +54,14 @@ public class AloeVera : Plant
         set { _alive = value; }
     }
 
+    /* Plant Parameters */
+
+    public override double waterCoefficient
+    {
+        get { return _waterCoefficient; }
+        set { _waterCoefficient = value; }
+    }
+
     public override int lightAmount
     {
         get { return _lightAmount; }
@@ -80,8 +80,6 @@ public class AloeVera : Plant
 
     public bool wateringTooOften = false;
 
-    // Конструктор
-
     public AloeVera()
     {
         normalWaterAmount = 300f;
@@ -93,10 +91,7 @@ public class AloeVera : Plant
         temperature = 20;
     }
 
-    // Методы
-
-
-
+    // Methods
     public override void Dry()
     {
         DryLogic(0.1);

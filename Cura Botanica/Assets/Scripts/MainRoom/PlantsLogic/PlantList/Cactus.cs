@@ -93,7 +93,7 @@ public class Cactus : Plant
 
     public override void ChangeState()
     {
-        ChangeStateLogic(0.5f, 1.0f);
+        ChangeStateLogic(0.5f, 1.0f, 0.5, 1);
     }
 
     public override void Dry()

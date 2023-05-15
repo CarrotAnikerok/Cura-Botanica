@@ -124,7 +124,7 @@ public class AloeVera : Plant
         }
         else
         {
-            ChangeStateLogic(0.4f, 1f);
+            ChangeStateLogic(0.4f, 1f, 0.55, 0.85);
             Debug.Log("Pouring is okey");
         }
 

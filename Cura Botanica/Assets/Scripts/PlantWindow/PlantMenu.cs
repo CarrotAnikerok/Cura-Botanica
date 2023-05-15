@@ -38,7 +38,7 @@ public class PlantMenu : MonoBehaviour
             _plantButtonPosition = _plantButton.transform.position;
             blackBackground.gameObject.SetActive(true);
 
-            // Находим объект, над которым нужно проводить операции
+            // Find needed plant
             activePlant = _plantButton.GetComponent<PlantButton>().plant;
             _tools.activePlant = activePlant;
 

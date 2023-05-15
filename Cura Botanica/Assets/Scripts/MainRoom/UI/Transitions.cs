@@ -39,7 +39,7 @@ public class Transitions : MonoBehaviour
         transition.SetTrigger("End");
     }
 
-    public void setDay()
+    public void SetDay()
     {
         ChangeOfDay.SetActive(true);
     }

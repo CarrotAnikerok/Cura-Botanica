@@ -65,7 +65,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     {
         blackTransition.StartTransition();
         yield return new WaitForSeconds(1f);
-        transition.setDay();
+        transition.SetDay();
         choiceMenu.SetActive(true); // move later
         StartCoroutine(blackTransition.FadeTransition());
 
@@ -88,7 +88,6 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
 
         yield return new WaitForSeconds(endTime);
     }
-
 
     void updatePlants()
     {

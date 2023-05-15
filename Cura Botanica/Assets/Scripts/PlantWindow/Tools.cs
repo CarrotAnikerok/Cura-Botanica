@@ -12,6 +12,8 @@ public class Tools : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _waterAmountText;
     private double _sliderValue;
 
+    //private bool LightOn = false;
+
     private double sprayHumidity = 0.05;
 
     public void Awake()

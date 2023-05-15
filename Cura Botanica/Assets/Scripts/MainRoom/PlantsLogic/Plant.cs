@@ -35,6 +35,7 @@ public abstract class Plant : MonoBehaviour
     protected bool _sharpDrop; // if the parameters have changed drastically
     public abstract bool sharpDrop { get; set; }
 
+
     /* Plant Parameters */
 
     protected int _lightAmount; 
@@ -59,10 +60,11 @@ public abstract class Plant : MonoBehaviour
 
 
     /* Logic */
-    public virtual void ChangeStateLogic(double minC, double maxC)
+    public virtual void ChangeStateLogic(double minCoefficient, double maxCoefficient, double minHumidity, double maxHumidity)
     {
+        int howBadIsIt = 0;
         int i = Array.FindIndex(states, x => x == state);
-        if (waterCoefficient < minC || waterCoefficient > maxC)
+        /*if (waterCoefficient < minCoefficient || waterCoefficient > maxCoefficient)
         {
             if (i == 3)
             {
@@ -73,7 +75,7 @@ public abstract class Plant : MonoBehaviour
                 ChangeStateDown(i);
             }
         } 
-        else if (waterCoefficient >= minC && waterCoefficient <= maxC)
+        else if (waterCoefficient >= minCoefficient && waterCoefficient <= maxCoefficient)
         {
             if (i == 1)
             {
@@ -90,7 +92,53 @@ public abstract class Plant : MonoBehaviour
                     ChangeStateUp(i);
                 }
             }
+        }*/
+
+        if (waterCoefficient < minCoefficient || waterCoefficient > maxCoefficient)
+        {
+            howBadIsIt += 1; 
+        } 
+
+        if (humidity < minHumidity || humidity > maxHumidity)
+        {
+            howBadIsIt += 1;
         }
+
+        // Deterioration
+
+        if (i == 1 && howBadIsIt >= 1)
+        {
+            ChangeStateDown(i);
+        } 
+        else if (i == 2 && howBadIsIt >= 2)
+        {
+            ChangeStateDown(i);
+        } 
+        else if (i == 3 && howBadIsIt >=3)
+        {
+            ChangeStateDown(i);
+        } 
+        else if (i == 4 && howBadIsIt >=4)
+        {
+            ChangeStateDown(i);
+        }
+
+        // Improvement
+
+        if (i == 4 && howBadIsIt < 3 && !sharpDrop)
+        {
+            ChangeStateUp(i);
+        }
+        else if (i == 3 && howBadIsIt < 2 && !sharpDrop)
+        {
+            ChangeStateUp(i);
+        }
+        else if (i == 2 && howBadIsIt < 1 && !sharpDrop)
+        {
+            ChangeStateUp(i);
+        }
+
+        sharpDrop = false;
     }
 
     public virtual void DryLogic(double dryC)

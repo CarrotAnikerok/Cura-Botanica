@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class FaseButton : MonoBehaviour, IPointerClickHandler
+public class PhaseButton : MonoBehaviour, IPointerClickHandler
 {
     public string[] phases = {"Day", "Evening", "Morning" };
     public Sprite[] phasesPictures = new Sprite[3];
@@ -22,7 +22,7 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler
     public Transitions transition;
     public BlackTransition blackTransition;
 
-    public FaseButton()
+    public PhaseButton()
     {
         this.phase = phases[0];
     }

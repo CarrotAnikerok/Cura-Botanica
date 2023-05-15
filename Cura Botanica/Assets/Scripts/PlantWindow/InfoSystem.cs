@@ -16,18 +16,19 @@ public class InfoSystem : MonoBehaviour
         UpdateInfo(1, plant.waterCoefficient);
         UpdateInfo(2, plant.lightAmount, " À ");
         UpdateInfo(3, plant.humidity);
+        Debug.Log(plant.humidity + " what is going on woth you");
         UpdateInfo(4, plant.temperature, "∞");
     }
 
     void UpdateInfo(int index, double category)
     {
-         childrenText[index].text = ((int)(category * 100)).ToString() + "%";
-         Debug.Log((int)(category * 100));
+         childrenText[index].text = ((int) (category * 100)).ToString() + "%";
+         Debug.Log(index + " " + (int)(category * 100));
     }
     void UpdateInfo(int index, int category, string symbol)
     {
         childrenText[index].text = ((int) category).ToString() + symbol;
-        Debug.Log((int) category);
+        Debug.Log(index + " " + (int) category);
     }
 
 

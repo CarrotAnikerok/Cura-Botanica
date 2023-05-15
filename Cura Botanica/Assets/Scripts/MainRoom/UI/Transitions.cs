@@ -10,6 +10,10 @@ public class Transitions : MonoBehaviour
     public Sprite[] fase = new Sprite[3];
     public Image image;
     public GameObject blockWindow;
+
+    public GameObject ChangeOfDay;
+    public Animator sky;
+    public Animator skyLight;
     public void Awake()
     {
         transition = GetComponent<Animator>();
@@ -33,5 +37,24 @@ public class Transitions : MonoBehaviour
         blockWindow.SetActive(false);
         gameObject.SetActive(false);
         transition.SetTrigger("End");
+    }
+
+    public void setDay()
+    {
+        ChangeOfDay.SetActive(true);
+    }
+
+    public void StartChangeDay()
+    {
+        ChangeOfDay.SetActive(true);
+        sky.SetTrigger("ChangeDay");
+        skyLight.SetTrigger("ChangeDayLight");
+    }
+
+    public void EndChangeDay()
+    {
+        ChangeOfDay.SetActive(false);
+        sky.SetTrigger("End");
+        skyLight.SetTrigger("End");
     }
 }

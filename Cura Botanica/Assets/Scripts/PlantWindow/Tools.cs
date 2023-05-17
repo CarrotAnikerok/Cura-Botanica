@@ -12,9 +12,13 @@ public class Tools : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _waterAmountText;
     private double _sliderValue;
 
-    //private bool LightOn = false;
+    [SerializeField] private double sprayHumidity = 0.05;
 
-    private double sprayHumidity = 0.05;
+    //[SerializeField] private bool LightOff = true;
+    [SerializeField] private Image lightImage;
+    public Sprite lightOffSprite;
+    public Sprite lightOnSprite;
+
 
     public void Awake()
     {
@@ -35,6 +39,35 @@ public class Tools : MonoBehaviour
     public void SprayActivePlant()
     {
         activePlant.Spray(sprayHumidity);
+    }
+
+    public void LightShift()
+    {
+        if (activePlant.lightOn)
+        {
+            lightImage.sprite = lightOffSprite;
+            activePlant.ChangeLightAmount(-3000);
+            activePlant.lightOn = false;
+        }
+        else
+        {
+            lightImage.sprite = lightOnSprite;
+            activePlant.ChangeLightAmount(3000);
+            activePlant.lightOn = true;
+        }
+    }
+
+    public void MakeRightLight()
+    {
+        Debug.Log("я мен€ю свет!");
+        if (activePlant.lightOn)
+        {
+            lightImage.sprite = lightOnSprite;
+        }
+        else
+        {
+            lightImage.sprite = lightOffSprite;
+        }
     }
 }
 

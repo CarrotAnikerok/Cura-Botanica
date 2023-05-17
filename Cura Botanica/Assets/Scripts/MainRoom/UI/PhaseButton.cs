@@ -22,6 +22,8 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     public Transitions transition;
     public BlackTransition blackTransition;
 
+    private double normalHumidity = 0.6;
+
     public PhaseButton()
     {
         this.phase = phases[0];
@@ -52,6 +54,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         }
 
         transition.image.sprite = transition.fase[i];
+
     }
 
     IEnumerator LoadPhaseTransition()
@@ -95,6 +98,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         {
             plant.plant.ChangeState();
             plant.plant.Dry();
+            plant.plant.ChangeHumidityTo(normalHumidity, 0.10f);
             Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state + " и их коэффицент " + plant.plant.waterCoefficient);
         }
     }

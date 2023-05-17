@@ -41,6 +41,7 @@ public class PlantMenu : MonoBehaviour
             // Find needed plant
             activePlant = _plantButton.GetComponent<PlantButton>().plant;
             _tools.activePlant = activePlant;
+            _tools.MakeRightLight();
 
             stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
 

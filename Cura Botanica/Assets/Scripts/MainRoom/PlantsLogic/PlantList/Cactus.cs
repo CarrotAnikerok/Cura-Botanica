@@ -59,6 +59,18 @@ public class Cactus : Plant
         set { _sharpDrop = value; }
     }
 
+    public override bool lightOn
+    {
+        get { return _lightOn; }
+        set { _lightOn = value; }
+    }
+
+    public override int lightTooLong
+    {
+        get { return _lightTooLong; }
+        set { _lightTooLong = value; }
+    }
+
     /* Plant Parameters */
 
     public override double waterCoefficient
@@ -86,6 +98,7 @@ public class Cactus : Plant
 
     public Cactus()
     {
+        this.lightAmount = 3000;
         this.normalWaterAmount = 100f;
         this.waterCoefficient = 0.75f;
         this.state = states[2];
@@ -93,7 +106,7 @@ public class Cactus : Plant
 
     public override void ChangeState()
     {
-        ChangeStateLogic(0.5f, 1.0f, 0.5, 1);
+        ChangeStateLogic(0.5f, 1.0f, 0.5, 1, 2000, 8000);
     }
 
     public override void Dry()

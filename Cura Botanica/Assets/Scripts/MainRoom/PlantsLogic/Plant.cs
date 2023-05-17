@@ -35,6 +35,11 @@ public abstract class Plant : MonoBehaviour
     protected bool _sharpDrop; // if the parameters have changed drastically
     public abstract bool sharpDrop { get; set; }
 
+    protected bool _lightOn = false; 
+    public abstract bool lightOn { get; set; }
+
+    protected int _lightTooLong = 0;
+    public abstract int lightTooLong { get; set; }
 
     /* Plant Parameters */
 
@@ -50,6 +55,8 @@ public abstract class Plant : MonoBehaviour
     protected int _temperature;
     public abstract int temperature { get; set; }
 
+    private int phaseOfDay = 0;
+
 
     public virtual void Awake()
     {
@@ -60,7 +67,8 @@ public abstract class Plant : MonoBehaviour
 
 
     /* Logic */
-    public virtual void ChangeStateLogic(double minCoefficient, double maxCoefficient, double minHumidity, double maxHumidity)
+    public virtual void ChangeStateLogic(double minCoefficient, double maxCoefficient, double minHumidity, double maxHumidity, 
+        int minLightAmoint, int maxLightAmount)
     {
         int howBadIsIt = 0;
         int i = Array.FindIndex(states, x => x == state);
@@ -104,6 +112,23 @@ public abstract class Plant : MonoBehaviour
             howBadIsIt += 1;
         }
 
+        if (phaseOfDay == 2 && lightOn == true)
+        {
+            lightTooLong += 1;
+            howBadIsIt += 1;
+            sharpDrop = true;
+        } 
+        else if (phaseOfDay == 2 && lightOn == false)
+        {
+            lightTooLong = 0;
+        }
+
+        if (lightTooLong >= 3)
+        {
+            howBadIsIt += 2;
+            sharpDrop = true;
+        }
+
         // Deterioration
 
         if (i == 1 && howBadIsIt >= 1)
@@ -136,9 +161,20 @@ public abstract class Plant : MonoBehaviour
         else if (i == 2 && howBadIsIt < 1 && !sharpDrop)
         {
             ChangeStateUp(i);
+        } else if (i == 4 && howBadIsIt < 3 || i == 4 && howBadIsIt < 3 || i == 2 && howBadIsIt < 1)
+        {
+            sharpDrop = false;
         }
 
-        sharpDrop = false;
+
+        if (phaseOfDay == 2)
+        {
+            phaseOfDay = 0;
+        }
+        else
+        {
+            phaseOfDay += 1;
+        }
     }
 
     public virtual void DryLogic(double dryC)
@@ -224,5 +260,16 @@ public abstract class Plant : MonoBehaviour
         {
             Debug.Log(name + " It is already dead, it cant become good");
         }
+    }
+
+    public void ChangeHumidityTo(double neededHumidity, float rangeOfRandom)
+    {
+        humidity = neededHumidity + UnityEngine.Random.Range(-rangeOfRandom, rangeOfRandom);
+        Debug.Log("We have a humidity: " + humidity);
+    }
+
+    public void ChangeLightAmount(int lightChange)
+    {
+        lightAmount += lightChange;
     }
 }

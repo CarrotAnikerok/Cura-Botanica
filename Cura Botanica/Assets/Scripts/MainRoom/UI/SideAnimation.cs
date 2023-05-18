@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Handbook : MonoBehaviour
+public class SideAnimation : MonoBehaviour
 {
     public GameObject UI;
     public CanvasGroup blackBG;
 
+    public Vector2 positionOn;
+    public Vector2 positionOff;
+
+
     public void OnEnable()
     {
-        //blackBG = GameObject.Find("Black Background Handbook").GetComponent<CanvasGroup>();
-
         blackBG.gameObject.SetActive(true);
+
         //анимация
-        transform.localPosition = new Vector2(1920f, 0f);
+        transform.localPosition = positionOff;
         blackBG.alpha = 0;
 
         transform.LeanMoveLocal(Vector2.zero, 0.4f).setEaseInOutCubic();
@@ -24,7 +27,7 @@ public class Handbook : MonoBehaviour
     public void Close()
     {
         blackBG.LeanAlpha(0, 0.4f);
-        transform.LeanMoveLocal(new Vector2(1920f, 0f), 0.4f).setEaseInOutCubic().setOnComplete(OnComplete);
+        transform.LeanMoveLocal(positionOff, 0.4f).setEaseInOutCubic().setOnComplete(OnComplete);
     }
 
     private void OnComplete()

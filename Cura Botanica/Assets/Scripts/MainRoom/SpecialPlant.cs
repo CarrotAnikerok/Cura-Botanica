@@ -8,10 +8,12 @@ public class SpecialPlant : MonoBehaviour
 {
     [SerializeField] private Sprite[] backgrounds = new Sprite[4];
     [SerializeField] private Sprite[] plants = new Sprite[4];
+    [SerializeField] private Sprite[] buttons = new Sprite[4];
 
     [SerializeField] private Image background;
     [SerializeField] private Image plant;
     [SerializeField] private Image flover;
+    [SerializeField] private Image button;
 
     [SerializeField]  private TMP_Dropdown dayDropdown;
     [SerializeField]  private TMP_Dropdown monthDropdown;
@@ -21,7 +23,7 @@ public class SpecialPlant : MonoBehaviour
     private int month;
     private int year;
 
-    private void Awake()
+    public void Tune()
     {
         day = dayDropdown.value;
         month = monthDropdown.value;
@@ -30,6 +32,8 @@ public class SpecialPlant : MonoBehaviour
         int element = chooseElement();
         background.sprite = backgrounds[element];
         plant.sprite = plants[element];
+        button.sprite = buttons[element];
+
 
         plant.color = chooseColor();
     }

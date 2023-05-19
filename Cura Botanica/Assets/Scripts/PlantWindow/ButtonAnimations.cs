@@ -10,6 +10,9 @@ public class ButtonAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public bool needClick;
     public bool verticalAnimation;
 
+    public bool isOn;
+    
+
     void Start()
     {
         image = GetComponent<Image>();
@@ -21,7 +24,7 @@ public class ButtonAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         if (verticalAnimation)
         {
-            transform.LeanMoveLocalY(480, 0.2f).setEaseInOutCubic();
+            transform.LeanMoveLocalY(20, 0.2f).setEaseInOutCubic();
         }
     }
 
@@ -29,9 +32,9 @@ public class ButtonAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         image.color = new Color32(255, 255, 255, 255);
 
-        if (verticalAnimation)
+        if (verticalAnimation && isOn == false)
         {
-            transform.LeanMoveLocalY(456, 0.2f).setEaseInOutCubic();
+            transform.LeanMoveLocalY(0, 0.2f).setEaseInOutCubic();
         }
     }
 

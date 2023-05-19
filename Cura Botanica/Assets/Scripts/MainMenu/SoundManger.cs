@@ -11,7 +11,7 @@ public class SoundManger : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI volumeTextUI;
 
-    private void Awake()
+    private void Start()
     {
         LoadValues();
     }

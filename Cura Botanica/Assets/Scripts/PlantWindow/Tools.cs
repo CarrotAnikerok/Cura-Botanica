@@ -24,7 +24,7 @@ public class Tools : MonoBehaviour
     {
         _waterAmountSlider.onValueChanged.AddListener((v) =>
         {
-            _waterAmountText.text = v.ToString("0" + " мл");
+            _waterAmountText.text = v.ToString("0" + " Г¬Г«");
         });
     }
 
@@ -59,7 +59,7 @@ public class Tools : MonoBehaviour
 
     public void MakeRightLight()
     {
-        Debug.Log("Я меняю свет!");
+        Debug.Log("Гџ Г¬ГҐГ­ГїГѕ Г±ГўГҐГІ!");
         if (activePlant.lightOn)
         {
             lightImage.sprite = lightOnSprite;

@@ -60,18 +60,6 @@ public class AloeVera : Plant
         set { _sharpDrop = value; }
     }
 
-    public override bool lightOn 
-    {
-        get { return _lightOn; }
-        set { _lightOn = value; }
-    }
-
-    public override int lightTooLong
-    {
-        get { return _lightTooLong; }
-        set { _lightTooLong = value; }
-    }
-
     /* Plant Parameters */
 
     public override double waterCoefficient
@@ -136,7 +124,7 @@ public class AloeVera : Plant
         }
         else
         {
-            ChangeStateLogic(0.4f, 1f, 0.55, 0.85, 2000, 8000);
+            ChangeStateLogic(0.4f, 1f);
             Debug.Log("Pouring is okey");
         }
 

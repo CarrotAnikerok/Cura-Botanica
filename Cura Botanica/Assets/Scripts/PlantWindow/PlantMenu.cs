@@ -16,6 +16,7 @@ public class PlantMenu : MonoBehaviour
     public Sprite bigSprite;
     public Plant activePlant;
     public CanvasGroup blackBackground;
+    public GameObject plantMenuContainer;
     public Image state;
     public Sprite[] states = new Sprite[6];
 
@@ -23,9 +24,10 @@ public class PlantMenu : MonoBehaviour
     private void Start()
     {
         state = GameObject.Find("State Image").GetComponent<Image>();
+        plantMenuContainer = GameObject.Find("Plant Menu Container");
         _UI = GameObject.Find("User Interface");
         plantImage = GameObject.Find("Actual Image Of Plant").GetComponent<Image>();
-        _tools = gameObject.GetComponent<Tools>();
+        _tools = plantMenuContainer.GetComponent<Tools>();
         gameObject.SetActive(false);
     }
 
@@ -36,12 +38,11 @@ public class PlantMenu : MonoBehaviour
         {
             _plantButton = GameObject.Find("ActivePlantButton"); 
             _plantButtonPosition = _plantButton.transform.position;
-            blackBackground.gameObject.SetActive(true);
+            blackBackground = GameObject.Find("Black Background Plant").GetComponent<CanvasGroup>();
 
-            // Find needed plant
+            // Находим объект, над которым нужно проводить операции
             activePlant = _plantButton.GetComponent<PlantButton>().plant;
             _tools.activePlant = activePlant;
-            _tools.MakeRightLight();
 
             stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
 
@@ -54,13 +55,13 @@ public class PlantMenu : MonoBehaviour
 
 
             // animations
-            transform.localScale = Vector2.zero;
-            transform.position = _plantButtonPosition;
+            plantMenuContainer.transform.localScale = Vector2.zero;
+            plantMenuContainer.transform.position = _plantButtonPosition;
             Debug.Log("Это позиция открытия" + transform.position);
             blackBackground.alpha = 0;
 
-            transform.LeanScale(Vector2.one, 0.3f);
-            transform.LeanMoveLocal(Vector2.zero, 0.3f);
+            plantMenuContainer.transform.LeanScale(Vector2.one, 0.3f);
+            plantMenuContainer.transform.LeanMoveLocal(Vector2.zero, 0.3f);
             blackBackground.LeanAlpha(1, 0.2f);
         }
 
@@ -69,17 +70,17 @@ public class PlantMenu : MonoBehaviour
 
     public void Close()
     {
-        transform.LeanMove(_plantButtonPosition, 0.3f);
+        plantMenuContainer.transform.LeanMove(_plantButtonPosition, 0.3f);
+        Debug.Log("Это позиция закрытия" + plantMenuContainer.transform.position);
         blackBackground.LeanAlpha(0, 0.2f);
 
-        transform.LeanScale(Vector2.zero, 0.3f).setOnComplete(OnComplete);
+        plantMenuContainer.transform.LeanScale(Vector2.zero, 0.3f).setOnComplete(OnComplete);
         _UI.SetActive(true);
     }
 
 
     private void OnComplete()
     {
-        blackBackground.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }

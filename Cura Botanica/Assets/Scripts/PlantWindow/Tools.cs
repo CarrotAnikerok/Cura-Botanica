@@ -18,7 +18,7 @@ public class Tools : MonoBehaviour
     {
         _waterAmountSlider.onValueChanged.AddListener((v) =>
         {
-            _waterAmountText.text = v.ToString("0" + " пїЅпїЅ");
+            _waterAmountText.text = v.ToString("0" + " мл");
         });
     }
 
@@ -33,7 +33,6 @@ public class Tools : MonoBehaviour
     public void SprayActivePlant()
     {
         activePlant.Spray(sprayHumidity);
-        FindObjectOfType<AudioManager>().Play("SpraySound");
     }
 }
 

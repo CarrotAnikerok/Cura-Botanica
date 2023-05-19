@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class FaseButton : MonoBehaviour, IPointerClickHandler
+public class PhaseButton : MonoBehaviour, IPointerClickHandler
 {
     public string[] phases = {"Day", "Evening", "Morning" };
     public Sprite[] phasesPictures = new Sprite[3];
@@ -22,7 +22,9 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler
     public Transitions transition;
     public BlackTransition blackTransition;
 
-    public FaseButton()
+    private double normalHumidity = 0.6;
+
+    public PhaseButton()
     {
         this.phase = phases[0];
     }
@@ -52,6 +54,7 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler
         }
 
         transition.image.sprite = transition.fase[i];
+
     }
 
     IEnumerator LoadPhaseTransition()
@@ -65,7 +68,7 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler
     {
         blackTransition.StartTransition();
         yield return new WaitForSeconds(1f);
-        transition.setDay();
+        transition.SetDay();
         choiceMenu.SetActive(true); // move later
         StartCoroutine(blackTransition.FadeTransition());
 
@@ -89,13 +92,13 @@ public class FaseButton : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(endTime);
     }
 
-
     void updatePlants()
     {
         foreach (GamePlant plant in allPlants)
         {
             plant.plant.ChangeState();
             plant.plant.Dry();
+            plant.plant.ChangeHumidityTo(normalHumidity, 0.10f);
             Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state + " и их коэффицент " + plant.plant.waterCoefficient);
         }
     }

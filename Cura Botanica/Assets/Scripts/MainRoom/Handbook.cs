@@ -1,36 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Handbook : MonoBehaviour
 {
-    public GameObject UI;
-    public CanvasGroup blackBG;
 
-    public void OnEnable()
+    [SerializeField] private GameObject info;
+    [SerializeField] private GameObject notebook;
+    [SerializeField] private GameObject description;
+
+    [SerializeField] private GameObject[] panels = new GameObject[3];
+    [SerializeField] private GameObject[] mainButtons = new GameObject[3];
+
+
+    private void Awake()
     {
-        //blackBG = GameObject.Find("Black Background Handbook").GetComponent<CanvasGroup>();
+        panels[0] = info;
+        panels[1] = notebook;
+        panels[2] = description;
 
-        blackBG.gameObject.SetActive(true);
-        //анимация
-        transform.localPosition = new Vector2(1920f, 0f);
-        blackBG.alpha = 0;
-
-        transform.LeanMoveLocal(Vector2.zero, 0.4f).setEaseInOutCubic();
-        blackBG.LeanAlpha(1, 0.4f);
     }
 
-    public void Close()
+    public void openBook(GameObject book)
     {
-        blackBG.LeanAlpha(0, 0.4f);
-        transform.LeanMoveLocal(new Vector2(1920f, 0f), 0.4f).setEaseInOutCubic().setOnComplete(OnComplete);
+        GameObject mainButton = mainButtons[Array.FindIndex(panels, x => x == book)];
+
+        foreach (GameObject panel in panels)
+        {
+            panel.SetActive(false);
+        }
+
+        foreach (GameObject button in mainButtons)
+        {
+            button.LeanMoveLocalY(0, 0.2f);
+            button.GetComponent<ButtonAnimations>().isOn = false;
+        }
+
+        mainButton.LeanMoveLocalY(20, 0.2f).setEaseInOutCubic();
+        mainButton.GetComponent<ButtonAnimations>().isOn = true;
+
+        book.SetActive(true);
+
     }
 
-    private void OnComplete()
-    {
-        gameObject.SetActive(false);
-        blackBG.gameObject.SetActive(false);
-        UI.SetActive(true);
-    }
 }

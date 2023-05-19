@@ -39,7 +39,6 @@ public class Tools : MonoBehaviour
     public void SprayActivePlant()
     {
         activePlant.Spray(sprayHumidity);
-        FindObjectOfType<AudioManager>().Play("SpraySound");
     }
 
     public void LightShift()

@@ -9,10 +9,11 @@ public class SpecialPlant : MonoBehaviour
     [SerializeField] private Sprite[] backgrounds = new Sprite[4];
     [SerializeField] private Sprite[] plants = new Sprite[4];
     [SerializeField] private Sprite[] buttons = new Sprite[4];
+    [SerializeField] private GameObject[] flowers = new GameObject[4];
 
     [SerializeField] private Image background;
     [SerializeField] private Image plant;
-    [SerializeField] private Image flover;
+    [SerializeField] private GameObject flower;
     [SerializeField] private Image button;
 
     [SerializeField]  private TMP_Dropdown dayDropdown;
@@ -33,9 +34,11 @@ public class SpecialPlant : MonoBehaviour
         background.sprite = backgrounds[element];
         plant.sprite = plants[element];
         button.sprite = buttons[element];
+        flower = flowers[element];
+        flower.SetActive(true);
 
 
-        plant.color = chooseColor();
+        flower.GetComponent<Image>().color = chooseColor();
     }
 
     private int chooseElement()
@@ -68,8 +71,23 @@ public class SpecialPlant : MonoBehaviour
                 return new Color(1f, 0.22f, 0.2f, 1f);
             case 2:
                 return Color.yellow;
+            case 3:
+                return Color.blue;
+            case 4:
+                return Color.white;
+            case 5:
+                return Color.cyan;
+            case 6:
+                return Color.yellow;
+            case 7:
+                return Color.blue;
+            case 8:
+                return Color.red;
+            case 9:
+                return Color.black;
+            case 0:
+                return Color.cyan;
         }
-
         return Color.white;
     }
 }

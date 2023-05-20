@@ -140,7 +140,7 @@ public class AloeVera : Plant
             Debug.Log("Pouring is okey");
         }
 
-        // If pod is dry for 4 phases, aloe will die
+        // If pod is dry for 3 phases, aloe will die
 
         if (waterCoefficient == 0)
         {
@@ -151,7 +151,7 @@ public class AloeVera : Plant
             _dryCount = 0;
         }
 
-        if (_dryCount >= 4)
+        if (_dryCount >= 3)
         {
             ChangeStateDown(i);
         }

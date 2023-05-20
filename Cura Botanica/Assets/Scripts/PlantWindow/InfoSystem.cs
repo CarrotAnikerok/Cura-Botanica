@@ -16,7 +16,6 @@ public class InfoSystem : MonoBehaviour
         UpdateInfo(1, plant.waterCoefficient);
         UpdateInfo(2, plant.lightAmount, " À ");
         UpdateInfo(3, plant.humidity);
-        Debug.Log(plant.humidity + " what is going on woth you");
         UpdateInfo(4, plant.temperature, "∞");
     }
 

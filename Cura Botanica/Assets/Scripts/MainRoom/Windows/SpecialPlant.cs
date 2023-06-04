@@ -68,25 +68,25 @@ public class SpecialPlant : MonoBehaviour
         int color = year % 10;
         switch (color) {
             case 1:
-                return new Color(1f, 0.22f, 0.2f, 1f);
+                return new Color(0.6f, 0f, 0f, 1f); //red
             case 2:
-                return Color.yellow;
+                return new Color(1f, 1f, 0.4f, 1f); //yellow
             case 3:
-                return Color.blue;
+                return new Color(0.6f, 0.6f, 1f, 1f); //light-blue
             case 4:
                 return Color.white;
             case 5:
-                return Color.cyan;
+                return new Color(0.6f, 1f, 1f, 1f);  //cyan
             case 6:
-                return Color.yellow;
+                return new Color(1f, 0.6f, 0.8f, 1f); //pink
             case 7:
-                return Color.blue;
+                return new Color(0.2f, 0.4f, 0.6f, 1f); //blue
             case 8:
-                return Color.red;
+                return new Color(0.4f, 0.2f, 0.8f, 1f); //purple
             case 9:
-                return Color.black;
+                return new Color(1f, 0.4f, 0f, 1f); //orange
             case 0:
-                return Color.cyan;
+                return new Color(0.6f, 0.6f, 1f, 1f); //light-blue change later
         }
         return Color.white;
     }

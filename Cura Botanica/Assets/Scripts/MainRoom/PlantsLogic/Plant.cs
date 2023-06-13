@@ -7,6 +7,8 @@ using System;
 
 public abstract class Plant : MonoBehaviour
 {
+    protected string _plantName;
+    public abstract string plantName { get; set; }
 
     protected double _normalWaterAmount; // with this amount of water in the pod coefficent equels one
     public abstract double normalWaterAmount { get; set; }
@@ -52,6 +54,12 @@ public abstract class Plant : MonoBehaviour
     protected double _waterCoefficient; 
     public abstract double waterCoefficient { get; set; }
 
+    protected double _minWaterCoefficient;
+    public abstract double minWaterCoefficient { get; set; }
+
+    protected double _maxWaterCoefficient;
+    public abstract double maxWaterCoefficient { get; set; }
+
     protected double _humidity;
     public abstract double humidity { get; set; }
 
@@ -75,35 +83,7 @@ public abstract class Plant : MonoBehaviour
     {
         int howBadIsIt = 0;
         int i = Array.FindIndex(states, x => x == state);
-        /*if (waterCoefficient < minCoefficient || waterCoefficient > maxCoefficient)
-        {
-            if (i == 3)
-            {
-                Debug.Log(String.Format(name +" That is not so bad"));
-            } 
-            else
-            {
-                ChangeStateDown(i);
-            }
-        } 
-        else if (waterCoefficient >= minCoefficient && waterCoefficient <= maxCoefficient)
-        {
-            if (i == 1)
-            {
-                Debug.Log(String.Format(name + " You are not perfect enough"));
-            }
-            else
-            {
-                if (sharpDrop)
-                {
-                    sharpDrop = false;
-                } 
-                else
-                {
-                    ChangeStateUp(i);
-                }
-            }
-        }*/
+
 
         if (waterCoefficient < minCoefficient || waterCoefficient > maxCoefficient)
         {

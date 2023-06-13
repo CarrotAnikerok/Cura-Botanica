@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class Cactus : Plant
 {
+    public override string plantName
+    {
+        get { return _plantName; }
+        set { _plantName = value; }
+    }
+
     public override double normalWaterAmount
     {
         get { return _normalWaterAmount; }
@@ -85,6 +91,18 @@ public class Cactus : Plant
         set { _waterCoefficient = value; }
     }
 
+    public override double minWaterCoefficient
+    {
+        get { return _minWaterCoefficient; }
+        set { _minWaterCoefficient = value; }
+    }
+
+    public override double maxWaterCoefficient
+    {
+        get { return _maxWaterCoefficient; }
+        set { _maxWaterCoefficient = value; }
+    }
+
     public override int lightAmount
     {
         get { return _lightAmount; }
@@ -104,15 +122,18 @@ public class Cactus : Plant
 
     public Cactus()
     {
+        plantName = "Кактус";
         this.lightAmount = 3000;
         this.normalWaterAmount = 100f;
         this.waterCoefficient = 0.75f;
+        minWaterCoefficient = 0.5f;
+        maxWaterCoefficient = 0.1f;
         this.state = states[2];
     }
 
     public override void ChangeState()
     {
-        ChangeStateLogic(0.5f, 1.0f, 0.5, 1, 2000, 8000);
+        ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, 0.5, 1, 2000, 8000);
     }
 
     public override void Dry()

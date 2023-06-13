@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class AloeVera : Plant
 {
+    public override string plantName 
+    {
+        get { return _plantName; }
+        set { _plantName = value; }
+    }
+
     public override double normalWaterAmount
     {
         get { return _normalWaterAmount; }
@@ -86,6 +92,18 @@ public class AloeVera : Plant
         set { _waterCoefficient = value; }
     }
 
+    public override double minWaterCoefficient
+    {
+        get { return _minWaterCoefficient; }
+        set { _minWaterCoefficient = value; }
+    }
+
+    public override double maxWaterCoefficient
+    {
+        get { return _maxWaterCoefficient; }
+        set { _maxWaterCoefficient = value; }
+    }
+
     public override int lightAmount
     {
         get { return _lightAmount; }
@@ -107,8 +125,11 @@ public class AloeVera : Plant
 
     public AloeVera()
     {
+        plantName = "Алое Вера";
         normalWaterAmount = 300f;
         waterCoefficient = 0.0f;
+        minWaterCoefficient = 0.4f;
+        maxWaterCoefficient = 0.1f;
         state = states[2];
         phasesFromLastPour = 10;
         lightAmount = 3000;
@@ -142,7 +163,7 @@ public class AloeVera : Plant
         }
         else
         {
-            ChangeStateLogic(0.4f, 1f, 0.55, 0.85, 2000, 8000);
+            ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, 0.55, 0.85, 2000, 8000);
             Debug.Log("Pouring is okey");
         }
 
@@ -198,6 +219,7 @@ public class AloeVera : Plant
         {
             Debug.Log("tooMuchDrop are true");
             tooMuchDrop = true;
+
         }
 
         if (phasesFromLastPour > 0 && phasesFromLastPour <=3)

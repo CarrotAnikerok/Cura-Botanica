@@ -7,6 +7,7 @@ using TMPro;
 public class Tools : MonoBehaviour
 {
     public Plant activePlant;
+    public Handbook handbook;
 
     [SerializeField] private Slider _waterAmountSlider;
     [SerializeField] private TextMeshProUGUI _waterAmountText;
@@ -34,6 +35,7 @@ public class Tools : MonoBehaviour
         Debug.Log("In water method " + _sliderValue);
         activePlant.Pour(_sliderValue);
         Debug.Log(activePlant.name + " " + activePlant.waterCoefficient);
+        handbook.makeANote(activePlant.plantName + ": полив на " + _sliderValue + " мл\n");
     }
 
     public void SprayActivePlant()

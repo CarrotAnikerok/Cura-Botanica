@@ -18,6 +18,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     GamePlant[] allPlants;
 
     public GameObject choiceMenu;
+    public Handbook handbook;
 
     public Transitions transition;
     public BlackTransition blackTransition;
@@ -96,6 +97,14 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     {
         foreach (GamePlant plant in allPlants)
         {
+            if (plant.plant.waterCoefficient > plant.plant.maxWaterCoefficient)
+            {
+                handbook.makeANote(plant.plant.plantName + ": земля выглядит слишком влажной.\n");
+            } 
+            else if (plant.plant.waterCoefficient < plant.plant.minWaterCoefficient)
+            {
+                handbook.makeANote(plant.plant.plantName + ": походу, тут все пересохло.\n");
+            }
             plant.plant.ChangeState();
             plant.plant.Dry();
             plant.plant.ChangeHumidityTo(normalHumidity, 0.10f);

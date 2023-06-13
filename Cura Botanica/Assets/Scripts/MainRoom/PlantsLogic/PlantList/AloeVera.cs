@@ -60,6 +60,12 @@ public class AloeVera : Plant
         set { _sharpDrop = value; }
     }
 
+    public override bool tooMuchDrop
+    {
+        get { return _tooMuchDrop; }
+        set { _tooMuchDrop = value; }
+    }
+
     public override bool lightOn 
     {
         get { return _lightOn; }
@@ -140,6 +146,25 @@ public class AloeVera : Plant
             Debug.Log("Pouring is okey");
         }
 
+        // If pod was poures to much, aloe wiil go to the horrible state, and then dies
+
+        if (tooMuchDrop)
+        {
+            if (i < 4)
+            {
+                Debug.Log("tooMuchDrop are true and Aloe going to horrible");
+                Debug.Log(state + "state was");
+                ChangeStateTo(4);
+                Debug.Log(state + "state now");
+            } 
+            else if (i == 4)
+            {
+                ChangeStateDown(i);
+            }
+
+            tooMuchDrop = false;
+        }
+
         // If pod is dry for 3 phases, aloe will die
 
         if (waterCoefficient == 0)
@@ -167,6 +192,12 @@ public class AloeVera : Plant
         if (waterAmount >= 450)
         {
             sharpDrop = true;
+        }
+
+        if (waterAmount >= 600)
+        {
+            Debug.Log("tooMuchDrop are true");
+            tooMuchDrop = true;
         }
 
         if (phasesFromLastPour > 0 && phasesFromLastPour <=3)

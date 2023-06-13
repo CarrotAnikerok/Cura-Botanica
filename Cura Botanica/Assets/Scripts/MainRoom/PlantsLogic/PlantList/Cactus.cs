@@ -71,6 +71,12 @@ public class Cactus : Plant
         set { _lightTooLong = value; }
     }
 
+    public override bool tooMuchDrop
+    {
+        get { return _tooMuchDrop; }
+        set { _tooMuchDrop = value; }
+    }
+
     /* Plant Parameters */
 
     public override double waterCoefficient

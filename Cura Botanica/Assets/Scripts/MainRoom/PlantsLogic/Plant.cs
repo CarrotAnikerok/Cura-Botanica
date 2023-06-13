@@ -35,6 +35,9 @@ public abstract class Plant : MonoBehaviour
     protected bool _sharpDrop; // if the parameters have changed drastically
     public abstract bool sharpDrop { get; set; }
 
+    protected bool _tooMuchDrop; // if the parameters have changed drastically
+    public abstract bool tooMuchDrop { get; set; }
+
     protected bool _lightOn = false; 
     public abstract bool lightOn { get; set; }
 
@@ -259,6 +262,19 @@ public abstract class Plant : MonoBehaviour
         else
         {
             Debug.Log(name + " It is already dead, it cant become good");
+        }
+    }
+
+    public void ChangeStateTo( int stateTo)
+    {
+        if (alive)
+        {
+            this.state = states[stateTo];
+            image.sprite = statesPicturesMini[stateTo];
+        } 
+        else
+        {
+            Debug.Log("It is dead, you cant revive it");
         }
     }
 

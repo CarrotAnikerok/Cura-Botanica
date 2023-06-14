@@ -35,7 +35,7 @@ public class Tools : MonoBehaviour
         Debug.Log("In water method " + _sliderValue);
         activePlant.Pour(_sliderValue);
         Debug.Log(activePlant.name + " " + activePlant.waterCoefficient);
-        handbook.makeANote(activePlant.plantName + ": полив на " + _sliderValue + " мл\n");
+        handbook.makeNote(activePlant.plantName + ": полив на " + _sliderValue + " мл", 0);
     }
 
     public void SprayActivePlant()

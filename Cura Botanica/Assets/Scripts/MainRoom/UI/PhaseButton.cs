@@ -88,6 +88,8 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(startTime);
 
         updatePlants();
+        Debug.Log("Дневная сейчас будет видна");
+        handbook.showNote(1);
         updatePhaseButton(i);
 
         yield return new WaitForSeconds(endTime);
@@ -97,13 +99,14 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     {
         foreach (GamePlant plant in allPlants)
         {
+
             if (plant.plant.waterCoefficient > plant.plant.maxWaterCoefficient)
             {
-                handbook.makeANote(plant.plant.plantName + ": земля выглядит слишком влажной.\n");
+                //handbook.makeANote(plant.plant.plantName + ": земля выглядит слишком влажной.\n");
             } 
             else if (plant.plant.waterCoefficient < plant.plant.minWaterCoefficient)
             {
-                handbook.makeANote(plant.plant.plantName + ": походу, тут все пересохло.\n");
+                //handbook.makeANote(plant.plant.plantName + ": походу, тут все пересохло.\n");
             }
             plant.plant.ChangeState();
             plant.plant.Dry();

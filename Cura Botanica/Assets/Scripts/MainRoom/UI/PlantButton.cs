@@ -20,7 +20,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     }
 
     private void Update()
-    {   //меняет имя кнопки на свое обычное
+    {   //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (!plantMenu.activeSelf)
         {
             this.name = _buttonName;
@@ -28,11 +28,12 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// Вызывается по нажатия мыши
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
+        FindObjectOfType<AudioManager>().Play("SlideClick");
         if (eventData.dragging)
         {
             return;
@@ -43,7 +44,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// Открывает меню растения.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     public void OpenPlantMenu()
     {

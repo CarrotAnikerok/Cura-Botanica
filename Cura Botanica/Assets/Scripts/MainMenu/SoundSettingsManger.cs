@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SoundManger : MonoBehaviour
+/* Responsible for setting and saving and loading sound preferences.
+*/
+public class SoundSettingsManger : MonoBehaviour
 {
     [SerializeField] private Slider volumeSlider;
 

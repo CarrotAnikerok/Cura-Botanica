@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DisplayManager : MonoBehaviour
+/* Responsible for setting and saving and loading display preferences.
+*/
+public class DisplaySettingsManager : MonoBehaviour
 {
 
     [SerializeField] private TMPro.TMP_Dropdown resolutionDropdown;
@@ -28,10 +30,6 @@ public class DisplayManager : MonoBehaviour
         {
             string option = filteredResolutions[i].width + " x " + filteredResolutions[i].height;
             options.Add(option);
-            // if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
-            // {
-            //     currentResolutionIndex = i;
-            // }
         }
 
         resolutionDropdown.AddOptions(options);
@@ -48,7 +46,6 @@ public class DisplayManager : MonoBehaviour
         {
             if (resolutions[i].refreshRate == currentRefreshRate)
             {
-                // resolutions[i].width + " x " + resolutions[i].height;
                 filteredResolutions.Add(resolutions[i]);
             }
         }
@@ -58,8 +55,6 @@ public class DisplayManager : MonoBehaviour
     
     public void SetFullScreen(bool isFullScreen)
     {
-        // Screen.fullScreen = isFullScreen; // previous solution
-        // Debug.Log("Toggle is on:" + isFullScreen + "\n" + "Full screen mode is on:" + Screen.fullScreen); // uncomment for debug
         Screen.SetResolution(Screen.width, Screen.height, isFullScreen);
     }
 
@@ -81,7 +76,7 @@ public class DisplayManager : MonoBehaviour
         string resolutionSettings = PlayerPrefs.GetString("ScreenSettings");
         string[] currentSettings = resolutionSettings.Split(", ");
 
-        // Debug.Log("Screen settings" + ": " + currentSettings[0] + ", " + currentSettings[1]);
+        // Debug.Log("Screen settings" + ": " + currentSettings[0] + ", " + currentSettings[1]); // debug moment
 
         resolutionDropdown.value = Convert.ToInt32(currentSettings[0]);
         bool isFullScreen = Convert.ToBoolean(currentSettings[1]);

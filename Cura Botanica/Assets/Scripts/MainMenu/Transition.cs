@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* Used for starting animation between scenes.
+*/
 namespace SceneChanger
 {
     public class Transition : MonoBehaviour

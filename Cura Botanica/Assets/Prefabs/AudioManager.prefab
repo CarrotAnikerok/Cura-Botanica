@@ -82,8 +82,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: SlideWindow
-    clip: {fileID: 8300000, guid: 487ad73fc1db9a8468e8d93b57e26fda, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: fda9c86cf15e74c48a7671b2bd6acd7f, type: 3}
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -94,8 +94,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Crickets
-    clip: {fileID: 8300000, guid: db5d8a24993369441b4bd0c9bd3cd30d, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: bdfef66036de4b54fafe19408728a07a, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}

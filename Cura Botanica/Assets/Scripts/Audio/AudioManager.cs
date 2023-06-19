@@ -2,6 +2,8 @@ using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
+/* Contain sounds added in unity editor. Allows to play them when needed through the code.
+*/
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;

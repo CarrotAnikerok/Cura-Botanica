@@ -51,9 +51,51 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: GeneralClick
+    clip: {fileID: 8300000, guid: d98657bf8ad9140468556edab8512432, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SlideClick
+    clip: {fileID: 8300000, guid: 6efcbb96e416369479f2d88059b2bd71, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: SpraySound
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0c156aba673da1947a4c61bbbbb17aea, type: 3}
     volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LightSwitch
+    clip: {fileID: 8300000, guid: 6987f78695ba35642bca89ff26cbb60f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Watering
+    clip: {fileID: 8300000, guid: 3c70fc286f42d7548bda27ccd32df68e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SlideWindow
+    clip: {fileID: 8300000, guid: 487ad73fc1db9a8468e8d93b57e26fda, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Whoosh
+    clip: {fileID: 8300000, guid: 0ecc9e23dc35ae14696cf69d3c8645ce, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Crickets
+    clip: {fileID: 8300000, guid: db5d8a24993369441b4bd0c9bd3cd30d, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}

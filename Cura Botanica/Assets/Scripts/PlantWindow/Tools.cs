@@ -31,6 +31,7 @@ public class Tools : MonoBehaviour
 
      public void WaterActivePlant()
     {
+        FindObjectOfType<AudioManager>().Play("Watering");
         _sliderValue = _waterAmountSlider.value;
         Debug.Log("In water method " + _sliderValue);
         activePlant.Pour(_sliderValue);
@@ -40,12 +41,13 @@ public class Tools : MonoBehaviour
 
     public void SprayActivePlant()
     {
-        activePlant.Spray(sprayHumidity);
         FindObjectOfType<AudioManager>().Play("SpraySound");
+        activePlant.Spray(sprayHumidity);
     }
 
     public void LightShift()
     {
+        FindObjectOfType<AudioManager>().Play("LightSwitch");
         if (activePlant.lightOn)
         {
             lightImage.sprite = lightOffSprite;

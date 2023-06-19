@@ -69,6 +69,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     {
         blackTransition.StartTransition();
         yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("Crickets");
         transition.SetDay();
         choiceMenu.SetActive(true); // move later
         StartCoroutine(blackTransition.FadeTransition());
@@ -88,7 +89,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(startTime);
 
         updatePlants();
-        Debug.Log("Дневная сейчас будет видна");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
         handbook.showNote(1);
         updatePhaseButton(i);
 
@@ -102,16 +103,16 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
 
             if (plant.plant.waterCoefficient > plant.plant.maxWaterCoefficient)
             {
-                //handbook.makeANote(plant.plant.plantName + ": земля выглядит слишком влажной.\n");
+                //handbook.makeANote(plant.plant.plantName + ": пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.\n");
             } 
             else if (plant.plant.waterCoefficient < plant.plant.minWaterCoefficient)
             {
-                //handbook.makeANote(plant.plant.plantName + ": походу, тут все пересохло.\n");
+                //handbook.makeANote(plant.plant.plantName + ": пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.\n");
             }
             plant.plant.ChangeState();
             plant.plant.Dry();
             plant.plant.ChangeHumidityTo(normalHumidity, 0.10f);
-            Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state + " и их коэффицент " + plant.plant.waterCoefficient);
+            Debug.Log(plant.plant.name + " пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " + plant.plant.state + " пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " + plant.plant.waterCoefficient);
         }
     }
 

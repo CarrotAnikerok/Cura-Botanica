@@ -13,6 +13,8 @@ public class Handbook : MonoBehaviour
 
     public TextMeshProUGUI morningField;
     public TextMeshProUGUI dayField;
+
+
     public TextMeshProUGUI eveningField;
 
     [SerializeField] private GameObject[] panels = new GameObject[3];
@@ -47,42 +49,46 @@ public class Handbook : MonoBehaviour
         book.SetActive(true);
     }
 
-    public void makeNote(string inscription, int placeForNote)
+    public void makeNote(string inscription, string placeForNote)
     {
         switch (placeForNote)
         {
-            case 0:
+            case "Morning":
                 morningField.text += inscription + "\n";
-                morningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 110);
+                morningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
                 // PlayerPrefs.SetString("MorningNoteField", morningField.text);
                 break;
-            case 1:
+            case "Day":
                 dayField.text += inscription + "\n";
-                dayField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 110);
+                dayField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
                 // PlayerPrefs.SetString("DayNoteField", dayField.text);
 
                 break;
-            case 2:
+            case "Evening":
                 eveningField.text += inscription + "\n";
-                eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 110);
+                eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
                 // PlayerPrefs.SetString("EveningNoteField", eveningField.text);
                 break;
         }
     }
 
-    public void showNote(int notePhase)
+    public void showNote(string notePhase)
     {
         switch (notePhase)
         {
-            case 0:
+            case "Morning":
                 break;
-            case 1:
-                Vector2 height = morningField.transform.parent.GetComponent<RectTransform>().sizeDelta;
-                dayField.transform.parent.localPosition += new Vector3(0f, 200-(height.y-200/2-3));
+            case "Day":
+                float morningHeight = morningField.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
+                float morningBorder = morningField.transform.parent.localPosition.y + 50 - morningHeight / 2;
+                dayField.transform.parent.localPosition = new Vector3(-283.92f, morningBorder - 100);
                 dayField.transform.parent.gameObject.SetActive(true);
                 break;
-            case 2:
-                eveningField.gameObject.SetActive(true);
+            case "Evening":
+                float dayHeight = dayField.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
+                float dayBorder = dayField.transform.parent.localPosition.y + 50 - dayHeight / 2;
+                eveningField.transform.parent.localPosition = new Vector3(-283.92f, dayBorder - 100);
+                eveningField.transform.parent.gameObject.SetActive(true);
                 break;
         }
         // 200-(dayHeight-200)\2-3

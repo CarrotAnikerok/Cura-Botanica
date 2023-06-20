@@ -10,7 +10,7 @@ public class InfoSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] childrenText;
     void OnEnable()
     {
-        plant = GameObject.Find("ActivePlantButton").GetComponent<GamePlant>().plant;
+        plant = GameObject.Find("ActivePlantButton").GetComponent<PlantButton>().plant;
         childrenText = GetComponentsInChildren<TextMeshProUGUI>();
 
         UpdateInfo(1, plant.waterCoefficient);

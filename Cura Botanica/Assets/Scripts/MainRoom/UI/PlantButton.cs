@@ -15,7 +15,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
         UI = GameObject.Find("User Interface");
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
         _buttonName = this.name;
-        plant = GetComponent<GamePlant>().plant;
+        //plant = GetComponent<GamePlant>().plant;
 
     }
 

@@ -8,14 +8,13 @@ public class Tools : MonoBehaviour
 {
     public Plant activePlant;
     public Handbook handbook;
+    public PhaseButton phaseButton;
 
     [SerializeField] private Slider _waterAmountSlider;
     [SerializeField] private TextMeshProUGUI _waterAmountText;
     private double _sliderValue;
 
     [SerializeField] private double sprayHumidity = 0.05;
-
-    //[SerializeField] private bool LightOff = true;
     [SerializeField] private Image lightImage;
     public Sprite lightOffSprite;
     public Sprite lightOnSprite;
@@ -36,7 +35,8 @@ public class Tools : MonoBehaviour
         Debug.Log("In water method " + _sliderValue);
         activePlant.Pour(_sliderValue);
         Debug.Log(activePlant.name + " " + activePlant.waterCoefficient);
-        handbook.makeNote(activePlant.plantName + ": полив на " + _sliderValue + " мл", 0);
+
+        handbook.makeNote(activePlant.plantName + ": полив на " + _sliderValue + " мл", phaseButton.currentPhase);
     }
 
     public void SprayActivePlant()

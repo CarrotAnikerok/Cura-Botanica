@@ -14,8 +14,9 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     public Sprite[] bgPictures = new Sprite[3];
 
     public Image image;
-    public string phase;
-    GamePlant[] allPlants;
+    public string currentPhase;
+    public string nextPhase;
+    PlantButton[] allPlants;
 
     public GameObject choiceMenu;
     public Handbook handbook;
@@ -27,12 +28,13 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
 
     public PhaseButton()
     {
-        this.phase = phases[0];
+        this.currentPhase = phases[2];
+        this.nextPhase = phases[0];
     }
 
     public void Awake()
     {
-        allPlants = FindObjectsOfType<GamePlant>();
+        allPlants = FindObjectsOfType<PlantButton>();
         background = GameObject.Find("Background").GetComponent<Image>();
 
         image = GetComponent<Image>(); // Image of what?
@@ -41,7 +43,8 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        int i = Array.FindIndex(phases, x => x == phase);
+        int i = Array.FindIndex(phases, x => x == nextPhase);
+
         if (i < 2)
         {
             StartCoroutine(LoadPhaseTransition());
@@ -89,8 +92,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(startTime);
 
         updatePlants();
-        Debug.Log("������� ������ ����� �����");
-        handbook.showNote(1);
+        handbook.showNote(nextPhase);
         updatePhaseButton(i);
 
         yield return new WaitForSeconds(endTime);
@@ -98,7 +100,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
 
     void updatePlants()
     {
-        foreach (GamePlant plant in allPlants)
+        foreach (PlantButton plant in allPlants)
         {
 
             if (plant.plant.waterCoefficient > plant.plant.maxWaterCoefficient)
@@ -120,7 +122,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     void savePlantsProps() {
         string plantsProps = "";
 
-        foreach (GamePlant plant in allPlants)
+        foreach (PlantButton plant in allPlants)
         {
             plantsProps += plant.plant.plantName + ", " + plant.plant.state + ", " + plant.plant.waterCoefficient + " / ";
         }
@@ -132,15 +134,20 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     {
         if (i < 2)
         {
-            this.phase = phases[i + 1];
+            this.nextPhase = phases[i + 1];
+            this.currentPhase = phases[i];
             image.sprite = phasesPictures[i + 1];
             background.sprite = bgPictures[i + 1];
         }
         else if (i == 2)
         {
-            this.phase = phases[0];
+            this.nextPhase = phases[0];
+            this.currentPhase = phases[2];
             image.sprite = phasesPictures[0];
             background.sprite = bgPictures[0];
+           
         }
+
+
     }
 }

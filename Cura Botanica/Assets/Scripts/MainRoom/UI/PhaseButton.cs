@@ -92,6 +92,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(startTime);
 
         updatePlants();
+        savePlantsProps();
         handbook.showNote(nextPhase);
         updatePhaseButton(i);
 
@@ -124,7 +125,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
 
         foreach (PlantButton plant in allPlants)
         {
-            plantsProps += plant.plant.plantName + ", " + plant.plant.state + ", " + plant.plant.waterCoefficient + " / ";
+            plantsProps += plant.plant.plantName + ", " + plant.plant.state + ", " + plant.plant.waterCoefficient + " / "; // Really want to add slot index
         }
 
         PlayerPrefs.SetString("PlantsProperties", plantsProps);

@@ -54,14 +54,18 @@ public class Handbook : MonoBehaviour
             case 0:
                 morningField.text += inscription + "\n";
                 morningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 110);
+                // PlayerPrefs.SetString("MorningNoteField", morningField.text);
                 break;
             case 1:
                 dayField.text += inscription + "\n";
                 dayField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 110);
+                // PlayerPrefs.SetString("DayNoteField", dayField.text);
+
                 break;
             case 2:
                 eveningField.text += inscription + "\n";
                 eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 110);
+                // PlayerPrefs.SetString("EveningNoteField", eveningField.text);
                 break;
         }
     }

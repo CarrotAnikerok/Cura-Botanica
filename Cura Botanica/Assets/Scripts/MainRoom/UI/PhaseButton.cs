@@ -35,7 +35,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         allPlants = FindObjectsOfType<GamePlant>();
         background = GameObject.Find("Background").GetComponent<Image>();
 
-        image = GetComponent<Image>();
+        image = GetComponent<Image>(); // Image of what?
 
     }
 
@@ -114,6 +114,18 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
             plant.plant.ChangeHumidityTo(normalHumidity, 0.10f);
             Debug.Log(plant.plant.name + " � ��������� " + plant.plant.state + " � �� ���������� " + plant.plant.waterCoefficient);
         }
+    }
+
+/*Where to load...*/
+    void savePlantsProps() {
+        string plantsProps = "";
+
+        foreach (GamePlant plant in allPlants)
+        {
+            plantsProps += plant.plant.plantName + ", " + plant.plant.state + ", " + plant.plant.waterCoefficient + " / ";
+        }
+
+        PlayerPrefs.SetString("PlantsProperties", plantsProps);
     }
 
     void updatePhaseButton(int i)

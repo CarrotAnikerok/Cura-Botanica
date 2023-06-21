@@ -52,16 +52,20 @@ public class Tools : MonoBehaviour
         if (activePlant.lightOn)
         {
             lightImage.sprite = lightOffSprite;
+            activePlant.humidity += 0.1;
+            activePlant.temperature -= 10;
             activePlant.ChangeLightAmount(-3000);
             activePlant.lightOn = false;
-            handbook.makeNote(activePlant.plantName + ": свет включен", phaseButton.currentPhase);
+            handbook.makeNote(activePlant.plantName + ": свет выключен", phaseButton.currentPhase);
         }
         else
         {
             lightImage.sprite = lightOnSprite;
+            activePlant.humidity -= 0.1;
+            activePlant.temperature += 10;
             activePlant.ChangeLightAmount(3000);
             activePlant.lightOn = true;
-            handbook.makeNote(activePlant.plantName + ": свет выключен", phaseButton.currentPhase);
+            handbook.makeNote(activePlant.plantName + ": свет включен", phaseButton.currentPhase);
         }
     }
 

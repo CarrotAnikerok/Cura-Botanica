@@ -138,6 +138,12 @@ public class Cactus : Plant
         set { _temperature = value; }
     }
 
+    public override int placeIndex
+    {
+        get { return _placeIndex; }
+        set { _placeIndex = value; }
+    }
+
 
     public Cactus()
     {
@@ -146,8 +152,9 @@ public class Cactus : Plant
         this.normalWaterAmount = 100f;
         this.waterCoefficient = 0f;
         minWaterCoefficient = 0.1f;
-        maxWaterCoefficient = 0.5f;
+        maxWaterCoefficient = 1f;
         this.state = states[2];
+        humidity = 0.6;
         maxHumidity = 1;
         minHumidity = 0.5;
     }

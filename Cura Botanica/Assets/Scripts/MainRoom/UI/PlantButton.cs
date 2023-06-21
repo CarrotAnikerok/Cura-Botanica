@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlantButton : MonoBehaviour, IPointerClickHandler
 {
     private GameObject plantMenu;
-    private string _buttonName;
+    public string buttonName;
     public Plant plant;
     public GameObject UI;
 
@@ -14,7 +14,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     {
         UI = GameObject.Find("User Interface");
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
-        _buttonName = this.name;
+        buttonName = this.name;
 
     }
 
@@ -22,12 +22,10 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     {   
         if (!plantMenu.activeSelf)
         {
-            this.name = _buttonName;
+            this.name = buttonName;
         }
     }
 
-
-    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         FindObjectOfType<AudioManager>().Play("SlideClick");

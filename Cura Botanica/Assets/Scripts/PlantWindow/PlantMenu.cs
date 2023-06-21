@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 public class PlantMenu : MonoBehaviour
 {
-    private GameObject _plantButton;
+    private PlantButton _plantButton;
     private GameObject _UI;
     private Vector2 _plantButtonPosition;
     private Tools _tools;
@@ -18,6 +19,8 @@ public class PlantMenu : MonoBehaviour
     public CanvasGroup blackBackground;
     public Image state;
     public Sprite[] states = new Sprite[6];
+    public Plant[] sortedPlants;
+    
 
 
     private void Start()
@@ -27,6 +30,22 @@ public class PlantMenu : MonoBehaviour
         plantImage = GameObject.Find("Actual Image Of Plant").GetComponent<Image>();
         _tools = gameObject.GetComponent<Tools>();
         gameObject.SetActive(false);
+
+        PlantButton[]  allPlantsButtons = FindObjectsOfType<PlantButton>();
+        var allPlants = new List<Plant>();
+        foreach (PlantButton plantButton in allPlantsButtons)
+        {
+            allPlants.Add(plantButton.plant);
+        }
+        IEnumerable<Plant> plants = allPlants.OrderBy(p => p.placeIndex);
+        int i = 0;
+        sortedPlants = new Plant[plants.Count<Plant>()];
+        foreach (Plant plant in plants)
+        {
+            sortedPlants[i] = plant;
+            i += 1;
+        }
+
     }
 
     /* Find pressed button, take it image. Tunes plant menu properly and give it animations. */
@@ -34,26 +53,10 @@ public class PlantMenu : MonoBehaviour
     {
         if (GameObject.Find("ActivePlantButton") != null)
         {
-            _plantButton = GameObject.Find("ActivePlantButton"); 
-            _plantButtonPosition = _plantButton.transform.position;
-            blackBackground.gameObject.SetActive(true);
-
-            // Find needed plant
-            activePlant = _plantButton.GetComponent<PlantButton>().plant;
-            _tools.activePlant = activePlant;
-            _tools.MakeRightLight();
-
-            stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
-
-            // Change image in needed plant
-            bigSprite = activePlant.statesPicturesBig[stateOfPlant];
-            plantImage.sprite = bigSprite;
-
-            // Change state sprite
-            state.sprite = states[stateOfPlant];
-
+            Tune();
 
             // animations
+            blackBackground.gameObject.SetActive(true);
             transform.localScale = Vector2.zero;
             transform.position = _plantButtonPosition;
             Debug.Log("Это позиция открытия" + transform.position);
@@ -64,6 +67,46 @@ public class PlantMenu : MonoBehaviour
             blackBackground.LeanAlpha(1, 0.2f);
         }
 
+    }
+
+    public void Move()
+    {
+        _plantButton.name = _plantButton.buttonName;
+        int i = Array.FindIndex(sortedPlants, x => x == _plantButton.plant);
+        foreach (Plant plant in sortedPlants)
+        {
+            Debug.Log("Растение и индекс:" + plant + Array.FindIndex(sortedPlants, x => x == plant));
+        }
+        if (i + 1 == sortedPlants.Length)
+        {
+            sortedPlants[0].name = "ActivePlantButton";
+        }
+        else
+        {
+            sortedPlants[i + 1].name = "ActivePlantButton";
+        }
+        Tune();
+    }
+
+
+    private void Tune()
+    {
+        _plantButton = GameObject.Find("ActivePlantButton").GetComponent<PlantButton>();
+        _plantButtonPosition = _plantButton.transform.position;
+
+        // Find needed plant
+        activePlant = _plantButton.plant;
+        _tools.activePlant = activePlant;
+        _tools.MakeRightLight();
+
+        stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
+
+        // Change image in needed plant
+        bigSprite = activePlant.statesPicturesBig[stateOfPlant];
+        plantImage.sprite = bigSprite;
+
+        // Change state sprite
+        state.sprite = states[stateOfPlant];
     }
 
 

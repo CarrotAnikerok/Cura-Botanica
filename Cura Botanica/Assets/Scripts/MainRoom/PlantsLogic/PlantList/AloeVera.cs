@@ -90,6 +90,11 @@ public class AloeVera : Plant
         set { _checkPhrases = value; }
     }
 
+    public override int placeIndex
+    {
+        get { return _placeIndex; }
+        set { _placeIndex = value; }
+    }
 
     /* Plant Parameters */
 
@@ -148,8 +153,8 @@ public class AloeVera : Plant
         plantName = "Алое Вера";
         normalWaterAmount = 300f;
         waterCoefficient = 0.0f;
-        minWaterCoefficient = 0.3f;
-        maxWaterCoefficient = 0.85f;
+        minWaterCoefficient = 0.2f;
+        maxWaterCoefficient = 0.95f;
         state = states[2];
         phasesFromLastPour = 10;
         lightAmount = 3000;
@@ -224,6 +229,13 @@ public class AloeVera : Plant
             ChangeStateDown(i);
         }
 
+        // it cant become perfect so easy
+        if (state == states[0])
+        {
+            
+            ChangeStateTo(1);
+        }
+
         phasesFromLastPour += 1;
         Debug.Log("Fases from last pour " + phasesFromLastPour);
     }
@@ -237,7 +249,7 @@ public class AloeVera : Plant
             sharpDrop = true;
         }
 
-        if (waterAmount >= 600)
+        if (waterAmount >= 600 || waterCoefficient > 1.5)
         {
             Debug.Log("tooMuchDrop are true");
             tooMuchDrop = true;

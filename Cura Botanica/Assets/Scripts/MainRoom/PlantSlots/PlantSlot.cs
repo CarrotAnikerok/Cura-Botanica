@@ -7,13 +7,17 @@ using UnityEngine.UI;
 
 public class PlantSlot : MonoBehaviour, IDropHandler
 {
+    public int placeIndex;
     public Image image;
-    public GameObject plantChild;
 
     private void Start()
     {
         image = GetComponent<Image>();
         image.enabled = false;
+        if (gameObject.transform.childCount == 1)
+        {
+            gameObject.transform.GetComponentInChildren<PlantButton>().plant.placeIndex = placeIndex;
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -24,6 +28,7 @@ public class PlantSlot : MonoBehaviour, IDropHandler
             Debug.Log("Ёлемент упал" + dropped);
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
             draggableItem.parentAfteDrag = transform;
+            dropped.GetComponent<PlantButton>().plant.placeIndex = placeIndex;
         }
     }
 }

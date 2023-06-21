@@ -139,15 +139,21 @@ public class Kalanchoe : Plant
         set { _temperature = value; }
     }
 
+    public override int placeIndex
+    {
+        get { return _placeIndex; }
+        set { _placeIndex = value; }
+    }
+
     private bool _wateringTooOften;
     private int _dryCount; // count number of phases, when waterCoefficient = 0
+    private int _lightCount; //how long is there lught
 
     public Kalanchoe()
     {
         plantName = "Каланхоэ";
         normalWaterAmount = 300f;
-        waterCoefficient = 0.0f;
-        minWaterCoefficient = 0.3f;
+        minWaterCoefficient = 0.4f;
         maxWaterCoefficient = 0.85f;
         state = states[2];
         phasesFromLastPour = 10;
@@ -156,14 +162,13 @@ public class Kalanchoe : Plant
         maxHumidity = 0.85;
         minHumidity = 0.55;
         temperature = 20;
-        _dryCount = 0;
         _wateringTooOften = false;
     }
 
     // Methods
     public override void Dry()
     {
-        DryLogic(0.1);
+        DryLogic(0.2);
     }
 
     public override void Spray(double sprayHumidity)
@@ -175,7 +180,7 @@ public class Kalanchoe : Plant
     {
         int i = Array.FindIndex(states, x => x == state);
 
-        // If waterint too often, aloe will die
+        // If watering too often, kalanchoe will die
         if (_wateringTooOften)
         {
             ChangeStateDown(i);
@@ -184,17 +189,17 @@ public class Kalanchoe : Plant
         }
         else
         {
-            ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, minHumidity, maxHumidity, 2000, 8000);
+            ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, minHumidity, maxHumidity, 3000, 6000);
             Debug.Log("Pouring is okey");
         }
 
-        // If pod was poures to much, aloe wiil go to the horrible state, and then dies
+        // If pod was poured to much, kalanchoe wiil go to the horrible state, and then dies
 
         if (tooMuchDrop)
         {
             if (i < 4)
             {
-                Debug.Log("tooMuchDrop are true and Aloe going to horrible");
+                Debug.Log("tooMuchDrop are true and Kalanchoe going to horrible");
                 Debug.Log(state + "state was");
                 ChangeStateTo(4);
                 Debug.Log(state + "state now");
@@ -207,7 +212,7 @@ public class Kalanchoe : Plant
             tooMuchDrop = false;
         }
 
-        // If pod is dry for 3 phases, aloe will die
+        // If pod is dry for 2 phases, kalanchoe will die
 
         if (waterCoefficient == 0)
         {
@@ -218,7 +223,22 @@ public class Kalanchoe : Plant
             _dryCount = 0;
         }
 
-        if (_dryCount >= 3)
+        if (_dryCount >= 2)
+        {
+            ChangeStateDown(i);
+        }
+
+        // if light on 2 phases, kalanchoe will die
+        if (lightOn)
+        {
+            _lightCount += 1;
+        } 
+        else
+        {
+            _lightCount += 0;
+        }
+
+        if (_lightCount >= 2)
         {
             ChangeStateDown(i);
         }
@@ -231,23 +251,23 @@ public class Kalanchoe : Plant
     {
         PourLogic(waterAmount);
 
-        if (waterAmount >= 450)
+        if (waterAmount >= 400)
         {
             sharpDrop = true;
         }
 
-        if (waterAmount >= 600)
+        if (waterAmount >= 500 || waterCoefficient > 1.5)
         {
             Debug.Log("tooMuchDrop are true");
             tooMuchDrop = true;
 
         }
 
-        if (phasesFromLastPour > 0 && phasesFromLastPour <= 3)
+        if (phasesFromLastPour > 0 && phasesFromLastPour <= 2)
         {
             phasesFromLastPour = 0;
             _wateringTooOften = true;
-            Debug.Log("You are pouring it too often!");
+            Debug.Log(plantName + " You are pouring it too often!");
         }
         else if (waterAmount == 0)
         {

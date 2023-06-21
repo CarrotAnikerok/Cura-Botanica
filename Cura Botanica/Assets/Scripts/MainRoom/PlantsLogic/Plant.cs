@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,9 +46,9 @@ public abstract class Plant : MonoBehaviour
     protected int _lightTooLong = 0;
     public abstract int lightTooLong { get; set; }
 
-    protected string[] _checkPhrases = {"земля выглядит влажной", "земля выглядит сухой",
-                                        "воздух какой-то влажный", "воздух какой-то сухой", "как-то много тени", 
-                                        "как-то много света" };
+    protected string[] _checkPhrases = {"Р·РµРјР»СЏ РІС‹РіР»СЏРґРёС‚ РІР»Р°Р¶РЅРѕР№", "Р·РµРјР»СЏ РІС‹РіР»СЏРґРёС‚ СЃСѓС…РѕР№",
+                                        "РІРѕР·РґСѓС… РєР°РєРѕР№-С‚Рѕ РІР»Р°Р¶РЅС‹Р№", "РІРѕР·РґСѓС… РєР°РєРѕР№-С‚Рѕ СЃСѓС…РѕР№", "РєР°Рє-С‚Рѕ РјРЅРѕРіРѕ С‚РµРЅРё", 
+                                        "РєР°Рє-С‚Рѕ РјРЅРѕРіРѕ СЃРІРµС‚Р°" };
     public abstract string[] checkPhrases { get; set; }
 
     /* Plant Parameters */

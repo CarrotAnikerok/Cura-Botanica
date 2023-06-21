@@ -15,21 +15,18 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
         UI = GameObject.Find("User Interface");
         plantMenu = GameObject.Find("GameManager").GetComponent<IManager>().plantMenu;
         _buttonName = this.name;
-        //plant = GetComponent<GamePlant>().plant;
 
     }
 
     private void Update()
-    {   //������ ��� ������ �� ���� �������
+    {   
         if (!plantMenu.activeSelf)
         {
             this.name = _buttonName;
         }
     }
 
-    /// <summary>
-    /// ���������� �� ������� ����
-    /// </summary>
+
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -43,9 +40,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
         OpenPlantMenu();
     }
 
-    /// <summary>
-    /// ��������� ���� ��������.
-    /// </summary>
+
     public void OpenPlantMenu()
     {
         this.name = "ActivePlantButton";

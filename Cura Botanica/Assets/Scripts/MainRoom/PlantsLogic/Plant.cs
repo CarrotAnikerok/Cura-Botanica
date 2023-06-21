@@ -51,8 +51,6 @@ public abstract class Plant : MonoBehaviour
                                         "как-то много света" };
     public abstract string[] checkPhrases { get; set; }
 
-    protected int _placeIndex;
-    public abstract int placeIndex { get; set; }
 
     /* Plant Parameters */
 

@@ -139,12 +139,6 @@ public class Kalanchoe : Plant
         set { _temperature = value; }
     }
 
-    public override int placeIndex
-    {
-        get { return _placeIndex; }
-        set { _placeIndex = value; }
-    }
-
     private bool _wateringTooOften;
     private int _dryCount; // count number of phases, when waterCoefficient = 0
     private int _lightCount; //how long is there lught

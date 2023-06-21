@@ -19,7 +19,7 @@ public class PlantMenu : MonoBehaviour
     public CanvasGroup blackBackground;
     public Image state;
     public Sprite[] states = new Sprite[6];
-    public Plant[] sortedPlants;
+    public PlantButton[] sortedPlants;
     
 
 
@@ -32,15 +32,15 @@ public class PlantMenu : MonoBehaviour
         gameObject.SetActive(false);
 
         PlantButton[]  allPlantsButtons = FindObjectsOfType<PlantButton>();
-        var allPlants = new List<Plant>();
+        var allPlants = new List<PlantButton>();
         foreach (PlantButton plantButton in allPlantsButtons)
         {
-            allPlants.Add(plantButton.plant);
+            allPlants.Add(plantButton);
         }
-        IEnumerable<Plant> plants = allPlants.OrderBy(p => p.placeIndex);
+        IEnumerable<PlantButton> plants = allPlants.OrderBy(p => p.placeIndex);
         int i = 0;
-        sortedPlants = new Plant[plants.Count<Plant>()];
-        foreach (Plant plant in plants)
+        sortedPlants = new PlantButton[plants.Count<PlantButton>()];
+        foreach (PlantButton plant in plants)
         {
             sortedPlants[i] = plant;
             i += 1;
@@ -72,8 +72,8 @@ public class PlantMenu : MonoBehaviour
     public void Move()
     {
         _plantButton.name = _plantButton.buttonName;
-        int i = Array.FindIndex(sortedPlants, x => x == _plantButton.plant);
-        foreach (Plant plant in sortedPlants)
+        int i = Array.FindIndex(sortedPlants, x => x == _plantButton);
+        foreach (PlantButton plant in sortedPlants)
         {
             Debug.Log("Растение и индекс:" + plant + Array.FindIndex(sortedPlants, x => x == plant));
         }

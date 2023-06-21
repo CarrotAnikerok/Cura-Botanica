@@ -138,13 +138,6 @@ public class Cactus : Plant
         set { _temperature = value; }
     }
 
-    public override int placeIndex
-    {
-        get { return _placeIndex; }
-        set { _placeIndex = value; }
-    }
-
-
     public Cactus()
     {
         plantName = "Кактус";

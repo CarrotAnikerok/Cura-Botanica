@@ -9,6 +9,7 @@ public class PlantButton : MonoBehaviour, IPointerClickHandler
     public string buttonName;
     public Plant plant;
     public GameObject UI;
+    public int placeIndex;
 
     void Start()
     {

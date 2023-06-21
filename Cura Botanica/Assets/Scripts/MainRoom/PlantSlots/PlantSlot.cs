@@ -16,7 +16,7 @@ public class PlantSlot : MonoBehaviour, IDropHandler
         image.enabled = false;
         if (gameObject.transform.childCount == 1)
         {
-            gameObject.transform.GetComponentInChildren<PlantButton>().plant.placeIndex = placeIndex;
+            gameObject.transform.GetComponentInChildren<PlantButton>().placeIndex = placeIndex;
         }
     }
 
@@ -28,7 +28,7 @@ public class PlantSlot : MonoBehaviour, IDropHandler
             Debug.Log("Ёлемент упал" + dropped);
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
             draggableItem.parentAfteDrag = transform;
-            dropped.GetComponent<PlantButton>().plant.placeIndex = placeIndex;
+            dropped.GetComponent<PlantButton>().placeIndex = placeIndex;
         }
     }
 }

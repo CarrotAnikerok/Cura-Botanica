@@ -451,10 +451,10 @@ RectTransform:
   - {fileID: 1982990811}
   - {fileID: 5376301}
   - {fileID: 2083397631}
-  - {fileID: 1338124552}
-  - {fileID: 17052223}
   - {fileID: 308688385}
   - {fileID: 18748259}
+  - {fileID: 1338124552}
+  - {fileID: 17052223}
   - {fileID: 2025673580}
   - {fileID: 1351292321}
   - {fileID: 974763736}
@@ -939,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653673943853059927, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Name
-      value: PlantSlot (16)
+      value: Plant Slot (16)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
@@ -7253,7 +7253,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: abe036591eb359f4eb43038b028318b2, type: 3}
     - target: {fileID: 1719838848377278525, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: placeIndex
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6187891976439250805, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_StartCorner
@@ -7269,7 +7269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7345,7 +7345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653673943853059927, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Name
-      value: PlantSlot (12)
+      value: Plant Slot (11)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
@@ -12641,7 +12641,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1719838848377278525, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: placeIndex
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Pivot.x
@@ -12653,7 +12653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12729,7 +12729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653673943853059927, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Name
-      value: Plant Slot (15)
+      value: Plant Slot (14)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
@@ -19481,7 +19481,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: abe036591eb359f4eb43038b028318b2, type: 3}
     - target: {fileID: 1719838848377278525, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: placeIndex
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6187891976439250805, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_StartCorner
@@ -19497,7 +19497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -19573,7 +19573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653673943853059927, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Name
-      value: Plant Slot (13)
+      value: Plant Slot (12)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
@@ -22155,7 +22155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1719838848377278525, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: placeIndex
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Pivot.x
@@ -22167,7 +22167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -22243,7 +22243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8653673943853059927, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_Name
-      value: Plant Slot (14)
+      value: Plant Slot (13)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}

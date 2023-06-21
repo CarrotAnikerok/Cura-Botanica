@@ -92,7 +92,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(startTime);
 
         updatePlants();
-        savePlantsProps();
+        // savePlantsProps();
         handbook.showNote(nextPhase);
         updatePhaseButton(i);
 

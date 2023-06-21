@@ -51,6 +51,7 @@ public abstract class Plant : MonoBehaviour
                                         "как-то много света" };
     public abstract string[] checkPhrases { get; set; }
 
+
     /* Plant Parameters */
 
     protected int _lightAmount; 
@@ -94,7 +95,6 @@ public abstract class Plant : MonoBehaviour
     {
         int howBadIsIt = 0;
         int i = Array.FindIndex(states, x => x == state);
-
 
         if (waterCoefficient < minCoefficient || waterCoefficient > maxCoefficient)
         {
@@ -147,6 +147,7 @@ public abstract class Plant : MonoBehaviour
         if (i == 4 && howBadIsIt < 3 && !sharpDrop)
         {
             ChangeStateUp(i);
+
         }
         else if (i == 3 && howBadIsIt < 2 && !sharpDrop)
         {
@@ -155,7 +156,12 @@ public abstract class Plant : MonoBehaviour
         else if (i == 2 && howBadIsIt < 1 && !sharpDrop)
         {
             ChangeStateUp(i);
-        } else if (i == 4 && howBadIsIt < 3 || i == 4 && howBadIsIt < 3 || i == 2 && howBadIsIt < 1)
+        }
+        else if (i == 1 && howBadIsIt == 0 && !sharpDrop)
+        {
+            ChangeStateUp(i);
+        }
+        else if (i == 4 && howBadIsIt < 3 || i == 4 && howBadIsIt < 3 || i == 2 && howBadIsIt < 1)
         {
             sharpDrop = false;
         }
@@ -256,7 +262,7 @@ public abstract class Plant : MonoBehaviour
         }
     }
 
-    public void ChangeStateTo( int stateTo)
+    public void ChangeStateTo(int stateTo)
     {
         if (alive)
         {
@@ -265,7 +271,7 @@ public abstract class Plant : MonoBehaviour
         } 
         else
         {
-            Debug.Log("It is dead, you cant revive it");
+            Debug.Log(name + "It is dead, you cant revive it");
         }
     }
 

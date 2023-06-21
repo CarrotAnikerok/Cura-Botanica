@@ -90,11 +90,6 @@ public class AloeVera : Plant
         set { _checkPhrases = value; }
     }
 
-    public override int placeIndex
-    {
-        get { return _placeIndex; }
-        set { _placeIndex = value; }
-    }
 
     /* Plant Parameters */
 

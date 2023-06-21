@@ -46,6 +46,11 @@ public abstract class Plant : MonoBehaviour
     protected int _lightTooLong = 0;
     public abstract int lightTooLong { get; set; }
 
+    protected string[] _checkPhrases = {"земля выглядит влажной", "земля выглядит сухой",
+                                        "воздух какой-то влажный", "воздух какой-то сухой", "как-то много тени", 
+                                        "как-то много света" };
+    public abstract string[] checkPhrases { get; set; }
+
     /* Plant Parameters */
 
     protected int _lightAmount; 
@@ -62,6 +67,12 @@ public abstract class Plant : MonoBehaviour
 
     protected double _humidity;
     public abstract double humidity { get; set; }
+
+    protected double _maxHumidity;
+    public abstract double maxHumidity { get; set; }
+
+    protected double _minHumidity;
+    public abstract double minHumidity { get; set; }
 
     protected int _temperature;
     public abstract int temperature { get; set; }
@@ -261,7 +272,6 @@ public abstract class Plant : MonoBehaviour
     public void ChangeHumidityTo(double neededHumidity, float rangeOfRandom)
     {
         humidity = neededHumidity + UnityEngine.Random.Range(-rangeOfRandom, rangeOfRandom);
-        Debug.Log("We have a humidity: " + humidity);
     }
 
     public void ChangeLightAmount(int lightChange)

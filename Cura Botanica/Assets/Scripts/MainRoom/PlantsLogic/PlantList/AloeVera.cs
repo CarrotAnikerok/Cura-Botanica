@@ -84,6 +84,13 @@ public class AloeVera : Plant
         set { _lightTooLong = value; }
     }
 
+    public override string[] checkPhrases
+    {
+        get { return _checkPhrases; }
+        set { _checkPhrases = value; }
+    }
+
+
     /* Plant Parameters */
 
     public override double waterCoefficient
@@ -114,6 +121,19 @@ public class AloeVera : Plant
         get { return _humidity; }
         set { _humidity = value; }
     }
+
+    public override double minHumidity
+    {
+        get { return _minHumidity; }
+        set { _minHumidity = value; }
+    }
+
+    public override double maxHumidity
+    {
+        get { return _maxHumidity; }
+        set { _maxHumidity = value; }
+    }
+
     public override int temperature
     {
         get { return _temperature; }
@@ -128,12 +148,14 @@ public class AloeVera : Plant
         plantName = "Алое Вера";
         normalWaterAmount = 300f;
         waterCoefficient = 0.0f;
-        minWaterCoefficient = 0.4f;
-        maxWaterCoefficient = 0.1f;
+        minWaterCoefficient = 0.3f;
+        maxWaterCoefficient = 0.85f;
         state = states[2];
         phasesFromLastPour = 10;
         lightAmount = 3000;
         humidity = 0.6;
+        maxHumidity = 0.85;
+        minHumidity = 0.55;
         temperature = 20;
         _dryCount = 0;
         _wateringTooOften = false;
@@ -163,7 +185,7 @@ public class AloeVera : Plant
         }
         else
         {
-            ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, 0.55, 0.85, 2000, 8000);
+            ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, minHumidity, maxHumidity, 2000, 8000);
             Debug.Log("Pouring is okey");
         }
 

@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,12 +17,10 @@ public class Handbook : MonoBehaviour
     public TextMeshProUGUI additionalField;
     public TextMeshProUGUI pastEveningField;
 
-    [SerializeField] private int nodesCount;
-    [SerializeField] private int eveningNodesCount;
-    [SerializeField] private bool thereIsPhaseTitle;
-    [SerializeField] private bool addAdditionalToEvening;
-
-
+    private int nodesCount;
+    private int eveningNodesCount;
+    private bool thereIsPhaseTitle;
+    private bool addAdditionalToEvening;
 
     [SerializeField] private GameObject[] panels = new GameObject[3];
     [SerializeField] private GameObject[] mainButtons = new GameObject[3];
@@ -100,7 +98,7 @@ public class Handbook : MonoBehaviour
     {
         if (nodesCount == 17)
         {
-            Debug.Log("переход на след страницу");
+            Debug.Log("РїРµСЂРµС…РѕРґ РЅР° СЃР»РµРґ СЃС‚СЂР°РЅРёС†Сѓ");
             nodesCount = 0;
             switch (notePhase)
             {
@@ -139,7 +137,7 @@ public class Handbook : MonoBehaviour
         }
         else
         {
-            Debug.Log("перехода нет");
+            Debug.Log("РїРµСЂРµС…РѕРґР° РЅРµС‚");
             switch (notePhase)
             {
                 case "Morning":
@@ -169,8 +167,8 @@ public class Handbook : MonoBehaviour
     {
         //clear notes
         additionalField.text = "";
-        morningField.text = "Здесь появляются заметки за утро...\n";
-        dayField.text = "Здесь появляются заметки за день...\n";
+        morningField.text = "Р—РґРµСЃСЊ РїРѕСЏРІР»СЏСЋС‚СЃСЏ Р·Р°РјРµС‚РєРё Р·Р° СѓС‚СЂРѕ...\n";
+        dayField.text = "Р—РґРµСЃСЊ РїРѕСЏРІР»СЏСЋС‚СЃСЏ Р·Р°РјРµС‚РєРё Р·Р° РґРµРЅСЊ...\n";
 
         pastEveningField.transform.parent.GetComponent<RectTransform>().sizeDelta
             = eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta;
@@ -181,8 +179,8 @@ public class Handbook : MonoBehaviour
 
         pastEveningField.text = eveningField.text;
         pastEveningField.text = pastEveningField.text.Substring(36);
-        pastEveningField.text = "Здесь находятся заметки за прошлый вечер..." + pastEveningField.text;
-        eveningField.text = "Здесь появляются заметки за вечер...\n";
+        pastEveningField.text = "Р—РґРµСЃСЊ РЅР°С…РѕРґСЏС‚СЃСЏ Р·Р°РјРµС‚РєРё Р·Р° РїСЂРѕС€Р»С‹Р№ РІРµС‡РµСЂ..." + pastEveningField.text;
+        eveningField.text = "Р—РґРµСЃСЊ РїРѕСЏРІР»СЏСЋС‚СЃСЏ Р·Р°РјРµС‚РєРё Р·Р° РІРµС‡РµСЂ...\n";
 
         if (addAdditionalToEvening == true)
         {

@@ -100,21 +100,16 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
 
     void updatePlants()
     {
-        foreach (PlantButton plant in allPlants)
+        foreach (PlantButton plantButton in allPlants)
         {
-
-            if (plant.plant.waterCoefficient > plant.plant.maxWaterCoefficient)
+            if (chooseCheckPhrase(plantButton.plant) != null)
             {
-                //handbook.makeANote(plant.plant.plantName + ": ����� �������� ������� �������.\n");
-            } 
-            else if (plant.plant.waterCoefficient < plant.plant.minWaterCoefficient)
-            {
-                //handbook.makeANote(plant.plant.plantName + ": ������, ��� ��� ���������.\n");
+                handbook.makeNote(plantButton.plant.plantName + ": " + chooseCheckPhrase(plantButton.plant), currentPhase);
             }
-            plant.plant.ChangeState();
-            plant.plant.Dry();
-            plant.plant.ChangeHumidityTo(normalHumidity, 0.10f);
-            Debug.Log(plant.plant.name + " � ��������� " + plant.plant.state + " � �� ���������� " + plant.plant.waterCoefficient);
+            plantButton.plant.ChangeState();
+            plantButton.plant.Dry();
+            plantButton.plant.ChangeHumidityTo(normalHumidity, 0.10f);
+            Debug.Log(plantButton.plant.plantName + " в состоянии " + plantButton.plant.state + " и с коэффицентом " + plantButton.plant.waterCoefficient);
         }
     }
 
@@ -147,7 +142,37 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
             background.sprite = bgPictures[0];
            
         }
+    }
 
+    private string chooseCheckPhrase (Plant plant)
+    {
+        List<string> phrases = new();
 
+        if (plant.waterCoefficient > plant.maxWaterCoefficient)
+        {
+            phrases.Add(plant.checkPhrases[0]);
+        }
+        else if (plant.waterCoefficient < plant.minWaterCoefficient)
+        {
+            phrases.Add(plant.checkPhrases[1]);
+        }
+
+        if (plant.humidity > plant.maxHumidity)
+        {
+            phrases.Add(plant.checkPhrases[2]);
+        } 
+        else if (plant.humidity < plant.minHumidity)
+        {
+            phrases.Add(plant.checkPhrases[3]);
+        }
+
+        int index = UnityEngine.Random.Range(0, phrases.Count);
+
+        if (phrases.Count == 0)
+        {
+            return null;
+        }
+
+        return phrases[index];
     }
 }

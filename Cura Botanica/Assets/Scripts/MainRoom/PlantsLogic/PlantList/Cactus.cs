@@ -83,6 +83,12 @@ public class Cactus : Plant
         set { _tooMuchDrop = value; }
     }
 
+    public override string[] checkPhrases
+    {
+        get { return _checkPhrases; }
+        set { _checkPhrases = value; }
+    }
+
     /* Plant Parameters */
 
     public override double waterCoefficient
@@ -108,10 +114,23 @@ public class Cactus : Plant
         get { return _lightAmount; }
         set { _lightAmount = value; }
     }
+
     public override double humidity
     {
         get { return _humidity; }
         set { _humidity = value; }
+    }
+
+    public override double minHumidity
+    {
+        get { return _minHumidity; }
+        set { _minHumidity = value; }
+    }
+
+    public override double maxHumidity
+    {
+        get { return _maxHumidity; }
+        set { _maxHumidity = value; }
     }
     public override int temperature
     {
@@ -125,15 +144,17 @@ public class Cactus : Plant
         plantName = "Кактус";
         this.lightAmount = 3000;
         this.normalWaterAmount = 100f;
-        this.waterCoefficient = 0.75f;
-        minWaterCoefficient = 0.5f;
-        maxWaterCoefficient = 0.1f;
+        this.waterCoefficient = 0f;
+        minWaterCoefficient = 0.1f;
+        maxWaterCoefficient = 0.5f;
         this.state = states[2];
+        maxHumidity = 1;
+        minHumidity = 0.5;
     }
 
     public override void ChangeState()
     {
-        ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, 0.5, 1, 2000, 8000);
+        ChangeStateLogic(minWaterCoefficient, maxWaterCoefficient, minHumidity, maxHumidity, 2000, 8000);
     }
 
     public override void Dry()

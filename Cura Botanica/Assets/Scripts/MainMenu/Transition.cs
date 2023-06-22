@@ -16,10 +16,17 @@ namespace SceneChanger
         public void LoadNextScene()
         {
             StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+            ArrangePlants();
+        }
+
+        private void ArrangePlants()
+        {
+            PlantButton[] savedPlants = SaveSystem.LoadPlants();
         }
 
         public void LoadMainMenu()
         {
+            SaveSystem.SavePlants(FindObjectsOfType<PlantButton>());
             StartCoroutine(LoadScene(0));
         }
 

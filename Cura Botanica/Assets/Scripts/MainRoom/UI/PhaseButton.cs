@@ -113,18 +113,6 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         }
     }
 
-/*Where to load...*/
-    void savePlantsProps() {
-        string plantsProps = "";
-
-        foreach (PlantButton plant in allPlants)
-        {
-            plantsProps += plant.plant.plantName + ", " + plant.plant.state + ", " + plant.plant.waterCoefficient + " / ";
-        }
-
-        PlayerPrefs.SetString("PlantsProperties", plantsProps);
-    }
-
     void updatePhaseButton(int i)
     {
         if (i < 2)

@@ -23,6 +23,7 @@ public class SpecialPlant : MonoBehaviour
     private int day;
     private int month;
     private int year;
+    public bool isTuned = false;
 
     public void Tune()
     {
@@ -39,6 +40,8 @@ public class SpecialPlant : MonoBehaviour
 
 
         flower.GetComponent<Image>().color = chooseColor();
+
+        isTuned = true;
     }
 
     private int chooseElement()

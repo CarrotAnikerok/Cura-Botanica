@@ -3095,22 +3095,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002822052}
   m_CullTransparentMesh: 1
---- !u!1 &1071280669 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5011079090285780026, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
-  m_PrefabInstance: {fileID: 370352637}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1071280670 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5011079090285780024, guid: 096fa3f8f95e9464b9663631813e7bb7, type: 3}
   m_PrefabInstance: {fileID: 370352637}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071280669}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
 --- !u!114 &1071280671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3123,8 +3119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8067949f8456945820935f5efa2a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 1071280670}
-  volumeTextUI: {fileID: 222342205}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1094314120
 GameObject:
   m_ObjectHideFlags: 0
@@ -3864,7 +3860,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1955356921}
         m_TargetAssemblyTypeName: UIAudio, Assembly-CSharp
-        m_MethodName: PlayGeneralClick
+<<<<<<< Updated upstream
+        m_MethodName: PlaySlideClick
+=======
+        m_MethodName: PlaySlide
+>>>>>>> Stashed changes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

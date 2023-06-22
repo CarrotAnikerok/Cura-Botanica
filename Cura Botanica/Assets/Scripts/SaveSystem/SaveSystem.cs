@@ -81,7 +81,7 @@ public static class SaveSystem
         GameObject buttonObject = new GameObject("ButtonObject");
         buttonObject.AddComponent<PlantButton>();
         buttonObject.AddComponent<DraggableItem>();
-        // buttonObject.AddComponent<>(); // Don't understand how to add script of particular plant like "Aloe Vera"
+        // buttonObject.AddComponent<>(); // Don't understand how to add script of particular plant with its string name like "AloeVera"
 
         return buttonObject;
     }

@@ -22,6 +22,21 @@ namespace SceneChanger
         private void ArrangePlants()
         {
             PlantButton[] savedPlants = SaveSystem.LoadPlants();
+            PlantSlot[] plantSlots = FindObjectsOfType<PlantSlot>();
+
+            int[] usedSlots = new int[savedPlants.Length];
+            for (int i = 0; i < savedPlants.Length; i++)
+            {
+                usedSlots[i] = savedPlants[i].placeIndex;
+            }
+
+            foreach (int slot in usedSlots)
+            {
+                foreach (PlantButton plant in savedPlants)
+                {
+                    plant.transform.SetParent(plantSlots[slot].transform);
+                }
+            }
         }
 
         public void LoadMainMenu()

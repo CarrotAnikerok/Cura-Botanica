@@ -90,7 +90,6 @@ public class AloeVera : Plant
         set { _checkPhrases = value; }
     }
 
-
     /* Plant Parameters */
 
     public override double waterCoefficient
@@ -145,7 +144,7 @@ public class AloeVera : Plant
 
     public AloeVera()
     {
-        plantName = "Алое Вера";
+        plantName = "ГЂГ«Г®ГҐ Г‚ГҐГ°Г ";
         normalWaterAmount = 300f;
         waterCoefficient = 0.0f;
         minWaterCoefficient = 0.2f;

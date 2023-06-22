@@ -11,7 +11,7 @@ public class PlantMenu : MonoBehaviour
     private GameObject _UI;
     private Vector2 _plantButtonPosition;
     private Tools _tools;
-    private int stateOfPlant;
+    private int _stateOfPlant;
 
     public Image plantImage;
     public Sprite bigSprite;
@@ -30,27 +30,12 @@ public class PlantMenu : MonoBehaviour
         plantImage = GameObject.Find("Actual Image Of Plant").GetComponent<Image>();
         _tools = gameObject.GetComponent<Tools>();
         gameObject.SetActive(false);
-
-        PlantButton[]  allPlantsButtons = FindObjectsOfType<PlantButton>();
-        var allPlants = new List<PlantButton>();
-        foreach (PlantButton plantButton in allPlantsButtons)
-        {
-            allPlants.Add(plantButton);
-        }
-        IEnumerable<PlantButton> plants = allPlants.OrderBy(p => p.placeIndex);
-        int i = 0;
-        sortedPlants = new PlantButton[plants.Count<PlantButton>()];
-        foreach (PlantButton plant in plants)
-        {
-            sortedPlants[i] = plant;
-            i += 1;
-        }
-
     }
 
     /* Find pressed button, take it image. Tunes plant menu properly and give it animations. */
     private void OnEnable()
     {
+        UpdateSortedButtons();
         if (GameObject.Find("ActivePlantButton") != null)
         {
             Tune();
@@ -69,14 +54,15 @@ public class PlantMenu : MonoBehaviour
 
     }
 
-    public void Move()
+    public void MoveForward()
     {
         _plantButton.name = _plantButton.buttonName;
         int i = Array.FindIndex(sortedPlants, x => x == _plantButton);
         foreach (PlantButton plant in sortedPlants)
         {
-            Debug.Log("Растение и индекс:" + plant + Array.FindIndex(sortedPlants, x => x == plant));
+
         }
+
         if (i + 1 == sortedPlants.Length)
         {
             sortedPlants[0].name = "ActivePlantButton";
@@ -85,9 +71,26 @@ public class PlantMenu : MonoBehaviour
         {
             sortedPlants[i + 1].name = "ActivePlantButton";
         }
+
         Tune();
     }
 
+    public void MoveBackward()
+    {
+        _plantButton.name = _plantButton.buttonName;
+        int i = Array.FindIndex(sortedPlants, x => x == _plantButton);
+
+        if (i == 0)
+        {
+            sortedPlants[sortedPlants.Length - 1].name = "ActivePlantButton";
+        }
+        else
+        {
+            sortedPlants[i - 1].name = "ActivePlantButton";
+        }
+
+        Tune();
+    }
 
     private void Tune()
     {
@@ -99,14 +102,14 @@ public class PlantMenu : MonoBehaviour
         _tools.activePlant = activePlant;
         _tools.MakeRightLight();
 
-        stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
+        _stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
 
         // Change image in needed plant
-        bigSprite = activePlant.statesPicturesBig[stateOfPlant];
+        bigSprite = activePlant.statesPicturesBig[_stateOfPlant];
         plantImage.sprite = bigSprite;
 
         // Change state sprite
-        state.sprite = states[stateOfPlant];
+        state.sprite = states[_stateOfPlant];
     }
 
 
@@ -124,5 +127,26 @@ public class PlantMenu : MonoBehaviour
     {
         blackBackground.gameObject.SetActive(false);
         gameObject.SetActive(false);
+    }
+
+    private void UpdateSortedButtons()
+    {
+        PlantButton[] allPlantsButtons = FindObjectsOfType<PlantButton>();
+        List<PlantButton> allPlants = new List<PlantButton>();
+        int i = 0;
+
+        foreach (PlantButton plantButton in allPlantsButtons)
+        {
+            allPlants.Add(plantButton);
+        }
+
+        IEnumerable<PlantButton> plants = allPlants.OrderBy(p => p.placeIndex);
+        sortedPlants = new PlantButton[plants.Count<PlantButton>()];
+
+        foreach (PlantButton plant in plants)
+        {
+            sortedPlants[i] = plant;
+            i += 1;
+        }
     }
 }

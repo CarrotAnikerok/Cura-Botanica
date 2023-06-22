@@ -92,6 +92,7 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(startTime);
 
         updatePlants();
+        // savePlantsProps();
         handbook.showNote(nextPhase);
         updatePhaseButton(i);
 
@@ -109,7 +110,17 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
             plantButton.plant.ChangeState();
             plantButton.plant.Dry();
             plantButton.plant.ChangeHumidityTo(normalHumidity, 0.10f);
-            Debug.Log(plantButton.plant.plantName + " в состоянии " + plantButton.plant.state + " и с коэффицентом " + plantButton.plant.waterCoefficient);
+            Debug.Log(plantButton.plant.name + " в состоянии " + plantButton.plant.state + " и с коэффицентом " + plantButton.plant.waterCoefficient);
+        }
+    }
+
+/*Where to load...*/
+    void savePlantsProps() {
+        string plantsProps = "";
+
+        foreach (PlantButton plant in allPlants)
+        {
+            plantsProps += plant.plant.plantName + ", " + plant.plant.state + ", " + plant.plant.waterCoefficient + " / "; // Really want to add slot index
         }
     }
 

@@ -16,7 +16,7 @@ namespace SceneChanger
         public void LoadNextScene()
         {
             StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
-            ArrangePlants();
+            // ArrangePlants();
         }
 
         private void ArrangePlants()

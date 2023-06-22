@@ -43,6 +43,7 @@ public class Tools : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("SpraySound");
         activePlant.Spray(sprayHumidity);
+        handbook.makeNote(activePlant.plantName + ": опрыскивание на 5%" , phaseButton.currentPhase);
     }
 
     public void LightShift()
@@ -51,14 +52,20 @@ public class Tools : MonoBehaviour
         if (activePlant.lightOn)
         {
             lightImage.sprite = lightOffSprite;
+            activePlant.humidity += 0.1;
+            activePlant.temperature -= 10;
             activePlant.ChangeLightAmount(-3000);
             activePlant.lightOn = false;
+            handbook.makeNote(activePlant.plantName + ": свет выключен", phaseButton.currentPhase);
         }
         else
         {
             lightImage.sprite = lightOnSprite;
+            activePlant.humidity -= 0.1;
+            activePlant.temperature += 10;
             activePlant.ChangeLightAmount(3000);
             activePlant.lightOn = true;
+            handbook.makeNote(activePlant.plantName + ": свет включен", phaseButton.currentPhase);
         }
     }
 

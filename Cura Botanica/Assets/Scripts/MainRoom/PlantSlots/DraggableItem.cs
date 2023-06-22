@@ -45,7 +45,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
         foreach (PlantSlot obj in objects)
         {
-            Debug.Log(obj);
             obj.image.enabled = false;
         }
     }

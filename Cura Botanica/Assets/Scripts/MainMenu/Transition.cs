@@ -16,8 +16,6 @@ namespace SceneChanger
         public void LoadNextScene()
         {
             StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
-<<<<<<< Updated upstream
-=======
             // ArrangePlants();
         }
 
@@ -39,11 +37,11 @@ namespace SceneChanger
                     plant.transform.SetParent(plantSlots[slot].transform);
                 }
             }
->>>>>>> Stashed changes
         }
 
         public void LoadMainMenu()
         {
+            SaveSystem.SavePlants(FindObjectsOfType<PlantButton>());
             StartCoroutine(LoadScene(0));
         }
 

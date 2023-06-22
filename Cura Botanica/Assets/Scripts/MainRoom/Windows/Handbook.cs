@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +13,14 @@ public class Handbook : MonoBehaviour
 
     public TextMeshProUGUI morningField;
     public TextMeshProUGUI dayField;
-
-
     public TextMeshProUGUI eveningField;
+    public TextMeshProUGUI additionalField;
+    public TextMeshProUGUI pastEveningField;
+
+    private int nodesCount;
+    private int eveningNodesCount;
+    private bool thereIsPhaseTitle;
+    private bool addAdditionalToEvening;
 
     [SerializeField] private GameObject[] panels = new GameObject[3];
     [SerializeField] private GameObject[] mainButtons = new GameObject[3];
@@ -26,6 +31,7 @@ public class Handbook : MonoBehaviour
         panels[0] = info;
         panels[1] = notebook;
         panels[2] = description;
+        nodesCount += 2;
     }
 
     public void openBook(GameObject book)
@@ -51,46 +57,147 @@ public class Handbook : MonoBehaviour
 
     public void makeNote(string inscription, string placeForNote)
     {
-        switch (placeForNote)
+        if (nodesCount >= 17 && thereIsPhaseTitle == false)
         {
-            case "Morning":
-                morningField.text += inscription + "\n";
-                morningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
-                // PlayerPrefs.SetString("MorningNoteField", morningField.text);
-                break;
-            case "Day":
-                dayField.text += inscription + "\n";
-                dayField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
-                // PlayerPrefs.SetString("DayNoteField", dayField.text);
-
-                break;
-            case "Evening":
-                eveningField.text += inscription + "\n";
-                eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
-                // PlayerPrefs.SetString("EveningNoteField", eveningField.text);
-                break;
+            additionalField.transform.parent.gameObject.SetActive(true);
+            additionalField.text += inscription + "\n";
+            additionalField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 34f);
+            if (placeForNote == "Evening")
+            {
+                eveningNodesCount += 1;
+                addAdditionalToEvening = true;
+            }
         }
+        else
+        {
+            switch (placeForNote)
+            {
+                case "Morning":
+                    morningField.text += inscription + "\n";
+                    morningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
+                    // PlayerPrefs.SetString("MorningNoteField", morningField.text);
+                    break;
+                case "Day":
+                    dayField.text += inscription + "\n";
+                    dayField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
+                    // PlayerPrefs.SetString("DayNoteField", dayField.text);
+                    break;
+                case "Evening":
+                    eveningField.text += inscription + "\n";
+                    eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta += new Vector2(0f, 100);
+                    eveningNodesCount += 1;
+                    // PlayerPrefs.SetString("EveningNoteField", eveningField.text);
+                    break;
+            }
+        }
+        nodesCount += 1;
+        Debug.Log("Nodes count " + nodesCount);
     }
 
     public void showNote(string notePhase)
     {
-        switch (notePhase)
+        if (nodesCount == 17)
         {
-            case "Morning":
-                break;
-            case "Day":
-                float morningHeight = morningField.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
-                float morningBorder = morningField.transform.parent.localPosition.y + 50 - morningHeight / 2;
-                dayField.transform.parent.localPosition = new Vector3(-283.92f, morningBorder - 100);
-                dayField.transform.parent.gameObject.SetActive(true);
-                break;
-            case "Evening":
-                float dayHeight = dayField.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
-                float dayBorder = dayField.transform.parent.localPosition.y + 50 - dayHeight / 2;
-                eveningField.transform.parent.localPosition = new Vector3(-283.92f, dayBorder - 100);
-                eveningField.transform.parent.gameObject.SetActive(true);
-                break;
+            Debug.Log("переход на след страницу");
+            nodesCount = 0;
+            switch (notePhase)
+            {
+                case "Morning":
+                    startNewDay();
+                    break;
+                case "Day":
+                    dayField.transform.parent.localPosition = new Vector2(340, 342);
+                    dayField.transform.parent.gameObject.SetActive(true);
+                    break;
+                case "Evening":
+                    eveningField.transform.parent.localPosition = new Vector2(340, 342);
+                    eveningField.transform.parent.gameObject.SetActive(true);
+                    eveningNodesCount += 2;
+                    break;
+            }
+            thereIsPhaseTitle = true;
+        } 
+        else if (nodesCount > 17 && thereIsPhaseTitle == false)
+        {
+            nodesCount = nodesCount - 17;
+            switch (notePhase)
+            {
+                case "Morning":
+                    startNewDay();
+                    break;
+                case "Day":
+                    calculateLocation(additionalField, dayField);
+                    break;
+                case "Evening":
+                    calculateLocation(additionalField, eveningField);
+                    eveningNodesCount += 2;
+                    break;
+            }
+            thereIsPhaseTitle = true;
         }
-        // 200-(dayHeight-200)\2-3
+        else
+        {
+            Debug.Log("перехода нет");
+            switch (notePhase)
+            {
+                case "Morning":
+                    startNewDay();
+                    break;
+                case "Day":
+                    calculateLocation(morningField, dayField);
+                    break;
+                case "Evening":
+                    calculateLocation(dayField, eveningField);
+                    eveningNodesCount += 2;
+                    break;
+            }
+        }
+        nodesCount += 2;
+    }
+
+    private void calculateLocation(TextMeshProUGUI pastField, TextMeshProUGUI newField)
+    {
+        float height = pastField.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
+        float border = pastField.transform.parent.localPosition.y + 50 - height / 2;
+        newField.transform.parent.localPosition = new Vector2(pastField.transform.parent.localPosition.x, border - 100);
+        newField.transform.parent.gameObject.SetActive(true);
+    }
+
+    private void startNewDay()
+    {
+        //clear notes
+        additionalField.text = "";
+        morningField.text = "Здесь появляются заметки за утро...\n";
+        dayField.text = "Здесь появляются заметки за день...\n";
+
+        pastEveningField.transform.parent.GetComponent<RectTransform>().sizeDelta
+            = eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta;
+
+        morningField.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(588f, 100);
+        dayField.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(588f, 100);
+        eveningField.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(588f, 100);
+
+        pastEveningField.text = eveningField.text;
+        pastEveningField.text = pastEveningField.text.Substring(36);
+        pastEveningField.text = "Здесь находятся заметки за прошлый вечер..." + pastEveningField.text;
+        eveningField.text = "Здесь появляются заметки за вечер...\n";
+
+        if (addAdditionalToEvening == true)
+        {
+            pastEveningField.text += additionalField.text;
+            addAdditionalToEvening = false;
+        }
+
+        additionalField.transform.parent.gameObject.SetActive(false);
+        dayField.transform.parent.gameObject.SetActive(false);
+        eveningField.transform.parent.gameObject.SetActive(false);
+
+        pastEveningField.transform.parent.gameObject.SetActive(true);
+
+        calculateLocation(pastEveningField, morningField);
+
+        thereIsPhaseTitle = false;
+        nodesCount = eveningNodesCount;
+        eveningNodesCount = 0;
     }
 }

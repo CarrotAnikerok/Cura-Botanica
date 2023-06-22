@@ -9,7 +9,7 @@ public class LoadManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadPlants();
+        //LoadPlants();
     }
 
     public void LoadPlants() {

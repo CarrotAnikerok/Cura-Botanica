@@ -107,10 +107,10 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
             {
                 handbook.makeNote(plantButton.plant.plantName + ": " + chooseCheckPhrase(plantButton.plant), currentPhase);
             }
-            plant.plant.ChangeState();
-            plant.plant.Dry();
-            plant.plant.ChangeHumidityTo(normalHumidity, 0.10f);
-            Debug.Log(plant.plant.name + " в состоянии " + plant.plant.state + " и с коэффицентом " + plant.plant.waterCoefficient);
+            plantButton.plant.ChangeState();
+            plantButton.plant.Dry();
+            plantButton.plant.ChangeHumidityTo(normalHumidity, 0.10f);
+            Debug.Log(plantButton.plant.name + " в состоянии " + plantButton.plant.state + " и с коэффицентом " + plantButton.plant.waterCoefficient);
         }
     }
 

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class WelcomeScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] private SpecialPlant specialPlant;
+
     void Start()
-    {
-        bool showWelcomeScreen = !GameObject.FindObjectOfType<SpecialPlant>().isTuned; // Didn't understand how to get special plant field "isTuned"
-        
-        if (showWelcomeScreen)
+    {  
+        if (specialPlant.isTuned)
         {
+            Debug.Log("Welcome screen doesnt open");
             gameObject.SetActive(false);
-        } else
+        } 
+        else
         {
+            Debug.Log("Welcome screen opens");
             gameObject.SetActive(true);
         }
         

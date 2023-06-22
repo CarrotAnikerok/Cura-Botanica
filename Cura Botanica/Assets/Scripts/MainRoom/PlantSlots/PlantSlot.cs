@@ -27,7 +27,7 @@ public class PlantSlot : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             Debug.Log("Plant " + dropped.GetComponent<PlantButton>().plant.plantName + " was dropped in " + placeIndex + " slot.");
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-            Debug.Log("Plant " + dropped.GetComponent<PlantButton>().plant.plantName + " has type of: " + transform.GetType());
+            // Debug.Log("Plant " + dropped.GetComponent<PlantButton>().plant.plantName + " has type of: " + transform.GetType());
             draggableItem.parentAfteDrag = transform;
             dropped.GetComponent<PlantButton>().placeIndex = placeIndex;
         }

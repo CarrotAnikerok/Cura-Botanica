@@ -34,7 +34,7 @@ public class DisplaySettingsManager : MonoBehaviour
 
         resolutionDropdown.AddOptions(options);
 
-        //LoadResolution();
+        LoadResolution();
     }
 
     private List<Resolution> filterResolutions(Resolution[] resolutions)

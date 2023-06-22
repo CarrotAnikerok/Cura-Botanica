@@ -87,8 +87,6 @@ public abstract class Plant : MonoBehaviour
         image.sprite = statesPicturesMini[Array.FindIndex(states, x => x == state)];
     }
 
-
-
     /* Logic */
     public virtual void ChangeStateLogic(double minCoefficient, double maxCoefficient, double minHumidity, double maxHumidity, 
         int minLightAmoint, int maxLightAmount)

@@ -1,18 +1,11 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class IManager : MonoBehaviour
 
-    // Класс нужен, чтобы изначально найти необходимые объекты и обращаться к ним через IManager,
-    // даже если они недоступны
+    // РљР»Р°СЃСЃ РЅСѓР¶РµРЅ, С‡С‚РѕР±С‹ РёР·РЅР°С‡Р°Р»СЊРЅРѕ РЅР°Р№С‚Рё РЅРµРѕР±С…РѕРґРёРјС‹Рµ РѕР±СЉРµРєС‚С‹ Рё РѕР±СЂР°С‰Р°С‚СЊСЃСЏ Рє РЅРёРј С‡РµСЂРµР· IManager,
+    // РґР°Р¶Рµ РµСЃР»Рё РѕРЅРё РЅРµРґРѕСЃС‚СѓРїРЅС‹
 {
     public GameObject plantMenu;
-
-    public string fase;
-
-    void Awake()
-    {
-        plantMenu = GameObject.Find("PlantMenu");
-    }
 }

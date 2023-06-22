@@ -11,7 +11,7 @@ public class PlantMenu : MonoBehaviour
     private GameObject _UI;
     private Vector2 _plantButtonPosition;
     private Tools _tools;
-    private int stateOfPlant;
+    private int _stateOfPlant;
 
     public Image plantImage;
     public Sprite bigSprite;
@@ -92,7 +92,6 @@ public class PlantMenu : MonoBehaviour
         Tune();
     }
 
-
     private void Tune()
     {
         _plantButton = GameObject.Find("ActivePlantButton").GetComponent<PlantButton>();
@@ -103,14 +102,14 @@ public class PlantMenu : MonoBehaviour
         _tools.activePlant = activePlant;
         _tools.MakeRightLight();
 
-        stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
+        _stateOfPlant = Array.FindIndex(activePlant.states, x => x == activePlant.state);
 
         // Change image in needed plant
-        bigSprite = activePlant.statesPicturesBig[stateOfPlant];
+        bigSprite = activePlant.statesPicturesBig[_stateOfPlant];
         plantImage.sprite = bigSprite;
 
         // Change state sprite
-        state.sprite = states[stateOfPlant];
+        state.sprite = states[_stateOfPlant];
     }
 
 

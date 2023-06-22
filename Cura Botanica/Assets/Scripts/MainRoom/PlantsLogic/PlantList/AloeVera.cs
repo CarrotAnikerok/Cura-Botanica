@@ -144,7 +144,7 @@ public class AloeVera : Plant
 
     public AloeVera()
     {
-        plantName = "Àëîå Âåðà";
+        plantName = "Алое Вера";
         normalWaterAmount = 300f;
         waterCoefficient = 0.0f;
         minWaterCoefficient = 0.2f;

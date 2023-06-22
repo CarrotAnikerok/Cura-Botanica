@@ -20,8 +20,6 @@ public class PlantMenu : MonoBehaviour
     public Image state;
     public Sprite[] states = new Sprite[6];
     public PlantButton[] sortedPlants;
-    
-
 
     private void Start()
     {
@@ -137,7 +135,10 @@ public class PlantMenu : MonoBehaviour
 
         foreach (PlantButton plantButton in allPlantsButtons)
         {
-            allPlants.Add(plantButton);
+            if (plantButton.placeIndex != 0)
+            {
+                allPlants.Add(plantButton);
+            }
         }
 
         IEnumerable<PlantButton> plants = allPlants.OrderBy(p => p.placeIndex);

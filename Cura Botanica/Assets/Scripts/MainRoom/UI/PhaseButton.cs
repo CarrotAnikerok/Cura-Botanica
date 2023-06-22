@@ -103,14 +103,17 @@ public class PhaseButton : MonoBehaviour, IPointerClickHandler
     {
         foreach (PlantButton plantButton in allPlants)
         {
-            if (chooseCheckPhrase(plantButton.plant) != null)
+            if (plantButton.placeIndex != 0)
             {
-                handbook.makeNote(plantButton.plant.plantName + ": " + chooseCheckPhrase(plantButton.plant), currentPhase);
+                if (chooseCheckPhrase(plantButton.plant) != null)
+                {
+                    handbook.makeNote(plantButton.plant.plantName + ": " + chooseCheckPhrase(plantButton.plant), currentPhase);
+                }
+                plantButton.plant.ChangeState();
+                plantButton.plant.Dry();
+                plantButton.plant.ChangeHumidityTo(normalHumidity, 0.10f);
+                Debug.Log(plantButton.plant.name + " в состоянии " + plantButton.plant.state + " и с коэффицентом " + plantButton.plant.waterCoefficient);
             }
-            plantButton.plant.ChangeState();
-            plantButton.plant.Dry();
-            plantButton.plant.ChangeHumidityTo(normalHumidity, 0.10f);
-            Debug.Log(plantButton.plant.name + " в состоянии " + plantButton.plant.state + " и с коэффицентом " + plantButton.plant.waterCoefficient);
         }
     }
 

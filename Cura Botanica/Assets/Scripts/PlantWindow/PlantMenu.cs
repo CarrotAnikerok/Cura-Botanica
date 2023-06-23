@@ -12,6 +12,7 @@ public class PlantMenu : MonoBehaviour
     private Vector2 _plantButtonPosition;
     private Tools _tools;
     private int _stateOfPlant;
+    private PMHandbook _handbook; // в идеале здесь быть не должно, но завтра дедлайн
 
     public Image plantImage;
     public Sprite bigSprite;
@@ -25,6 +26,7 @@ public class PlantMenu : MonoBehaviour
     {
         state = GameObject.Find("State Image").GetComponent<Image>();
         _UI = GameObject.Find("User Interface");
+        _handbook = GameObject.Find("PM Handbook").GetComponent<PMHandbook>();
         plantImage = GameObject.Find("Actual Image Of Plant").GetComponent<Image>();
         _tools = gameObject.GetComponent<Tools>();
         gameObject.SetActive(false);
@@ -108,6 +110,8 @@ public class PlantMenu : MonoBehaviour
 
         // Change state sprite
         state.sprite = states[_stateOfPlant];
+
+        _handbook.getPlantDescription(activePlant.plantName);
     }
 
 

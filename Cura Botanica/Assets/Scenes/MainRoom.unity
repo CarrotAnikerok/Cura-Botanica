@@ -445,8 +445,8 @@ RectTransform:
   - {fileID: 508626100}
   - {fileID: 1851766416}
   - {fileID: 1629984805}
-  - {fileID: 1770628769}
   - {fileID: 1088808595}
+  - {fileID: 1770628769}
   - {fileID: 1545950843}
   - {fileID: 1982990811}
   - {fileID: 5376301}
@@ -499,7 +499,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1088808595}
+  m_Father: {fileID: 1545950843}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2473,9 +2473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1b4b4df6a7dd744aa3b10f269c911e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handbookButton: {fileID: 0}
-  handbookImage: {fileID: 0}
-  plant: {fileID: 0}
 --- !u!1 &265881799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5150,7 +5147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5363,7 +5360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7556,7 +7553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7795036669904861901, guid: 72f1dd9a447ebd142a36cb68d49de5e4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11029,46 +11026,6 @@ MonoBehaviour:
   plantDrawings:
   - {fileID: 21300000, guid: 055b89a835d448441ba64e21b0a48aaa, type: 3}
   - {fileID: 21300000, guid: 66ac963ed9b92fe43b51af0cf4c1b5e0, type: 3}
-  title:
-  - Aloe Vera
-  - Kalanchoe
-  description:
-  - "\u0410\u043B\u043E\u0435 \u0432\u0435\u0440\u0430 - \u044D\u0442\u043E \u0431\u0435\u0441\u0441\u0442\u0435\u0431\u0435\u043B\u044C\u043D\u044B\u0439
-    \u0438\u043B\u0438 \u0441 \u043A\u043E\u0440\u043E\u0442\u043A\u0438\u043C \u0441\u0442\u0435\u0431\u043B\u0435\u043C
-    \u0441\u0443\u043A\u043A\u0443\u043B\u0435\u043D\u0442. \u0426\u0432\u0435\u0442
-    \u0410\u043B\u043E\u0435 \u043F\u0451\u0441\u0442\u0440\u044B\u0439, \u0441 \u0432\u043A\u0440\u0430\u043F\u043B\u0435\u043D\u0438\u0435\u043C
-    \u0437\u0435\u043B\u0435\u043D\u044B\u0445 \u043E\u0442\u0442\u0435\u043D\u043A\u043E\u0432
-    \u0438 \u043F\u044F\u0442\u0435\u043D, \u0438\u043B\u0438 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E
-    \u0437\u0435\u043B\u0435\u043D\u044B\u0439. \u041B\u0438\u0441\u0442 \u0442\u0440\u0435\u0443\u0433\u043E\u043B\u044C\u043D\u044B\u0439,
-    \u0432\u044B\u0442\u044F\u043D\u0443\u0442\u044B\u0439 \u0438 \u043C\u044F\u0441\u0438\u0441\u0442\u044B\u0439,
-    \u0435\u0433\u043E \u043A\u0440\u0430\u044F \u0437\u0443\u0431\u0447\u0430\u0442\u044B\u0435.
-    \u0421\u0442\u0435\u0431\u0435\u043B\u044C \u0442\u0440\u0430\u0432\u044F\u043D\u0438\u0441\u0442\u044B\u0439,
-    \u0443\u043A\u043E\u0440\u043E\u0447\u0435\u043D\u043D\u044B\u0439. \u0418\u043D\u043E\u0433\u0434\u0430
-    \u043C\u043E\u0436\u0435\u0442 \u043F\u043E\u0440\u0430\u0434\u043E\u0432\u0430\u0442\u044C
-    \u043F\u044B\u0448\u043D\u044B\u043C \u0441\u043E\u0446\u0432\u0435\u0442\u0438\u0435\u043C,
-    \u0441\u043E\u0441\u0442\u043E\u044F\u0449\u0438\u043C \u0438\u0437 \u0446\u0432\u0435\u0442\u043E\u0432
-    \u043A\u0440\u0430\u0441\u043D\u043E\u0433\u043E \u0438 \u0436\u0435\u043B\u0442\u043E\u0433\u043E
-    \u0446\u0432\u0435\u0442\u0430. \u0418\u0437\u0434\u0430\u0432\u043D\u0430 \u0410\u043B\u043E\u0435
-    \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442\u0441\u044F \u0432
-    \u043C\u0435\u0434\u0438\u0446\u0438\u043D\u0435 \u0434\u043B\u044F \u043B\u0435\u0447\u0435\u043D\u0438\u044F
-    \u043A\u043E\u0436\u043D\u044B\u0445 \u0437\u0430\u0431\u043E\u043B\u0435\u0432\u0430\u043D\u0438\u0439.
-    \u041F\u043E\u043C\u0438\u043C\u043E \u044D\u0442\u043E\u0433\u043E, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442\u0441\u044F
-    \u0434\u043B\u044F \u043F\u0430\u0440\u0444\u044E\u043C\u0435\u0440\u0438\u0438
-    \u0438 \u043F\u0440\u0438\u043D\u0438\u043C\u0430\u0435\u0442\u0441\u044F \u0432
-    \u043F\u0438\u0449\u0443."
-  - "\u0425\u0435\u0445\u0435 \u041A\u0430\u043B\u0430\u043D\u0445\u043E\u044D"
-  practicalPart:
-  - "\u0422\u0440\u0435\u0431\u0443\u0435\u0442 \u043E\u0447\u0435\u043D\u044C \u043C\u043D\u043E\u0433\u043E
-    \u0441\u0432\u0435\u0442\u0430, \u0442\u043E\u0433\u0434\u0430 \u043A\u0430\u043A
-    \u043F\u043E\u043B\u0438\u0432 \u043D\u0443\u0436\u0435\u043D \u0434\u043E\u0441\u0442\u0430\u0442\u043E\u0447\u043D\u043E
-    \u0443\u043C\u0435\u0440\u0435\u043D\u043D\u044B\u0439. \u041A\u0430\u043A \u0433\u043E\u0432\u043E\u0440\u0438\u0442\u0441\u044F,
-    \u043B\u0443\u0447\u0448\u0435 \u043F\u0435\u0440\u0435\u0441\u0443\u0448\u0438\u0442\u044C,
-    \u0447\u0435\u043C \u043F\u0435\u0440\u0435\u043B\u0438\u0442\u044C! \u0412\u043B\u0430\u0436\u043D\u043E\u0441\u0442\u044C
-    \u0438 \u0442\u0435\u043C\u043F\u0435\u0440\u0430\u0442\u0443\u0440\u0430 \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u044B\u0435.
-    \u0414\u043B\u044F \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u043E\u0433\u043E
-    \u0444\u0443\u043D\u043A\u0446\u0438\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435
-    \u0443\u0434\u043E\u0431\u0440\u0435\u043D\u0438\u0435 \u043D\u0435 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F."
-  - "\u0425\u0443\u0445\u0443 \u043A\u0430\u043B\u0430\u043D\u0445\u043E\u044D"
   drawing: {fileID: 373622716}
   text: {fileID: 804707854}
   textComponents: []
@@ -11365,7 +11322,7 @@ RectTransform:
   m_GameObject: {fileID: 1251804968}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.1751177, y: 2.1751177, z: 0}
+  m_LocalScale: {x: 2.1751175, y: 2.1751175, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 121325819}
@@ -11373,7 +11330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -381.48608, y: -69.80367}
+  m_AnchoredPosition: {x: -865.94434, y: -69.803696}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251804970
@@ -18876,7 +18833,7 @@ GameObject:
   - component: {fileID: 1619529584}
   - component: {fileID: 1619529583}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PM Handbook Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19722,7 +19679,7 @@ GameObject:
   - component: {fileID: 1717745098}
   - component: {fileID: 1717745097}
   m_Layer: 5
-  m_Name: Desc
+  m_Name: PM Handbook Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

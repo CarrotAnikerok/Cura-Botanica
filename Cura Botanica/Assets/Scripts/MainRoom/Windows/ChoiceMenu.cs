@@ -43,9 +43,9 @@ public class ChoiceMenu : MonoBehaviour
         } 
         else
         {
+            plantForSelection2.transform.localPosition = new Vector3(3.5f, 0); //why are you flying boy, idk
             title.text = "На сегодня новых растений нет :(";
             ChangeSize(350, 400, plantForSelection2);
-            plantForSelection2.transform.localPosition += new Vector3(0, -100);
             plantForSelection2.GetComponent<Image>().sprite = baseSprite;
             plantForSelection1.SetActive(true);
             plantForSelection3.SetActive(true);
@@ -61,6 +61,7 @@ public class ChoiceMenu : MonoBehaviour
             {
                 chosenPlant.transform.SetParent(greed.transform.GetChild(i));
                 chosenPlant.GetComponent<PlantButton>().placeIndex = greed.transform.GetChild(i).GetComponent<PlantSlot>().placeIndex;
+                chosenPlant.transform.localScale = new Vector3(2.2f, 2.2f, 1); // scale dont working, i dont know why, my head is hurt :(
                 break;
             }
         }

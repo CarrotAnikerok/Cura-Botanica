@@ -10,15 +10,9 @@ public static class SaveSystem
     static string plantsSavingPath = Application.persistentDataPath + "/plants.save";
     static string specialPlantSavingPath = Application.persistentDataPath + "/specialPlant.save";
 
-    // public static void LoadData(SpecialPlant specialPlant) 
-    // {
-    //     // ArrangePlants(); // Doesn't work yet 
-    //     LoadSpecialPlant(specialPlant); // Nothing to load yet. Special plant system is still in progress
-    // }
-
     public static void SavePlants(PlantButton[] existingPlants)
     {
-        Debug.LogWarning("Saving plants...");
+        Debug.Log("Saving plants...");
         int plantsNumber = existingPlants.Length;
         
         BinaryFormatter formatter = new BinaryFormatter();
@@ -29,74 +23,56 @@ public static class SaveSystem
             {
                 existingPlantsData[i] = new PlantData(existingPlants[i]);
 
-                Debug.LogWarning("Plant " + existingPlants[i].plant.plantName + " is saved.");
+                Debug.Log("Plant " + existingPlants[i].plant.plantName + " is saved.");
             }
 
             formatter.Serialize(stream, existingPlantsData);
-            Debug.LogWarning("Plants are saved: " + existingPlantsData.Length);
         }
     }
 
     public static void ArrangePlants(PlantButton[] plantButtonsOnScene, PlantSlot[] plantSlots)
         {
             PlantButton[] savedPlants = SaveSystem.LoadPlants(plantButtonsOnScene);
+            int savedPlantsNumber = savedPlants.Length;
 
-            int[] usedSlots = new int[savedPlants.Length];
-            for (int i = 0; i < savedPlants.Length; i++)
+            int[] usedSlots = new int[savedPlantsNumber];
+            for (int i = 0; i < savedPlantsNumber; i++)
             {
                 usedSlots[i] = savedPlants[i].placeIndex;
             }
 
-            foreach (int slot in usedSlots)
+            for (int i = 0; i < savedPlantsNumber; i++)
             {
-                foreach (PlantButton plant in savedPlants)
-                {
-                    plant.transform.SetParent(plantSlots[slot].transform);
-                }
+                Debug.Log("Loading plant: " + savedPlants[i].plant.name + ". Plant place index: " + savedPlants[i].placeIndex + ". Slot number: " + usedSlots[i]);
+                savedPlants[i].transform.SetParent(plantSlots[usedSlots[i] - 1].transform);
             }
         }
 
     private static PlantButton[] LoadPlants(PlantButton[] plantButtonsOnScene)
     {
-        Debug.LogWarning("Loading plants...");
+        Debug.Log("Loading plants...");
 
         if (File.Exists(plantsSavingPath))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream stream = new FileStream(plantsSavingPath, FileMode.Open)) 
             {
-                PlantData[] savedPlantsData = formatter.Deserialize(stream) as PlantData[]; // Binary data read from save file
+                PlantData[] savedPlantsData = formatter.Deserialize(stream) as PlantData[];
 
-                int plantsNumber = savedPlantsData.Length;
-                PlantButton[] savedPlants = new PlantButton[plantsNumber]; // Array to return. Full of nulls at this point
+                string[] possibleStates = {"Perfect", "Good", "Neutral", "Bad", "Horrible", "Dead"};
 
-                foreach (PlantData plantData in savedPlantsData)
+                for (int i = 0; i < savedPlantsData.Length; i++)
                 {
-                    for (int i = 0; i < plantsNumber; i++)
-                    {
-                        GameObject buttonObject = CreateButtonObject(plantData.name); // Creating a new object in the scene
+                    int stateIndex = Array.FindIndex(possibleStates, x => x == savedPlantsData[i].state);
 
-                        PlantButton plantButton = buttonObject.GetComponent<PlantButton>(); // Pulling PlantButton component to set plant settings
-                        
-                        // Debug.LogError("Plant button: " + plantButton + ". Plant data: " + plantData); // Debug moment
-
-                        plantButton.plant.plantName = plantData.name; // assigning saved variables to variables of plant of just created plantButton
-                        plantButton.plant.state = plantData.state;
-                        plantButton.plant.waterCoefficient = plantData.waterCoefficient;
-
-                        savedPlants[i] = plantButton; // reassigning null to actual PlantButton object
-                    }
+                    plantButtonsOnScene[i].plant.plantName = savedPlantsData[i].name;
+                    plantButtonsOnScene[i].placeIndex = savedPlantsData[i].placeIndex;
+                    plantButtonsOnScene[i].plant.ChangeStateTo(stateIndex);
+                    plantButtonsOnScene[i].plant.waterCoefficient = savedPlantsData[i].waterCoefficient;                    
                 }
-
-                // for (int i = 0; i < plantsNumber; i++) // nvm
-                // {
-                //     savedPlants[i].plant.plantName = savedPlantsData[i].name;
-                //     savedPlants[i].plant.state = savedPlantsData[i].state;
-                //     savedPlants[i].plant.waterCoefficient = savedPlantsData[i].waterCoefficient;
-                // }
                 
-                Debug.LogWarning("Plants are loaded!");
-                return savedPlants;
+                Debug.Log("Plants are loaded!");
+                return plantButtonsOnScene;
             }
         } else
         {
@@ -105,19 +81,9 @@ public static class SaveSystem
         }
     }
 
-    static GameObject CreateButtonObject(string plantName)
-    {
-        GameObject buttonObject = new GameObject("ButtonObject");
-        buttonObject.AddComponent<PlantButton>();
-        buttonObject.AddComponent<DraggableItem>();
-        // buttonObject.AddComponent<>(); // Don't understand how to add script of particular plant with its string name like "AloeVera"
-
-        return buttonObject;
-    }
-
     public static void SaveSpecialPlant(SpecialPlant specialPlant)
     {
-        Debug.LogWarning("Saving special plant...");
+        Debug.Log("Saving special plant...");
 
         BinaryFormatter formatter = new BinaryFormatter();
         using (FileStream stream = new FileStream(specialPlantSavingPath, FileMode.Create))
@@ -127,13 +93,13 @@ public static class SaveSystem
             formatter.Serialize(stream, specialPlantData);
         }
 
-        Debug.LogWarning("Special plant is saved!");
+        Debug.Log("Special plant is saved!");
     }
 
     public static void LoadSpecialPlant(SpecialPlant specialPlantOnScene)
     {
 
-        Debug.LogWarning("Loading special plant...");
+        Debug.Log("Loading special plant...");
 
         if (File.Exists(specialPlantSavingPath))
         {
@@ -142,15 +108,15 @@ public static class SaveSystem
             {
                 SpecialPlantData specialPlantData = formatter.Deserialize(stream) as SpecialPlantData;
 
-                //Color specialPlantColor = CreateColor(specialPlantData);
+                Color specialPlantColor = CreateColor(specialPlantData);
                 
                 specialPlantOnScene.elementIndex = specialPlantData.elementIndex;
                 specialPlantOnScene.isTuned = specialPlantData.isTuned;
-                //specialPlantOnScene.flowerColor = specialPlantColor;
+                specialPlantOnScene.flowerColor = specialPlantColor;
 
                 specialPlantOnScene.Tune();
             }
-            Debug.LogWarning("Special plant is loaded!");
+            Debug.Log("Special plant is loaded!");
         } else
         {
             Debug.LogError("Save file not found in " + specialPlantSavingPath);

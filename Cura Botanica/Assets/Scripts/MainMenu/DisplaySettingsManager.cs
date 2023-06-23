@@ -55,7 +55,7 @@ public class DisplaySettingsManager : MonoBehaviour
     
     public void SetFullScreen(bool isFullScreen)
     {
-        Screen.SetResolution(Screen.width, Screen.height, isFullScreen);
+        Screen.SetResolution(Screen.width, Screen.height, isFullScreen); // Doesn't work yet
     }
 
     public void SetResolution(int resolutionIndex)
@@ -75,8 +75,6 @@ public class DisplaySettingsManager : MonoBehaviour
     {
         string resolutionSettings = PlayerPrefs.GetString("ScreenSettings");
         string[] currentSettings = resolutionSettings.Split(", ");
-
-        // Debug.Log("Screen settings" + ": " + currentSettings[0] + ", " + currentSettings[1]); // debug moment
 
         resolutionDropdown.value = Convert.ToInt32(currentSettings[0]);
         bool isFullScreen = Convert.ToBoolean(currentSettings[1]);

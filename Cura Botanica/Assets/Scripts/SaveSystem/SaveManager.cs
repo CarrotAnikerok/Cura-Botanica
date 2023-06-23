@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// May be used to call SaveSystem methods in Unity editor 
+// Used to call SaveSystem methods in Unity editor 
 public class SaveManager : MonoBehaviour
 {
     public SpecialPlant specialPlant;
     public PlantButton[] plantButtons;
+    public PlantSlot[] plantSlots;
 
     void Start()
     {
         LoadData();
     }
 
-    public void SaveData()
+    public void SaveData() // Triggers via buttons on scene
     {
-        Debug.LogWarning("Saving...");
-
         SaveSystem.SaveSpecialPlant(specialPlant);
         SaveSystem.SavePlants(plantButtons);
     }
@@ -24,6 +23,6 @@ public class SaveManager : MonoBehaviour
     public void LoadData()
     {
         SaveSystem.LoadSpecialPlant(specialPlant);
-        // SaveSystem.ArrangePlants(plantButtons, GameObject.FindObjectsOfType<PlantSlot>());
+        SaveSystem.ArrangePlants(plantButtons, plantSlots);
     }
 }

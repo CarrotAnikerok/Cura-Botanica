@@ -142,14 +142,11 @@ public static class SaveSystem
             {
                 SpecialPlantData specialPlantData = formatter.Deserialize(stream) as SpecialPlantData;
 
+                Color specialPlantColor = CreateColor(specialPlantData);
+                
                 specialPlantOnScene.elementIndex = specialPlantData.elementIndex;
                 specialPlantOnScene.isTuned = specialPlantData.isTuned;
-
-                float A = specialPlantData.color[0];
-                float R = specialPlantData.color[1];
-                float G = specialPlantData.color[2];
-                float B = specialPlantData.color[3];
-                specialPlantOnScene.flowerColor = new Color (A, R, G, B);
+                specialPlantOnScene.flowerColor = specialPlantColor;
 
                 specialPlantOnScene.Tune();
             }
@@ -158,5 +155,14 @@ public static class SaveSystem
         {
             Debug.LogError("Save file not found in " + specialPlantSavingPath);
         }
+    }
+
+    private static Color CreateColor(SpecialPlantData specialPlantData)
+    {
+        float A = specialPlantData.color[0];
+        float R = specialPlantData.color[1];
+        float G = specialPlantData.color[2];
+        float B = specialPlantData.color[3];
+        return new Color (A, R, G, B);
     }
 }

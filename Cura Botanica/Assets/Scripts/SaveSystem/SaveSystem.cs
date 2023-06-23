@@ -10,19 +10,11 @@ public static class SaveSystem
     static string plantsSavingPath = Application.persistentDataPath + "/plants.save";
     static string specialPlantSavingPath = Application.persistentDataPath + "/specialPlant.save";
 
-    public static void SaveData()
-    {
-        SavePlants(GameObject.FindObjectsOfType<PlantButton>());
-        SpecialPlant specialPlant = GameObject.FindObjectOfType<SpecialPlant>(); // !!! FindObjectOfType doesn't see disabled objects !!!
-        // Debug.LogError("Existing special plant object: " + specialPlant);
-        // SaveSpecialPlant(specialPlant);
-    }
-
-    public static void LoadData(SpecialPlant specialPlant) 
-    {
-        // ArrangePlants(); // Doesn't work yet 
-        LoadSpecialPlant(specialPlant); // Nothing to load yet. Special plant system is still in progress
-    }
+    // public static void LoadData(SpecialPlant specialPlant) 
+    // {
+    //     // ArrangePlants(); // Doesn't work yet 
+    //     LoadSpecialPlant(specialPlant); // Nothing to load yet. Special plant system is still in progress
+    // }
 
     public static void SavePlants(PlantButton[] existingPlants)
     {
@@ -45,10 +37,9 @@ public static class SaveSystem
         }
     }
 
-    private static void ArrangePlants()
+    public static void ArrangePlants(PlantButton[] plantButtonsOnScene, PlantSlot[] plantSlots)
         {
-            PlantButton[] savedPlants = SaveSystem.LoadPlants();
-            PlantSlot[] plantSlots = GameObject.FindObjectsOfType<PlantSlot>();
+            PlantButton[] savedPlants = SaveSystem.LoadPlants(plantButtonsOnScene);
 
             int[] usedSlots = new int[savedPlants.Length];
             for (int i = 0; i < savedPlants.Length; i++)
@@ -65,7 +56,7 @@ public static class SaveSystem
             }
         }
 
-    public static PlantButton[] LoadPlants()
+    private static PlantButton[] LoadPlants(PlantButton[] plantButtonsOnScene)
     {
         Debug.LogWarning("Loading plants...");
 
@@ -139,7 +130,7 @@ public static class SaveSystem
         Debug.LogWarning("Special plant is saved!");
     }
 
-    public static void LoadSpecialPlant(SpecialPlant specialPlant)
+    public static void LoadSpecialPlant(SpecialPlant specialPlantOnScene)
     {
 
         Debug.LogWarning("Loading special plant...");
@@ -150,9 +141,17 @@ public static class SaveSystem
             using (FileStream stream = new FileStream(specialPlantSavingPath, FileMode.Open))
             {
                 SpecialPlantData specialPlantData = formatter.Deserialize(stream) as SpecialPlantData;
-                SpecialPlant specialPlantOnScene = specialPlant;
 
+                specialPlantOnScene.elementIndex = specialPlantData.elementIndex;
                 specialPlantOnScene.isTuned = specialPlantData.isTuned;
+
+                float A = specialPlantData.color[0];
+                float R = specialPlantData.color[1];
+                float G = specialPlantData.color[2];
+                float B = specialPlantData.color[3];
+                specialPlantOnScene.flowerColor = new Color (A, R, G, B);
+
+                specialPlantOnScene.Tune();
             }
             Debug.LogWarning("Special plant is loaded!");
         } else

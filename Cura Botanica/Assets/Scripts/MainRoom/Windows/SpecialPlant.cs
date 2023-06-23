@@ -13,7 +13,7 @@ public class SpecialPlant : MonoBehaviour
 
     [SerializeField] private Image background;
     [SerializeField] private Image plant;
-    [SerializeField] private GameObject flower;
+    [SerializeField] public GameObject flower;
     [SerializeField] private Image button;
 
     [SerializeField]  private TMP_Dropdown dayDropdown;
@@ -23,7 +23,14 @@ public class SpecialPlant : MonoBehaviour
     private int day;
     private int month;
     private int year;
+
+    [HideInInspector]
+    public int elementIndex;
+    [HideInInspector]
     public bool isTuned = false;
+    [HideInInspector]
+    public Color flowerColor;
+
 
     public void Tune()
     {
@@ -31,15 +38,15 @@ public class SpecialPlant : MonoBehaviour
         month = monthDropdown.value;
         year = yearDropdown.value;
 
-        int element = chooseElement();
-        background.sprite = backgrounds[element];
-        plant.sprite = plants[element];
-        button.sprite = buttons[element];
-        flower = flowers[element];
+        elementIndex = chooseElement();
+        background.sprite = backgrounds[elementIndex];
+        plant.sprite = plants[elementIndex];
+        button.sprite = buttons[elementIndex];
+        flower = flowers[elementIndex];
         flower.SetActive(true);
 
-
-        flower.GetComponent<Image>().color = chooseColor();
+        flowerColor = chooseColor();
+        flower.GetComponent<Image>().color = flowerColor;
 
         isTuned = true;
     }

@@ -18,13 +18,13 @@ namespace SceneChanger
         public void LoadNextScene()
         {
             StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
-            SaveSystem.LoadData(saveManager.specialPlant);
+            // SaveSystem.LoadData(saveManager.specialPlant);
             // ArrangePlants();
         }
 
         public void LoadMainMenu()
         {
-            SaveSystem.SaveData();
+            // SaveSystem.SaveData();
             StartCoroutine(LoadScene(0));
         }
 

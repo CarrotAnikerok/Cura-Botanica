@@ -18,10 +18,10 @@ public static class SaveSystem
         // SaveSpecialPlant(specialPlant);
     }
 
-    public static void LoadData() 
+    public static void LoadData(SpecialPlant specialPlant) 
     {
         // ArrangePlants(); // Doesn't work yet 
-        LoadSpecialPlant(); // Nothing to load yet. Special plant system is still in progress
+        LoadSpecialPlant(specialPlant); // Nothing to load yet. Special plant system is still in progress
     }
 
     public static void SavePlants(PlantButton[] existingPlants)
@@ -139,8 +139,9 @@ public static class SaveSystem
         Debug.LogWarning("Special plant is saved!");
     }
 
-    public static void LoadSpecialPlant()
+    public static void LoadSpecialPlant(SpecialPlant specialPlant)
     {
+
         Debug.LogWarning("Loading special plant...");
 
         if (File.Exists(specialPlantSavingPath))
@@ -149,7 +150,7 @@ public static class SaveSystem
             using (FileStream stream = new FileStream(specialPlantSavingPath, FileMode.Open))
             {
                 SpecialPlantData specialPlantData = formatter.Deserialize(stream) as SpecialPlantData;
-                SpecialPlant specialPlantOnScene = GameObject.FindObjectOfType<SpecialPlant>();
+                SpecialPlant specialPlantOnScene = specialPlant;
 
                 specialPlantOnScene.isTuned = specialPlantData.isTuned;
             }

@@ -5,12 +5,18 @@ using UnityEngine;
 public class ToolsAnimations : MonoBehaviour
 {
     [SerializeField] private GameObject wateringAnim;
-    [SerializeField] private GameObject sprayAnum;
+    [SerializeField] private GameObject sprayAnim;
 
     public void waterAnimation()
     {
         StartCoroutine(waterCoroutine());
     }
+
+    public void sprayAnimation()
+    {
+        StartCoroutine(sprayCoroutine());
+    }
+
 
     public void StartWateringAnimation()
     {
@@ -29,6 +35,13 @@ public class ToolsAnimations : MonoBehaviour
         StartWateringAnimation();
         yield return new WaitForSeconds(2.5f);
         EndtWateringAnimation();
+    }
+
+    IEnumerator sprayCoroutine()
+    {
+        sprayAnim.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        sprayAnim.SetActive(false);
     }
 
 

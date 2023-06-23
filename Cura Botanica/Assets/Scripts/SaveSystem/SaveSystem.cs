@@ -142,11 +142,11 @@ public static class SaveSystem
             {
                 SpecialPlantData specialPlantData = formatter.Deserialize(stream) as SpecialPlantData;
 
-                Color specialPlantColor = CreateColor(specialPlantData);
+                //Color specialPlantColor = CreateColor(specialPlantData);
                 
                 specialPlantOnScene.elementIndex = specialPlantData.elementIndex;
                 specialPlantOnScene.isTuned = specialPlantData.isTuned;
-                specialPlantOnScene.flowerColor = specialPlantColor;
+                //specialPlantOnScene.flowerColor = specialPlantColor;
 
                 specialPlantOnScene.Tune();
             }

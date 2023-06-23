@@ -2320,7 +2320,7 @@ PrefabInstance:
     - target: {fileID: 7852843713354521153, guid: b23a67d38281f9c40aa35618d198d55c, type: 3}
       propertyPath: saveManager
       value: 
-      objectReference: {fileID: 1802507184}
+      objectReference: {fileID: 0}
     - target: {fileID: 7852843713354521153, guid: b23a67d38281f9c40aa35618d198d55c, type: 3}
       propertyPath: transitionTime
       value: 0.6
@@ -4801,6 +4801,55 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 543.5662}
   m_SizeDelta: {x: 1920, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &499913349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499913351}
+  - component: {fileID: 499913350}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &499913350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499913349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16abd1c891e9f2243ade320d708fb68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specialPlant: {fileID: 1802507183}
+  plantButtons:
+  - {fileID: 42334011}
+  - {fileID: 1251804971}
+  - {fileID: 806978932}
+--- !u!4 &499913351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499913349}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 527.74945, y: 307.05405, z: -4.4443345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &502800067
 GameObject:
   m_ObjectHideFlags: 0
@@ -4812,7 +4861,6 @@ GameObject:
   - component: {fileID: 502800068}
   - component: {fileID: 502800069}
   - component: {fileID: 502800070}
-  - component: {fileID: 502800071}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -4863,18 +4911,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b54b8953b8fed44ebfa15e9ed672dcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &502800071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502800067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd4ea87c55cea148b34f1eb271a8291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &508626100 stripped
@@ -7724,6 +7760,18 @@ MonoBehaviour:
       - m_Target: {fileID: 502800070}
         m_TargetAssemblyTypeName: UIAudio, Assembly-CSharp
         m_MethodName: PlayWhoosh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 499913350}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: SaveData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20547,7 +20595,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1802507184}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
         m_MethodName: SaveSpecialPlant
         m_Mode: 1
@@ -20717,7 +20765,6 @@ GameObject:
   - component: {fileID: 1802507180}
   - component: {fileID: 1802507182}
   - component: {fileID: 1802507183}
-  - component: {fileID: 1802507184}
   m_Layer: 5
   m_Name: Special Plant
   m_TagString: Untagged
@@ -20806,19 +20853,6 @@ MonoBehaviour:
   monthDropdown: {fileID: 1356644431}
   yearDropdown: {fileID: 837601954}
   isTuned: 0
---- !u!114 &1802507184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802507179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16abd1c891e9f2243ade320d708fb68c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  specialPlant: {fileID: 1802507183}
 --- !u!1 &1837222829
 GameObject:
   m_ObjectHideFlags: 0

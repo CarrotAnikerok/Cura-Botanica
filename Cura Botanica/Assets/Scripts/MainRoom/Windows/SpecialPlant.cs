@@ -34,18 +34,22 @@ public class SpecialPlant : MonoBehaviour
 
     public void Tune()
     {
-        day = dayDropdown.value;
-        month = monthDropdown.value;
-        year = yearDropdown.value;
+        if (!isTuned)
+        {
+            day = dayDropdown.value;
+            month = monthDropdown.value;
+            year = yearDropdown.value;
 
-        elementIndex = chooseElement();
+            elementIndex = chooseElement();
+            flowerColor = chooseColor();
+        }
+       
         background.sprite = backgrounds[elementIndex];
         plant.sprite = plants[elementIndex];
         button.sprite = buttons[elementIndex];
         flower = flowers[elementIndex];
         flower.SetActive(true);
 
-        flowerColor = chooseColor();
         flower.GetComponent<Image>().color = flowerColor;
 
         isTuned = true;

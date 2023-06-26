@@ -14,9 +14,9 @@ public class SpecialPlantData
         this.elementIndex = specialPlant.elementIndex;
         this.isTuned = specialPlant.isTuned;
 
-        color[0] = specialPlant.flowerColor.a;
-        color[1] = specialPlant.flowerColor.r;
-        color[2] = specialPlant.flowerColor.g;
-        color[3] = specialPlant.flowerColor.b;
+        color[0] = specialPlant.flowerColor.r;
+        color[1] = specialPlant.flowerColor.g;
+        color[2] = specialPlant.flowerColor.b;
+        color[3] = specialPlant.flowerColor.a;
     }
 }

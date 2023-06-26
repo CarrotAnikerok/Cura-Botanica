@@ -38,13 +38,17 @@ public static class SaveSystem
             int[] usedSlots = new int[savedPlantsNumber];
             for (int i = 0; i < savedPlantsNumber; i++)
             {
-                usedSlots[i] = savedPlants[i].placeIndex;
+                usedSlots[i] = savedPlants[i].placeIndex - 1; // Indices start from 1, but slots from 0
             }
 
             for (int i = 0; i < savedPlantsNumber; i++)
             {
-                Debug.Log("Loading plant: " + savedPlants[i].plant.name + ". Plant place index: " + savedPlants[i].placeIndex + ". Slot number: " + usedSlots[i]);
-                savedPlants[i].transform.SetParent(plantSlots[usedSlots[i] - 1].transform);
+                if (savedPlants[i].placeIndex != 0)
+                {
+                    savedPlants[i].transform.SetParent(plantSlots[usedSlots[i]].transform);
+                    Debug.Log("Plant: " + savedPlants[i].plant.plantName + " loaded in slot: " + usedSlots[i]);
+                }
+                
             }
         }
 
@@ -125,10 +129,10 @@ public static class SaveSystem
 
     private static Color CreateColor(SpecialPlantData specialPlantData)
     {
-        float A = specialPlantData.color[0];
-        float R = specialPlantData.color[1];
-        float G = specialPlantData.color[2];
-        float B = specialPlantData.color[3];
-        return new Color (A, R, G, B);
+        float R = specialPlantData.color[0];
+        float G = specialPlantData.color[1];
+        float B = specialPlantData.color[2];
+        float A = specialPlantData.color[3];
+        return new Color (R, G, B, A);
     }
 }
